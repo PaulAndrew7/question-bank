@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Question Bank</title>
+  <meta name="description" content="Every quiz question with its correct answer, plus mock tests by topic or quiz.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+  <!-- Satoshi is served by Fontshare: its license allows web use but not redistributing the font files in a public repo. -->
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@1&amp;display=swap">
+  <link rel="preload" href="data/questions.json" as="fetch" crossorigin>
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Apply a saved theme before first paint to avoid a flash.
+    try { const t = JSON.parse(localStorage.getItem("qb.theme")); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#app">Skip to content</a>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="#/study">Question Bank</a>
+      <nav class="tabs" aria-label="Sections">
+        <a class="tab" href="#/study" data-tab="study">Study</a>
+        <a class="tab" href="#/test" data-tab="test">Mock test</a>
+      </nav>
+      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Switch theme"></button>
+    </div>
+  </header>
+  <main id="app" tabindex="-1">
+    <div class="loading" aria-busy="true" aria-label="Loading questions">
+      <div class="sk sk-title"></div>
+      <div class="sk sk-line"></div>
+      <div class="sk sk-line short"></div>
+      <div class="sk sk-block"></div>
+      <div class="sk sk-line"></div>
+      <div class="sk sk-block"></div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# Copied browser requests contain a live auth token
+*request*.txt
+
+# Raw reports contain your name, ids, scores and chosen answers.
+# Only the cleaned docs/data/questions.json is published.
+output/
+
+__pycache__/
+*.pyc
+
+# Local tool caches
+.impeccable/
