@@ -1,8 +1,14 @@
-import { h, icon, rich, optionText, explainBlock, letter, pad, setTitle } from "./dom.js";
+import { h, icon, rich, optionText, explainBlock, letter, pad, setTitle, scrollBehavior } from "./dom.js";
 import { store } from "./store.js";
 
 let query = ""; // kept across group switches for this visit only
 let searchTimer = 0;
+let topObserver = null;
+
+export function leaveStudy() {
+  topObserver?.disconnect();
+  topObserver = null;
+}
 
 export function renderStudy(app, data, args) {
   const mode = args[0] === "quiz" ? "quiz" : "topic";
@@ -42,14 +48,23 @@ export function renderStudy(app, data, args) {
   const scopeNote = h("div");
 
   const input = h("input", {
-    id: "study-search", type: "search", autocomplete: "off", spellcheck: "false",
-    placeholder: "Words from a question or answer", value: query,
+    id: "study-search", type: "search", autocomplete: "off", spellcheck: "false", enterkeyhint: "search",
+    placeholder: "Question or answer text…", value: query,
   });
   input.addEventListener("input", () => {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => { query = input.value.trim().toLowerCase(); paint(); }, 120);
   });
-  input.addEventListener("keydown", (e) => { if (e.key === "Escape" && input.value) { input.value = ""; query = ""; paint(); } });
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && input.value) { input.value = ""; query = ""; paint(); }
+    // The on-screen keyboard's Search key: apply now and close the keyboard so the results show.
+    if (e.key === "Enter" && matchMedia("(pointer: coarse)").matches) {
+      clearTimeout(searchTimer);
+      query = input.value.trim().toLowerCase();
+      paint();
+      input.blur();
+    }
+  });
 
   const showOptions = h("input", { type: "checkbox", checked: store.get("showOptions", false) });
   showOptions.addEventListener("change", () => { store.set("showOptions", showOptions.checked); paint(); });
@@ -69,7 +84,7 @@ export function renderStudy(app, data, args) {
     const items = query ? inGroup.filter((q) => q.search.includes(query)) : inGroup;
     const quizCount = new Set(inGroup.flatMap((q) => q.quizzes)).size;
     meta.textContent = query
-      ? `${items.length} of ${inGroup.length} questions match "${query}"`
+      ? `${items.length} of ${inGroup.length} questions match “${query}”`
       : mode === "topic" || groupId === "all"
         ? `${inGroup.length} questions from ${quizCount} ${quizCount === 1 ? "quiz" : "quizzes"}`
         : `${inGroup.length} questions`;
@@ -91,11 +106,27 @@ export function renderStudy(app, data, args) {
     list.replaceChildren(...items.map((q, i) => questionItem(q, i, data, mode, showOptions.checked, query)));
   }
 
-  app.replaceChildren(h("div", { class: "study" }, side, content));
+  // On narrow screens the group list sits above a long page; this brings it back. Hidden on desktop by CSS.
+  const toolbar = content.querySelector(".toolbar");
+  const toTop = h("button", {
+    class: "to-top", type: "button", "aria-label": "Back to top", title: "Back to top",
+    onclick: () => {
+      window.scrollTo({ top: 0, behavior: scrollBehavior() });
+      side.querySelector('[aria-current="true"]')?.focus({ preventScroll: true });
+    },
+  }, icon("arrow-up"));
+
+  app.replaceChildren(h("div", { class: "study" }, side, content, toTop));
   paint();
   const nav = side.querySelector(".groups");
   const current = nav.querySelector('[aria-current="true"]');
-  if (current && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = current.offsetLeft - 16;
+  if (current && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = current.offsetLeft - nav.offsetLeft - parseFloat(getComputedStyle(nav).paddingLeft);
+
+  leaveStudy();
+  topObserver = new IntersectionObserver(([e]) => {
+    toTop.classList.toggle("show", !e.isIntersecting && e.boundingClientRect.top < 0);
+  });
+  topObserver.observe(toolbar);
 }
 
 function go(mode, id) {

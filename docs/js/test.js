@@ -1,4 +1,4 @@
-import { h, icon, rich, optionText, explainBlock, letter, pad, shuffle, setTitle } from "./dom.js";
+import { h, icon, rich, optionText, explainBlock, letter, pad, shuffle, setTitle, scrollBehavior } from "./dom.js";
 import { store } from "./store.js";
 
 const LENGTHS = [10, 20, 30, "all"];
@@ -193,11 +193,19 @@ function renderSetup() {
       h("h1", null, "Mock test"),
       h("p", null, "Choose what to cover and how long it should be. Questions and answer options are shuffled every time.")),
 
-    resume && h("div", { class: "notice", role: "status" },
-      h("p", null, `You have an unfinished test: ${Object.keys(resume.answers).length} of ${resume.items.length} answered.`),
-      h("div", { class: "actions" },
-        h("button", { class: "btn primary small", type: "button", onclick: () => { location.hash = "#/test/run"; } }, "Resume"),
-        h("button", { class: "btn small", type: "button", onclick: () => { store.set("test", undefined); renderSetup(); } }, "Discard"))),
+    resume && h("div", { class: "notice", role: "status" }, ui.confirm === "discard"
+      ? [
+        h("p", null, "Discard the unfinished test? Its answers will be lost."),
+        h("div", { class: "actions" },
+          h("button", { class: "btn small", type: "button", onclick: () => { store.set("test", undefined); ui.confirm = null; renderSetup(); } }, "Discard test"),
+          h("button", { class: "btn primary small", type: "button", onclick: () => { ui.confirm = null; renderSetup(); app.querySelector(".notice .btn:not(.primary)")?.focus(); } }, "Keep it")),
+      ]
+      : [
+        h("p", null, `You have an unfinished test: ${Object.keys(resume.answers).length} of ${resume.items.length} answered.`),
+        h("div", { class: "actions" },
+          h("button", { class: "btn primary small", type: "button", onclick: () => { location.hash = "#/test/run"; } }, "Resume"),
+          h("button", { class: "btn small", type: "button", onclick: () => { ui.confirm = "discard"; renderSetup(); app.querySelector(".notice .btn.primary")?.focus(); } }, "Discard")),
+      ]),
 
     h("section", { class: "step", "aria-labelledby": "cover-h" },
       h("div", { class: "step-head" }, h("h2", { id: "cover-h" }, "What to cover"), avail),
@@ -260,20 +268,24 @@ function renderRunner() {
     save();
     renderRunner();
     if (hadFocus) (app.querySelector('.run-opt[aria-checked="true"]:not(:disabled)') || app.querySelector("[data-next]"))?.focus();
+    // On a small screen the verdict can land below the fold; bring it up.
+    app.querySelector(".feedback")?.scrollIntoView({ block: "nearest", behavior: scrollBehavior() });
   };
+  const askConfirm = (kind) => { ui.confirm = kind; ui.focusConfirm = true; renderRunner(); };
 
   /* head */
   const timer = h("span", { class: "timer", role: "timer", "aria-label": "Time left" });
   const head = h("div", { class: "run-head" },
-    h("span", { class: "run-pos" }, `Question ${test.pos + 1} of ${total}`),
-    h("span", { class: "run-topic" }, data.topicName[q.topic]),
-    h("span", { class: "grow" }),
-    test.deadline && timer,
-    h("button", {
-      class: "btn ghost small", type: "button", "aria-expanded": String(ui.overview),
-      onclick: () => { ui.overview = !ui.overview; renderRunner(); },
-    }, icon("squares-four"), `${answered}/${total} answered`),
-    h("button", { class: "btn ghost small", type: "button", onclick: () => { ui.confirm = "end"; renderRunner(); } }, "End test"));
+    h("div", { class: "run-meta" },
+      h("span", { class: "run-pos" }, `Question ${test.pos + 1} of ${total}`),
+      h("span", { class: "run-topic" }, data.topicName[q.topic])),
+    h("div", { class: "run-tools" },
+      test.deadline && timer,
+      h("button", {
+        class: "btn ghost small", type: "button", "aria-expanded": String(ui.overview),
+        onclick: () => { ui.overview = !ui.overview; renderRunner(); },
+      }, icon("squares-four"), h("span", null, `${answered}/${total}`, h("span", { class: "long" }, " answered"))),
+      h("button", { class: "btn ghost small", type: "button", onclick: () => askConfirm("end") }, "End test")));
 
   /* overview grid */
   const overview = ui.overview && h("div", { class: "overview" },
@@ -320,19 +332,26 @@ function renderRunner() {
 
   const next = () => {
     if (!last) return goTo(test.pos + 1);
-    if (unanswered) { ui.confirm = "submit"; renderRunner(); } else finish(test);
+    if (unanswered) askConfirm("submit"); else finish(test);
   };
 
+  // "End test" asks up top, next to its button; the last question's Submit asks down by the footer.
   app.replaceChildren(h("div", { class: "runner" },
-    head, overview, confirm,
+    head, overview, ui.confirm === "end" && confirm,
     h("article", { class: animate ? "run-q enter" : "run-q", "aria-label": `Question ${test.pos + 1}` },
       h("div", { class: "q-text rich" }, rich(q.text)), opts, feedback),
+    ui.confirm === "submit" && confirm,
     h("div", { class: "run-foot" },
       h("button", { class: "btn", type: "button", disabled: test.pos === 0, onclick: () => goTo(test.pos - 1) }, icon("arrow-left"), "Previous"),
       h("span", { class: "grow" }),
       h("span", { class: "keys-hint" }, h("kbd", null, "1"), "-", h("kbd", null, `${q.options.length}`), " to answer, ", h("kbd", null, "Enter"), " for next"),
       h("button", { class: "btn primary", type: "button", onclick: next, "data-next": "" },
         last ? "Submit" : "Next", !last && icon("arrow-right")))));
+
+  if (ui.focusConfirm) {
+    ui.focusConfirm = false;
+    confirm.querySelector(".btn.primary").focus(); // also scrolls it into view
+  }
 
   keyHandlers = { pick: (k) => item.order[k] != null && pick(item.order[k]), next, prev: () => test.pos > 0 && goTo(test.pos - 1) };
 

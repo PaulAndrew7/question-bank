@@ -1,6 +1,6 @@
 import { h, icon } from "./dom.js";
 import { store } from "./store.js";
-import { renderStudy } from "./study.js";
+import { renderStudy, leaveStudy } from "./study.js";
 import { renderTest, leaveTest } from "./test.js";
 
 const app = document.getElementById("app");
@@ -27,6 +27,7 @@ function route() {
     else tab.removeAttribute("aria-current");
   }
   leaveTest();
+  leaveStudy();
   if (section === "test") renderTest(app, data, parts.slice(1));
   else renderStudy(app, data, parts.slice(1));
   window.scrollTo(0, 0);
@@ -37,20 +38,23 @@ const themeBtn = document.getElementById("theme-toggle");
 const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 const currentTheme = () => document.documentElement.dataset.theme || (darkQuery.matches ? "dark" : "light");
 
-function paintThemeButton() {
+function paintTheme() {
   const dark = currentTheme() === "dark";
   themeBtn.replaceChildren(icon(dark ? "sun" : "moon"));
   themeBtn.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
   themeBtn.title = themeBtn.getAttribute("aria-label");
+  // Mobile browser chrome follows the page background, including a theme picked here.
+  const bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+  for (const meta of document.querySelectorAll('meta[name="theme-color"]')) meta.setAttribute("content", bg);
 }
 themeBtn.addEventListener("click", () => {
   const next = currentTheme() === "dark" ? "light" : "dark";
   document.documentElement.dataset.theme = next;
   store.set("theme", next);
-  paintThemeButton();
+  paintTheme();
 });
-darkQuery.addEventListener("change", paintThemeButton);
-paintThemeButton();
+darkQuery.addEventListener("change", paintTheme);
+paintTheme();
 
 /* ---------- Boot ---------- */
 load()

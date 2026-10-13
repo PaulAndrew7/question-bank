@@ -83,6 +83,9 @@ export function explainBlock(text, query) {
   return h("div", { class: "explain rich" }, h("span", { class: "explain-label" }, "Why"), rich(text, query));
 }
 
+/** "smooth" unless the user asked for reduced motion. */
+export const scrollBehavior = () => (matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth");
+
 export const letter = (i) => String.fromCharCode(65 + i);
 export const pad = (n) => String(n).padStart(2, "0");
 
