@@ -20,6 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 REPORTS = ROOT / "output" / "reports"
 OVERRIDES = ROOT / "topic_overrides.json"
+FEEDBACK = ROOT / "feedback.json"
 OUT = ROOT / "docs" / "data" / "questions.json"
 
 SKIP_QUIZ = re.compile(r"^Mock Assessment", re.I)
@@ -144,7 +145,8 @@ def clean(s):
         s = s.replace("\\n", "\n")
     s = re.sub(r"(?i)<br\s*/?>", "\n", s)
     s = re.sub(r"(?i)</p>\s*<p[^>]*>", "\n", s)
-    s = re.sub(r"<[^>]+>", "", s)
+    # Only real tags: a bare "<" is content (shell redirect, `calls < 8`, `salary < MAX(...)`)
+    s = re.sub(r"</?[a-zA-Z][^>]*>", "", s)
     s = html.unescape(s).replace("\xa0", " ").replace("\r\n", "\n")
     s = re.sub(r"[ \t]+\n", "\n", s)
     s = re.sub(r"\n{3,}", "\n\n", s)
@@ -281,6 +283,8 @@ def main():
     overrides = json.loads(OVERRIDES.read_text(encoding="utf-8")) if OVERRIDES.exists() else {}
     topic_overrides = overrides.get("topics", {})
     hide_explanation = set(overrides.get("hide_explanation", []))
+    answer_overrides = overrides.get("answers", {})  # the platform's key is wrong for a few questions
+    feedback = json.loads(FEEDBACK.read_text(encoding="utf-8"))["feedback"] if FEEDBACK.exists() else {}
 
     quizzes, questions, by_key = [], [], {}
     for folder in sorted(p for p in REPORTS.iterdir() if p.is_dir()):
@@ -313,6 +317,9 @@ def main():
             topic = topic_overrides.get(qid) or classify(text + "\n" + "\n".join(options), default)
             assert topic in TOPIC_NAMES, f"unknown topic {topic!r} for {qid}"
             answer = ids.index(expected[0])
+            if qid in answer_overrides:
+                assert answer_overrides[qid] in options, f"answers override for {qid} matches no option"
+                answer = options.index(answer_overrides[qid])
             item = {
                 "id": qid,
                 "text": fence_code(text),
@@ -323,6 +330,8 @@ def main():
                 "quizzes": [quiz["id"]],
                 "difficulty": int(q["difficultyLevel"]) if str(q.get("difficultyLevel", "")).isdigit() else None,
             }
+            if qid in feedback:
+                item["feedback"] = {"right": feedback[qid]["right"], "wrong": feedback[qid]["wrong"]}
             by_key[key] = item
             questions.append(item)
 
@@ -348,7 +357,18 @@ def main():
     sys.stdout.reconfigure(encoding="utf-8")
     print(f"{len(questions)} unique questions from {len(quizzes)} quizzes -> {OUT.relative_to(ROOT)}")
     print(f"  {sum(1 for q in questions if q['explain'])} with explanations, "
-          f"{sum(1 for q in questions if '```' in q['text'])} with code blocks")
+          f"{sum(1 for q in questions if '```' in q['text'])} with code blocks, "
+          f"{sum(1 for q in questions if 'feedback' in q)} with feedback")
+    # A question whose text or options change gets a new id, which orphans its feedback entry.
+    ids = {q["id"] for q in questions}
+    for fid in feedback.keys() - ids:
+        print(f"  feedback.json: {fid} matches no question (was it edited?)")
+    for aid in answer_overrides.keys() - ids:
+        print(f"  topic_overrides.json answers: {aid} matches no question (was it edited?)")
+    for q in questions:
+        if "feedback" not in q:
+            one = re.sub(r"\s+", " ", q["text"])[:80]
+            print(f"  no feedback yet: {q['id']}  {one}")
     for t in topics:
         print(f"  {t['count']:4d}  {t['name']}")
     if "--review" in sys.argv:

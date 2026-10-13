@@ -1,5 +1,5 @@
 {
-  "_comment": "Manual fixes on top of the keyword classifier in build_data.py. Keys are question ids from docs/data/questions.json. Run 'python build_data.py --review' to see every question grouped by topic.",
+  "_comment": "Manual fixes on top of the keyword classifier in build_data.py. Keys are question ids from docs/data/questions.json. Run 'python build_data.py --review' to see every question grouped by topic. 'answers' replaces a wrong answer key from the platform; the value is the exact text of the correct option.",
   "topics": {
     "e3a24a65ee": "linux",
     "2704312d97": "linux",
@@ -41,7 +41,7 @@
     "13ce63e7d8": "agents",
     "7f26b43a86": "agents",
     "55583f1ce7": "agents",
-    "3292c2b821": "agents",
+    "188ae908aa": "agents",
     "6ece7a952d": "telecom",
     "2885e01b9b": "cloud",
     "eb0d1a7224": "telecom",
@@ -52,5 +52,10 @@
     "b78e64c6dc",
     "1d73404c46",
     "995434bbef"
-  ]
+  ],
+  "answers": {
+    "eb2caadd19": "1.7",
+    "1d73404c46": "Returns no rows",
+    "4f098682f2": "Add a manager-approval state/check to the routing condition before allowing `fulfill`"
+  }
 }

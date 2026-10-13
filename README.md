@@ -39,3 +39,9 @@ GitHub Pages sites are public. Anyone with the link can open the site.
 question id to `topic_overrides.json`. Run `python build_data.py --review` to list every question by
 topic. The same file can also hide an explanation that belongs to a different question
 (`hide_explanation`). Some quizzes on the platform have their feedback attached to the wrong questions.
+A few have a wrong answer key; `answers` maps a question id to the exact text of the correct option.
+
+`feedback.json` holds a short note per question that the mock test shows after an answer: `right` when
+it's correct, `wrong` when it's wrong or skipped. A question's id changes if its text or options change,
+so after a rebuild `build_data.py` lists any feedback entry that no longer matches a question, and any
+question that has no feedback yet.

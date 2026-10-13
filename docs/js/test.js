@@ -316,7 +316,7 @@ function renderRunner() {
     chosen === q.answer
       ? h("p", { class: "verdict right" }, "Correct.")
       : h("p", { class: "verdict wrong" }, `Not quite. The answer is ${letter(item.order.indexOf(q.answer))}.`),
-    q.explain && explainBlock(q.explain));
+    whyBlock(q, chosen === q.answer));
 
   const next = () => {
     if (!last) return goTo(test.pos + 1);
@@ -436,6 +436,12 @@ function renderResults() {
         : h("div", { class: "empty" }, h("p", null, ui.filter === "wrong" ? "Nothing wrong. Every answered question was correct." : "Nothing skipped.")))));
 }
 
+/** Written feedback for this outcome (a skip gets the "wrong" note), else the quiz's own explanation. */
+function whyBlock(q, right) {
+  if (q.feedback) return explainBlock(q.feedback[right ? "right" : "wrong"]);
+  return q.explain && explainBlock(q.explain);
+}
+
 function reviewItem({ it, q, chosen, status }, i) {
   return h("li", { class: "q" },
     h("div", { class: "q-num", "aria-hidden": "true" }, pad(i + 1)),
@@ -452,6 +458,6 @@ function reviewItem({ it, q, chosen, status }, i) {
           right && h("span", { class: "sr-only" }, "(correct answer)"));
       })),
       status === "skipped" && h("p", { class: "tag-skipped" }, "Skipped"),
-      q.explain && explainBlock(q.explain),
+      whyBlock(q, status === "right"),
       h("p", { class: "q-src" }, data.topicName[q.topic])));
 }

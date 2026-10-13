@@ -1,0 +1,2320 @@
+{
+  "_comment": "Feedback shown in the mock test after a question is answered: 'right' when the answer is correct, 'wrong' when it is wrong or skipped. Keys are question ids from docs/data/questions.json; 'question' is only a reminder of which question it is. Options are shuffled in the test, so refer to answers by content, never by letter.",
+  "feedback": {
+    "e6548e18f3": {
+      "question": "An e-commerce company wants to group customers based on purchasing behavior without predef...",
+      "right": "No predefined labels means unsupervised learning, and clustering groups customers who behave alike.",
+      "wrong": "No labels means unsupervised learning, so it's clustering. Linear and logistic regression both need a known target value to learn from."
+    },
+    "21b7a179a2": {
+      "question": "A company uses a text-generation GenAI model for product descriptions, and the results are...",
+      "right": "The output is steered purely by the text you give the model. That's prompt engineering; the model itself never changes.",
+      "wrong": "It's prompt engineering: only the input text shapes the result. Model tuning would change the model's weights, which isn't happening here."
+    },
+    "24c4372492": {
+      "question": "A developer is designing a function that should not unintentionally modify data outside it...",
+      "right": "Immutable objects (ints, strings, tuples) can't be changed in place, so the function can't alter the caller's data.",
+      "wrong": "Pass immutable objects. A function can change a mutable argument like a list or dict in place, and the caller will see that change."
+    },
+    "c1c3638682": {
+      "question": "A programmer runs the following loop to display numbers: for i in range(3): print(i) What ...",
+      "right": "range(3) starts at 0 and stops before 3, giving 0, 1, 2.",
+      "wrong": "range(3) yields 0, 1, 2. It starts at 0 and the stop value 3 is never included."
+    },
+    "2af991ee55": {
+      "question": "A Spark aggregation by city runs very slowly due to skew. What is the best solution?",
+      "right": "Salting adds a random suffix to hot keys so one heavy city is split across many tasks, then the partial results are combined.",
+      "wrong": "Use salting. Skew means a few keys hold most rows; a random salt on those keys spreads them out. More memory or a random repartition still sends each key to one task."
+    },
+    "52843468fe": {
+      "question": "You are analyzing website traffic data over several months. You want to identify trends or...",
+      "right": "Line charts plot values over time, which makes trends and seasonal cycles easy to spot.",
+      "wrong": "A line chart shows change over time. Histograms and box plots show distributions, and pie charts show parts of a whole, so none of them show a trend."
+    },
+    "1bbe4ea2df": {
+      "question": "A React component re-renders infinitely after an API call. What would be the root cause of...",
+      "right": "If the effect sets state it also depends on (or has no dependency array), each update re-runs the fetch, forever.",
+      "wrong": "The usual cause is a wrong useEffect dependency: the effect updates state that's also in its dependency list, so every render fetches again. A missing key only causes a warning."
+    },
+    "0ae256ac4a": {
+      "question": "What is the output of for i in 1 2 3; do echo $i; done?",
+      "right": "echo adds a newline every time it runs, so 1, 2 and 3 land on separate lines.",
+      "wrong": "echo ends its output with a newline and runs once per value, so you get 1, 2 and 3 on three separate lines."
+    },
+    "c43e9bf3a1": {
+      "question": "An email service automatically sorts messages into spam and non-spam categories. What type...",
+      "right": "Spam or not-spam is a fixed set of labels, which makes it (binary) classification.",
+      "wrong": "It's classification: each email gets one of two labels. Regression predicts a number, and clustering finds groups without labels."
+    },
+    "208c594d2f": {
+      "question": "Main disadvantage of circuit switching:",
+      "right": "A circuit stays reserved for the whole call, even during silence, so that capacity sits idle.",
+      "wrong": "The weakness is wasted bandwidth: the circuit is held for the whole call even when nobody is talking. Voice quality on circuit-switched lines is actually good."
+    },
+    "60986d2624": {
+      "question": "Which condition should replace the blank so that the list comprehension selects even value...",
+      "right": "x % 2 is the remainder after dividing by 2, and it's 0 for even numbers.",
+      "wrong": "Use x % 2 == 0, since even numbers leave no remainder. x < 0 matches nothing in range(5), and x == 0 keeps only 0."
+    },
+    "a2cab2ae61": {
+      "question": "While exploring data types, you notice that a numeric column is stored as text. What type ...",
+      "right": "Numbers stored as text are a type inconsistency. Convert them (for example with pd.to_numeric) before doing any maths.",
+      "wrong": "It's a data type inconsistency: the values are numbers but the column type is text, so sums and comparisons break until you convert it."
+    },
+    "1f26145ead": {
+      "question": "Which protocol is used for VoIP in packet networks?",
+      "right": "SIP (Session Initiation Protocol) sets up, manages and ends VoIP calls.",
+      "wrong": "It's SIP, which sets up and tears down VoIP calls. SS7, ISDN and TDM belong to the traditional circuit-switched phone network."
+    },
+    "774876f472": {
+      "question": "You are running an async FastAPI application that works well during development but shows ...",
+      "right": "A blocking call (requests, time.sleep) inside async def freezes the event loop, so every request waits even though the CPU is idle.",
+      "wrong": "Low CPU with slow requests points to blocking I/O inside async code. It stalls the single event loop; use an async client or run the call in a thread pool."
+    },
+    "e11223c745": {
+      "question": "Fault management primarily deals with:",
+      "right": "Fault management is about detecting, logging and clearing alarms raised by network elements.",
+      "wrong": "Fault management deals with alarms: detecting, correlating and clearing faults in the network. Coding, RF tuning and SIM making belong to other teams."
+    },
+    "3e185c22c3": {
+      "question": "What differentiates Generative AI from traditional ML models?",
+      "right": "Generative models produce new content (text, images, code) that resembles what they were trained on.",
+      "wrong": "The difference is that GenAI creates new content. Traditional ML mostly predicts a label or a number; GenAI writes text, images or code."
+    },
+    "40f429a2dc": {
+      "question": "A user prompts GenAI recent event response chatbot , but the chatbot provided unrelated re...",
+      "right": "A confident but unrelated or made-up reply is a hallucination, which is common when the model lacks recent information.",
+      "wrong": "This is hallucination: the reply isn't grounded in facts. Overfitting, underfitting and data leakage are training problems, not chatbot output problems."
+    },
+    "b21956e957": {
+      "question": "What is the output of the following shell script?x=\"10\"if [ $x -gt 5 ]; then echo \"Yes\"; e...",
+      "right": "10 -gt 5 is true, so the then branch prints Yes.",
+      "wrong": "It prints Yes. -gt compares numbers, 10 is greater than 5, so the then branch runs."
+    },
+    "3b22661af1": {
+      "question": "Which of the following is an example of supervised learning?",
+      "right": "Past sales give known prices, so the data is labeled. That makes it supervised learning (regression).",
+      "wrong": "Supervised learning needs labeled data, as in predicting house prices from past sales. Grouping customers and finding hidden patterns are unsupervised."
+    },
+    "e2c7098481": {
+      "question": "A software application is running in a production environment where monitoring, debugging,...",
+      "right": "The logging module gives you levels, timestamps, handlers and formats, which production monitoring depends on.",
+      "wrong": "Use Python's logging module. print and plain stdout have no levels or timestamps, and a custom logger rebuilds what logging already does."
+    },
+    "caa73688d4": {
+      "question": "What does the command below do?cat file.txt | wc -l",
+      "right": "wc -l counts lines, so this prints how many lines file.txt has.",
+      "wrong": "wc -l counts lines; cat just feeds the file in. Counting only matching lines would need grep -c."
+    },
+    "7f54067933": {
+      "question": "When Form inputs behave inconsistently across renders. What would be the root cause?",
+      "right": "An input that flips between controlled (value set) and uncontrolled (value undefined) behaves unpredictably, and React warns about it.",
+      "wrong": "The cause is mixing controlled and uncontrolled inputs, often when value starts as undefined. Give state an initial value such as an empty string so the input stays controlled."
+    },
+    "9f613e029b": {
+      "question": "You need to read data from a file in Python and make sure system resources are released pr...",
+      "right": "with open() closes the file automatically, even when an exception is raised.",
+      "wrong": "Use with open(). The context manager closes the file even after an error. try-finally also works but is longer and easier to get wrong."
+    },
+    "2deeb34dc7": {
+      "question": "A developer is writing a function that adds two numbers and sends the result back to the c...",
+      "right": "return hands the value back to the caller, whereas print only shows it on screen.",
+      "wrong": "Use return a+b. print just displays the sum and the function still returns None; yield would turn it into a generator."
+    },
+    "f4beead718": {
+      "question": "PSTN primarily uses which switching method?",
+      "right": "The PSTN sets up a dedicated circuit for each call.",
+      "wrong": "The PSTN uses circuit switching, a dedicated path per call. Packet switching is what the internet and VoIP use."
+    },
+    "2f29fa43eb": {
+      "question": "If the key \"key\" is not present in the dictionary data, what should be used as the default...",
+      "right": "None is the usual way to say 'no value', and it's also what get() returns when you don't pass a default.",
+      "wrong": "The conventional default is None, which is also what get() returns if you leave the default out. KeyError is an exception, not a value."
+    },
+    "12a58ff013": {
+      "question": "In LTE Which layer handles modulation and coding?",
+      "right": "The physical layer handles modulation, coding and the radio signal itself.",
+      "wrong": "Modulation and coding happen at PHY. MAC handles scheduling, RLC handles segmentation and retransmission, and RRC handles control signaling."
+    },
+    "bdd8642542": {
+      "question": "While we are rendering 5,000 or more items there would be an UI lag. How can we optimize t...",
+      "right": "Virtualization renders only the rows on screen, and memo stops unchanged rows from re-rendering.",
+      "wrong": "Use memo plus virtualization (react-window, for example) so only visible rows are rendered. Redux or class components don't reduce the number of DOM nodes."
+    },
+    "cafc034d55": {
+      "question": "A developer notices that a Spark job is taking longer than expected, even though the trans...",
+      "right": "Transformations only build a plan. The work runs at an action such as count() or collect(), so that's where the time shows up.",
+      "wrong": "Spark is lazy: transformations just record a plan, and everything runs at the first action. That's why the time appears there, not at the simple transformations."
+    },
+    "8a00b76aeb": {
+      "question": "You are building a feature that needs to frequently check whether a value exists in a coll...",
+      "right": "Sets are hash-based, so a membership check is O(1) on average.",
+      "wrong": "Use a set. Its membership checks are O(1) on average thanks to hashing, while lists and tuples scan every element (O(n))."
+    },
+    "854face2e5": {
+      "question": "A team wants testing activities to start parallel with development. Which SDLC model suppo...",
+      "right": "The V-Model pairs every development phase with a test phase that is planned at the same time.",
+      "wrong": "It's the V-Model, which pairs each development phase with a test phase. Waterfall leaves testing until the build is finished."
+    },
+    "21eddcccd2": {
+      "question": "A developer wants to search for the word \"error\" inside a log file. Which command should b...",
+      "right": "grep searches text inside files, for example grep \"error\" app.log.",
+      "wrong": "Use grep to search inside a file. find and locate look for files by name, not for text inside them."
+    },
+    "e3a24a65ee": {
+      "question": "A script needs to store temporary values only inside the script execution. Which variable ...",
+      "right": "A local variable exists only while the script or function runs and disappears afterwards.",
+      "wrong": "Use a local variable. Environment and exported variables get passed on to child processes, which temporary values don't need."
+    },
+    "2704312d97": {
+      "question": "A developer wants to reuse a set of commands multiple times in a script. What should they ...",
+      "right": "A function groups commands under a name, so you can call it as many times as you like.",
+      "wrong": "Write a function: it bundles commands under a name you can call again. A loop repeats code in one spot but can't be called from elsewhere."
+    },
+    "f92c5eb522": {
+      "question": "What does the following command do? cat file.txt",
+      "right": "cat prints a file's contents to the terminal.",
+      "wrong": "cat displays a file's contents. Deleting is rm, renaming is mv and copying is cp."
+    },
+    "1f4daf8178": {
+      "question": "What is the output? name=\"Linux\" echo \"Hello $name\"",
+      "right": "Variables are expanded inside double quotes, so $name becomes Linux.",
+      "wrong": "It prints Hello Linux because the shell expands $name inside double quotes. Single quotes would print $name literally."
+    },
+    "6ec91f61e6": {
+      "question": "What will be the output? num=7 if [ $num -gt 5 ] then echo \"Greater\" else echo \"Smaller\" f...",
+      "right": "7 -gt 5 is true, so it prints Greater.",
+      "wrong": "It prints Greater: 7 is greater than 5, so the then branch runs."
+    },
+    "0744067709": {
+      "question": "Which command is used to list files in a directory?",
+      "right": "ls lists the contents of a directory.",
+      "wrong": "On Linux it's ls. dir is the Windows command, and list and show aren't standard commands."
+    },
+    "cf8d26878b": {
+      "question": "Which symbol is used to define a variable in a shell script?",
+      "right": "Assignment is name=value with no spaces. The $ is only for reading the value.",
+      "wrong": "Write name=value, with no $ and no spaces around the =. The $ is only used to read a variable, as in echo $name."
+    },
+    "5b711c6c26": {
+      "question": "Which SDLC model follows a sequential approach where each phase must be completed before t...",
+      "right": "Waterfall runs each phase to completion before the next one starts.",
+      "wrong": "That's Waterfall: requirements, design, build, test and deploy, each finished before the next. Agile and Spiral work in repeated cycles."
+    },
+    "fb06d7397d": {
+      "question": "Which shell is the default shell in most Linux systems today?",
+      "right": "Bash (the Bourne Again Shell) is the default on most Linux distributions.",
+      "wrong": "Bash is the default on most Linux distributions. The Bourne shell came before it, and C shell and Korn shell are alternatives."
+    },
+    "222a6bce5d": {
+      "question": "Which operator is used for numeric equality comparison in shell scripting?",
+      "right": "-eq compares numbers, while = compares strings.",
+      "wrong": "Use -eq for numbers inside [ ]. = and == compare strings, and === doesn't exist in shell."
+    },
+    "7300b5fe28": {
+      "question": "What will be printed? for i in 1 2 3 do echo $i done",
+      "right": "The loop echoes 1, 2 and 3 in order, one per line.",
+      "wrong": "The loop prints 1, then 2, then 3, each on its own line. 123 would need echo -n, and nothing reverses the order."
+    },
+    "a26d1029be": {
+      "question": "Which special variable represents all arguments passed to a script as separate strings?",
+      "right": "\"$@\" expands to every argument as a separate word, so arguments containing spaces stay intact.",
+      "wrong": "It's $@: all arguments, each as a separate string. $1 is only the first argument, $# is the count and $? is the last exit status."
+    },
+    "6ba6fe4e4c": {
+      "question": "Which command is used to display the current working directory?",
+      "right": "pwd stands for print working directory.",
+      "wrong": "Use pwd. ls lists files, cd changes directory and whoami prints your username."
+    },
+    "e443ae36dc": {
+      "question": "A script should execute different blocks of code based on multiple values of a variable. W...",
+      "right": "case matches one variable against many patterns, which is cleaner than a long if/elif chain.",
+      "wrong": "Use case: it checks one variable against several values in one tidy block. if/elif works but gets messy with many values."
+    },
+    "88699a3774": {
+      "question": "A developer wants to create a new directory called project_files. Which command should be ...",
+      "right": "mkdir creates a directory.",
+      "wrong": "The command is mkdir project_files. create and newdir don't exist, and dir lists files."
+    },
+    "0781134107": {
+      "question": "What is the primary goal of the Requirement Phase in SDLC?",
+      "right": "The requirements phase pins down what users need before any design or code begins.",
+      "wrong": "The requirements phase is about understanding what users need. Coding, testing and deployment come in later phases."
+    },
+    "24e1040140": {
+      "question": "What will this script output? function greet(){ echo \"Welcome\" } greet",
+      "right": "Calling greet runs the function body, which echoes Welcome.",
+      "wrong": "It prints Welcome. The function is defined first and then called by name, which runs its echo."
+    },
+    "214db607b4": {
+      "question": "A script should repeat an operation until a user enters \"exit\". Which loop is best suited?",
+      "right": "A while loop keeps going while the input isn't exit, e.g. while [ \"$input\" != \"exit\" ].",
+      "wrong": "The expected answer is a while loop that runs until the input is exit. An until loop can do it with the condition flipped, but while is the standard pick; for loops walk a known list."
+    },
+    "745a4e60e9": {
+      "question": "What is the output? a=5 b=3 echo $((a+b))",
+      "right": "$(( )) evaluates arithmetic, so 5 + 3 gives 8.",
+      "wrong": "It prints 8 because $(( )) does arithmetic. 53 would be string joining, which isn't what $(( )) does."
+    },
+    "e716ad3394": {
+      "question": "A company wants to release software quickly in multiple iterations with customer feedback....",
+      "right": "Agile delivers in short iterations and folds customer feedback into each one.",
+      "wrong": "Agile fits: short iterations, frequent releases and feedback after each one. Waterfall and V-Model deliver once at the end."
+    },
+    "bb607d51c6": {
+      "question": "A script should check whether a number is greater than 10. Which condition is correct?",
+      "right": "Inside [ ], -gt is the numeric 'greater than' test.",
+      "wrong": "Use -gt. Inside [ ], > is treated as output redirection and creates a file named 10; gt without the dash isn't an operator."
+    },
+    "3fafcf15d0": {
+      "question": "A developer wants to redirect script output to a file. Which operator is used?",
+      "right": "> sends output to a file and overwrites it; >> appends instead.",
+      "wrong": "Use > to send output to a file (>> appends). < reads input from a file, | passes output to another command and & runs it in the background."
+    },
+    "77e1160948": {
+      "question": "What does this script do? count=1 while [ $count -le 3 ] do echo $count ((count++)) done",
+      "right": "count starts at 1, is printed, then incremented, and the loop stops once count passes 3.",
+      "wrong": "It prints 1, 2, 3. ((count++)) raises count each pass, so the loop ends when count reaches 4 and the test -le 3 fails."
+    },
+    "ce8fc9387d": {
+      "question": "numbers = [1,2,2,3,3,4] result = list(set(numbers)) print(result) Which statement is TRUE?",
+      "right": "A set removes duplicates but has no guaranteed order, so the list you get back may not keep the original order.",
+      "wrong": "A set removes duplicates but promises no order. Small ints often come out sorted in CPython, but that's an implementation detail you can't rely on."
+    },
+    "fb1a3fa8e2": {
+      "question": "Why do scripts use if __name__ == \"__main__\":?",
+      "right": "__name__ is \"__main__\" only when the file is run directly, so the guarded code is skipped on import.",
+      "wrong": "The guard runs code only when the file is executed directly. When imported, __name__ is the module name, so that block is skipped. Files import fine without it."
+    },
+    "89dbc1d072": {
+      "question": "Which import statement imports only the sqrt function from the math module?",
+      "right": "from module import name brings in just that one name.",
+      "wrong": "Use from math import sqrt. import math.sqrt fails because sqrt is a function, not a submodule."
+    },
+    "27974ec3a8": {
+      "question": "A class Car already has a method named start(). Another class ElectricCar(Car) defines its...",
+      "right": "A subclass redefining a parent method with the same name is method overriding.",
+      "wrong": "It's method overriding: the subclass replaces the parent's start(). Overloading means same name with different parameters, which Python doesn't support directly."
+    },
+    "3723ca029e": {
+      "question": "A project contains the following structure: project/ app.py utils.py Which statement impor...",
+      "right": "The module is named after the file (utils), and you import calculate from it.",
+      "wrong": "Use from utils import calculate. import utils.calculate fails because calculate is a function, not a submodule."
+    },
+    "5bb511ff88": {
+      "question": "Assume the file sample.txt contains: Python AI Python file: with open(\"sample.txt\") as fil...",
+      "right": "readlines() reads to the end of the file, so the following readline() returns an empty string and prints a blank line.",
+      "wrong": "It prints 2, then an empty line. readlines() already moved to the end of the file, so readline() has nothing left and returns ''."
+    },
+    "03c67df6a5": {
+      "question": "Which OOP concept allows a child class to use methods from its parent class?",
+      "right": "Inheritance lets a child class reuse the parent's methods without rewriting them.",
+      "wrong": "That's inheritance: the child class gets the parent's methods for free. Polymorphism is about the same call behaving differently on different classes."
+    },
+    "d9787bf726": {
+      "question": "A developer wants to reverse the string \"Python\". Which statement produces \"nohtyP\"?",
+      "right": "The slice [::-1] steps through the string backwards and returns a new string.",
+      "wrong": "Use name[::-1]. Strings have no reverse() or sort() method, and reversed() returns an iterator, not a string."
+    },
+    "3ba2247226": {
+      "question": "A CSV file contains thousands of records. The developer wants to process one row at a time...",
+      "right": "csv.reader reads the file lazily, one row at a time, so memory stays flat.",
+      "wrong": "Use csv.reader(file), which yields one row at a time. read(), readlines() and list(file) all load the whole file into memory first."
+    },
+    "dd04eea383": {
+      "question": "A package contains several modules. The developer wants to make the folder recognizable as...",
+      "right": "An __init__.py file marks a folder as a regular package. It's optional since Python 3.3 but still standard practice.",
+      "wrong": "The file is __init__.py. Older Python versions only treat a folder as a package if it has one; setup.py is for packaging and distribution."
+    },
+    "4ee6ac26e3": {
+      "question": "A module contains reusable utility functions. Multiple projects need those functions. What...",
+      "right": "One shared module means you write and fix the code once, and every project picks up the change.",
+      "wrong": "The benefit is reuse and easier maintenance: one copy of the code to fix and test. Moving code into a module doesn't make it faster or use less memory."
+    },
+    "26bcb8de26": {
+      "question": "Why is the following code considered a best practice? if __name__ == \"__main__\": main()",
+      "right": "It keeps main() from running when the file is imported, so the module can be reused safely.",
+      "wrong": "The guard makes main() run only when the file is executed directly, not on import. It has no effect on speed or syntax errors."
+    },
+    "a74a9cf2cf": {
+      "question": "A program receives text with random capitalization. PYTHON programming The developer wants...",
+      "right": "title() capitalises the first letter of every word and lowercases the rest.",
+      "wrong": "Use title(), which gives Python Programming. capitalize() only capitalises the first word (Python programming), and upper() makes everything uppercase."
+    },
+    "69ec35c693": {
+      "question": "In a for ... else loop, when does the else block run?",
+      "right": "The else on a loop runs only if the loop wasn't stopped by break, which makes it handy for 'not found' cases.",
+      "wrong": "A loop's else runs only when the loop finishes without a break. It also runs when the loop has zero iterations, but that isn't the only case."
+    },
+    "65f92fc2ad": {
+      "question": "What will be the output? class Animal: def sound(self): return \"Animal\" class Dog(Animal):...",
+      "right": "Dog overrides sound(), so a returns Animal and b returns Bark.",
+      "wrong": "It prints Animal Bark. Each object uses its own class's method: Animal's for a, Dog's override for b."
+    },
+    "0105fda0e8": {
+      "question": "You must check whether each of 1,00,000 incoming IDs already exists among 50,000 stored ID...",
+      "right": "A set lookup is O(1) on average, so 100,000 checks stay fast.",
+      "wrong": "Use a set. Each list or tuple lookup scans up to 50,000 items; a sorted list needs a binary search (O(log n)), while a set is O(1) on average."
+    },
+    "618f605f8f": {
+      "question": "Which statement correctly converts a Python dictionary into a JSON string?",
+      "right": "json.dumps returns a string; the s stands for string.",
+      "wrong": "Use json.dumps(data). json.dump writes to a file object, and load/loads go the other way, from JSON back to Python."
+    },
+    "d6362e01e4": {
+      "question": "Which string method removes leading and trailing whitespace?",
+      "right": "strip() removes whitespace from both ends; lstrip() and rstrip() do one side each.",
+      "wrong": "Python uses strip(). trim() is the JavaScript name, and remove() and clean() aren't string methods."
+    },
+    "90f6b73d2f": {
+      "question": "Which statement correctly creates a dictionary with employee IDs as keys and names as valu...",
+      "right": "Curly braces with key: value pairs create a dictionary.",
+      "wrong": "Dictionaries use curly braces: {101: \"John\", 102: \"Mary\"}. Square brackets and parentheses with colons are syntax errors."
+    },
+    "8fcddc59cf": {
+      "question": "Which of the following is used to add a new element to the end of a Python list?",
+      "right": "append() adds a single item to the end of a list.",
+      "wrong": "Use append(). insert() needs a position, extend() adds every item from another iterable, and add() is for sets."
+    },
+    "eb7b0383b7": {
+      "question": "Which statement about Python sets is TRUE?",
+      "right": "A set keeps only one copy of each value, so duplicates disappear automatically.",
+      "wrong": "Sets automatically drop duplicates. They aren't indexable, they don't keep insertion order, and they can hold any hashable type."
+    },
+    "6241ee073f": {
+      "question": "Which of the following is a valid Python variable name?",
+      "right": "Names can contain letters, digits and underscores, but can't start with a digit or be a keyword.",
+      "wrong": "user_name is valid. 2user starts with a digit, user-name contains a minus sign, and class is a reserved keyword."
+    },
+    "eca8fd1ffa": {
+      "question": "What is the output of the following code? print(10 // 3)",
+      "right": "// is floor division, so 10 // 3 drops the remainder and gives 3.",
+      "wrong": "// is floor division: 10 // 3 is 3. 3.33 would come from /, and 1 is the remainder you'd get from %."
+    },
+    "e0217b9f4e": {
+      "question": "Which file mode allows reading and writing without deleting existing file content?",
+      "right": "r+ opens an existing file for reading and writing without truncating it.",
+      "wrong": "Use r+. w and w+ empty the file as soon as it opens, and a only lets you write at the end."
+    },
+    "baa8cfa919": {
+      "question": "import json data = {\"name\":\"Alex\"} text = json.dumps(data) obj = json.loads(text) print(ty...",
+      "right": "json.loads turns the JSON string back into a Python dict.",
+      "wrong": "It's a dict. dumps turns the dict into a string, and loads parses that string back into a dict."
+    },
+    "94cedcae88": {
+      "question": "What is the output of the following FastAPI code? @app.get('/hello') def hello(): return {...",
+      "right": "FastAPI serialises the returned dict to JSON and sets the Content-Type header for you.",
+      "wrong": "The client gets JSON. FastAPI converts the returned dict into a JSON response; clients never receive Python objects directly."
+    },
+    "97485c4811": {
+      "question": "Consider the Node.js code: const fs = require('fs'); fs.readFile('data.txt','utf8',(err,da...",
+      "right": "readFile is asynchronous, so console.log('Done') runs first and the callback fires later.",
+      "wrong": "Done prints first. readFile doesn't block; its callback runs once the file has been read, after the synchronous code has finished."
+    },
+    "85309a128a": {
+      "question": "A web application makes several API calls one after another, even though they are independ...",
+      "right": "Promise.all starts all the requests at once, so the total wait is about as long as the slowest call.",
+      "wrong": "Run them concurrently with Promise.all(). Independent calls don't need to wait for each other, so total time drops to roughly the slowest single call."
+    },
+    "61fb6bbfb5": {
+      "question": "What is the output of the following code? async function test(){ return 100; } test().then...",
+      "right": "An async function wraps its return value in a Promise, and then() receives the resolved 100.",
+      "wrong": "It prints 100. test() returns a Promise that resolves to 100, and then(console.log) logs that resolved value."
+    },
+    "f4ef8077ff": {
+      "question": "Consider the following JavaScript code: let x = 10; function test(){ let x = 20; console.l...",
+      "right": "The let x inside the function shadows the outer x, so the function prints 20.",
+      "wrong": "It prints 20. The inner let x shadows the outer one inside the function, so the outer 10 isn't used there."
+    },
+    "68232bb1ce": {
+      "question": "Which practice best improves maintainability in large Python applications?",
+      "right": "Small modules and packages keep related code together, which makes it easier to test, reuse and change.",
+      "wrong": "Organise code into reusable modules and packages. A single script, heavy use of globals and copy-pasted functions all make large codebases harder to maintain."
+    },
+    "d3f1f2d14b": {
+      "question": "What is the primary purpose of a JavaScript Promise?",
+      "right": "A Promise is a placeholder for a result that will arrive later, or an error if the work fails.",
+      "wrong": "A Promise represents the eventual success or failure of an async operation. It doesn't store state, create classes or parse JSON."
+    },
+    "60408036c1": {
+      "question": "Which statement best describes FastAPI?",
+      "right": "FastAPI is a Python web framework for APIs, built on type hints, Pydantic and async support.",
+      "wrong": "FastAPI is a modern Python framework for building fast APIs. It isn't a frontend framework, a database or a testing library."
+    },
+    "e75653c0bc": {
+      "question": "Which JavaScript feature allows a function to continue execution after an asynchronous ope...",
+      "right": "await pauses only that function until the promise settles, while the main thread keeps running other work.",
+      "wrong": "async/await lets a function wait for an async result without blocking the main thread. setInterval just runs code on a timer."
+    },
+    "f1c5fa8206": {
+      "question": "What is the output of the following JavaScript code? console.log(typeof []);",
+      "right": "Arrays are objects in JavaScript, so typeof returns \"object\". Use Array.isArray() to check for an array.",
+      "wrong": "typeof [] is \"object\" because arrays are a kind of object. JavaScript has no \"array\" or \"list\" type for typeof; use Array.isArray() instead."
+    },
+    "4d21b2b665": {
+      "question": "During API testing, multiple endpoints depend on authentication tokens. What is the best t...",
+      "right": "Generating tokens in a setup step keeps tests realistic and stops expired or leaked hard-coded tokens from breaking them.",
+      "wrong": "Automate token generation and reuse the token across tests. Hard-coded tokens expire and leak, and skipping authentication leaves the most important paths untested."
+    },
+    "3f3e06efd5": {
+      "question": "During API testing, which aspect should be verified in addition to the response body?",
+      "right": "A correct body with the wrong status code or headers is still a bug, and response time tells you about performance.",
+      "wrong": "Check the status code, headers and response time as well as the body. Things like screen resolution or CPU temperature have nothing to do with an API's behaviour."
+    },
+    "7e6c3419eb": {
+      "question": "Which HTTP method is most appropriate for creating a new resource in a REST API?",
+      "right": "POST creates a new resource; the server usually replies 201 Created.",
+      "wrong": "Use POST to create resources. GET reads, DELETE removes, and PATCH partly updates something that already exists."
+    },
+    "78a6d5154d": {
+      "question": "What is the primary role of the Node.js Event Loop?",
+      "right": "The event loop runs callbacks when I/O finishes, so one thread can serve many requests without waiting.",
+      "wrong": "The event loop handles asynchronous work without blocking. It runs callbacks as I/O completes; it doesn't compile code or store data."
+    },
+    "3ab2e14e05": {
+      "question": "A production API built with FastAPI serves thousands of concurrent users. Which combinatio...",
+      "right": "Modular code, dependency injection, validation, logging and automated tests together keep a big API scalable and easy to change.",
+      "wrong": "The answer is the combination: modular architecture, dependency injection, request validation, logging and automated tests. Turning off validation or moving logic to the frontend makes things worse."
+    },
+    "518d8638d0": {
+      "question": "Consider the FastAPI code below: @app.get('/users/{id}') def get_user(id:int): return {'id...",
+      "right": "The type hint id: int makes FastAPI validate the path, so abc gets a 422 validation error before your code runs.",
+      "wrong": "FastAPI returns a 422 validation error. The int type hint is enforced on the path parameter, so abc is rejected before the function runs. Nothing crashes."
+    },
+    "b0f5438100": {
+      "question": "In a Python project, what is the primary purpose of an __init__.py file inside a directory...",
+      "right": "__init__.py marks a directory as a package so its modules can be imported, and it can run package setup code.",
+      "wrong": "__init__.py marks the folder as a Python package so imports work. It doesn't store env variables, start the app or compile anything."
+    },
+    "8451931e53": {
+      "question": "Which JavaScript keyword declares a block-scoped variable that can be reassigned?",
+      "right": "let is block-scoped and can be reassigned. const is block-scoped but can't be reassigned.",
+      "wrong": "It's let. var is function-scoped, not block-scoped, and const can't be reassigned."
+    },
+    "92d02bd1f6": {
+      "question": "A Node.js API becomes slow because CPU-intensive calculations are performed directly insid...",
+      "right": "Node runs JavaScript on one thread, so heavy CPU work blocks every request. Worker threads or a job queue take it off that thread.",
+      "wrong": "Move CPU-heavy work to worker threads or a background job. A longer timeout only hides the problem, because the blocked event loop still stalls every request."
+    },
+    "679fc84fc0": {
+      "question": "FastAPI automatically generates API documentation using:",
+      "right": "FastAPI builds an OpenAPI schema from your routes and serves Swagger UI at /docs.",
+      "wrong": "FastAPI uses OpenAPI and Swagger UI (at /docs). TensorFlow, Docker Compose and Flask templates have nothing to do with API docs."
+    },
+    "eae76bf6a0": {
+      "question": "Which built-in Node.js module is commonly used for reading and writing files?",
+      "right": "fs is Node's file system module: readFile, writeFile, streams and so on.",
+      "wrong": "Use the fs module for files. http serves web requests, path handles file paths, and events provides event emitters."
+    },
+    "7993f4db5c": {
+      "question": "A FastAPI endpoint accepts user input. What is the best way to validate incoming data?",
+      "right": "Pydantic models validate types and required fields automatically and return clear errors.",
+      "wrong": "Use Pydantic models. FastAPI validates the request body against them and returns 422 with details. Manual string checks are fragile, and frontend validation can be bypassed."
+    },
+    "0e240d8d14": {
+      "question": "A client receives HTTP status code 404. What does it indicate?",
+      "right": "404 means the server couldn't find the requested resource.",
+      "wrong": "404 means Not Found. 401 is unauthorised, 500 is an internal server error and 200 is success."
+    },
+    "5efa0bb015": {
+      "question": "A FastAPI application contains business logic directly inside every route. Which architect...",
+      "right": "A service layer keeps routes thin and puts business logic somewhere you can reuse and unit-test.",
+      "wrong": "Move business logic into a service layer. Routes should just handle HTTP; more routes or less validation don't fix the coupling."
+    },
+    "788dc8ebf5": {
+      "question": "A production Python script unexpectedly fails. Which practice makes diagnosing the issue e...",
+      "right": "Structured logs with levels let you filter for errors and trace exactly what happened before the failure.",
+      "wrong": "Use structured logging with sensible levels. Print statements have no levels or timestamps, and removing exception handling hides the cause."
+    },
+    "cb8e567085": {
+      "question": "A FastAPI service runs with four worker processes. A developer stores a login session dict...",
+      "right": "Each worker process has its own memory, so a module-level dict isn't shared. Redis or a database gives all workers the same session data.",
+      "wrong": "Store sessions in a shared store like Redis or a database. Each of the four workers has its own memory, so a session saved in one isn't visible to the others."
+    },
+    "0c56636974": {
+      "question": "A service uses JWT authentication. A valid token is presented, but the token's `aud` claim...",
+      "right": "The aud claim says who the token is for. A token meant for another service must be rejected even if its signature is valid.",
+      "wrong": "Reject it. A valid signature only proves who issued the token; a wrong aud means it was issued for a different API."
+    },
+    "9cccb996b5": {
+      "question": "Consider the following FastAPI route: from fastapi import FastAPI, HTTPException from pyda...",
+      "right": "The body passes Pydantic validation, since 16 is a valid int, so your own check runs and raises 400 Minor.",
+      "wrong": "The function raises HTTPException 400 with detail Minor. Pydantic only checks that age is an int, which 16 is; the under-18 rule is your own code, not a 422."
+    },
+    "8aab38cac5": {
+      "question": "A test for a FastAPI endpoint modifies shared database state, causing later tests to fail ...",
+      "right": "Isolated fixtures (a transaction that rolls back, or cleanup) give every test a known starting state, so order no longer matters.",
+      "wrong": "Give each test isolated state with fixtures that roll back or clean up. A fixed run order only hides the coupling, and production data makes it worse."
+    },
+    "7eae980fb9": {
+      "question": "A file-upload endpoint accepts a 500 MB file, but the application business limit is 10 MB....",
+      "right": "Reject oversized uploads at the body-size limit so the server never spends time and memory on 500 MB it will refuse.",
+      "wrong": "Enforce size limits before processing and validate while reading the upload. Processing 500 MB first wastes resources and opens the door to denial of service."
+    },
+    "f3d9500055": {
+      "question": "An API returns HTTP 204 after successfully deleting a resource. Which response-body behavi...",
+      "right": "204 No Content means success with an empty body.",
+      "wrong": "A 204 response has no body. That's what No Content means; returning the deleted object would need 200."
+    },
+    "3615360d61": {
+      "question": "Consider the following code import asyncio async def task(n): await asyncio.sleep(0.1) ret...",
+      "right": "gather runs both tasks and returns their results in order as a list: [4, 6].",
+      "wrong": "results is [4, 6]. gather returns a list of each task's return value, in the order you passed them, and each task doubles its input."
+    },
+    "91816729c3": {
+      "question": "A Node.js route calls an async database function. The promise rejects, but the error is no...",
+      "right": "Unhandled rejections skip Express's error middleware. Catch them and call next(err), or use a wrapper that does it for you.",
+      "wrong": "The rejection must be caught or passed on (for example next(err) in Express) so the central error handler sees it. Ignoring it can crash the process or leave the request hanging."
+    },
+    "396d5c7c58": {
+      "question": "A FastAPI endpoint performs three independent external API calls, each taking about 500 ms...",
+      "right": "With an async client and asyncio.gather, the three 500 ms calls overlap, so the endpoint waits about 500 ms instead of 1.5 s.",
+      "wrong": "Make the route async and await the three calls concurrently with an async HTTP client. They're independent, so the total wait drops from about 1.5 s to about 500 ms."
+    },
+    "bbeb21785e": {
+      "question": "A FastAPI application has a reusable dependency that opens a database session and yields i...",
+      "right": "A yield dependency hands the session to the endpoint, and the code after yield (in a finally block) always closes it.",
+      "wrong": "Use a generator dependency: yield the session and close it after the yield, ideally in a finally block. FastAPI runs that cleanup even when the endpoint raises."
+    },
+    "eed7edf878": {
+      "question": "Two clients simultaneously attempt to create a customer with the same unique email. Both a...",
+      "right": "Only the database sees every insert, so a UNIQUE constraint is the one check both processes can't slip past.",
+      "wrong": "Use a UNIQUE constraint in the database. Two processes can both pass a check-then-insert at the same moment; the constraint rejects the second insert."
+    },
+    "18bcad0ab7": {
+      "question": "A FastAPI API is deployed behind a reverse proxy. Generated HTTPS links incorrectly use `h...",
+      "right": "The proxy ends HTTPS and forwards plain HTTP. Trusting its X-Forwarded-Proto header tells the app the original scheme.",
+      "wrong": "Fix the proxy header settings: trust X-Forwarded-Proto and similar headers (e.g. Uvicorn's --proxy-headers). The app only sees the plain HTTP hop from the proxy."
+    },
+    "7dec1823fd": {
+      "question": "A Node.js service receives a 2 GB CSV file. Loading the complete file into memory causes p...",
+      "right": "Streaming reads the file in chunks, and backpressure stops the reader from outrunning the processing, so memory stays bounded.",
+      "wrong": "Stream the file with backpressure, for example with a streaming CSV parser. Loading 2 GB into memory, or copying it, is what causes the crash."
+    },
+    "01d087014e": {
+      "question": "A FastAPI endpoint accepts an `order_id` path parameter typed as `int`. A client sends `/o...",
+      "right": "FastAPI validates the int path parameter before calling your function, so abc gets a 422 and the database code never runs.",
+      "wrong": "Validation happens first: abc isn't an int, so FastAPI returns 422 before the endpoint runs. The database query never receives abc."
+    },
+    "9ebdff88c4": {
+      "question": "Consider this Python code in a package: # pkg/utils.py x = 10 def update(): global x x += ...",
+      "right": "from ... import x copies the current value into main's own name. update() changes utils.x, but main's x stays 10.",
+      "wrong": "It prints 10. The import binds main's own x to 10. update() rebinds pkg.utils.x to 15, but main's name still points to the old value."
+    },
+    "433c29f5ec": {
+      "question": "A Node.js application starts three independent database queries sequentially with `await`,...",
+      "right": "Start all three queries first, then await Promise.all, so the waiting overlaps instead of adding up.",
+      "wrong": "Start the independent queries together and await them with Promise.all. Awaiting one at a time makes the total wait the sum of all three."
+    },
+    "a1f04b7cf7": {
+      "question": "A developer builds SQL using `f\"SELECT * FROM users WHERE id={user_id}\"`, where user_id co...",
+      "right": "Parameterised queries send the value separately from the SQL text, so input can never change the query's structure.",
+      "wrong": "Use parameterised queries (prepared statements). Base64-encoding or hiding the SQL doesn't stop injection; only keeping data out of the SQL text does."
+    },
+    "dd782c2adf": {
+      "question": "A REST API receives `GET /products?page=1&page_size=100000`. The database can technically ...",
+      "right": "A server-side cap on page_size stops a single request from pulling huge result sets and overloading the service.",
+      "wrong": "Validate page_size and enforce a maximum on the server. GET being read-only doesn't make a 100,000-row response cheap, and the client can't be trusted to limit it."
+    },
+    "02a9af4598": {
+      "question": "Consider the following JavaScript code: let x = 10; function outer() { let x = 20; return ...",
+      "right": "The arrow function closes over the inner x. x++ returns the old value and then increments, so you get 20, then 21.",
+      "wrong": "It prints 20 then 21. The closure keeps the inner x (20), and x++ returns the value before incrementing it."
+    },
+    "2c0aaad8d3": {
+      "question": "A production application must avoid exposing stack traces but still retain complete diagno...",
+      "right": "Detailed logs stay on the server, and the correlation ID lets engineers match a user's generic error to the exact log entry.",
+      "wrong": "Log full details on the server and return a generic error with a correlation ID. Stack traces leak internals to attackers, and suppressing logs leaves engineers blind."
+    },
+    "aa0f02ec91": {
+      "question": "A REST endpoint supports `PUT /users/42` and is designed to replace the complete user repr...",
+      "right": "PUT replaces the whole resource, so sending the same request again leaves the same final state. That's idempotency.",
+      "wrong": "PUT should be idempotent: repeating the same request gives the same result as sending it once. That makes retries safe."
+    },
+    "9abb885b04": {
+      "question": "A FastAPI response model contains `id`, `email`, and `name`, while the internal ORM object...",
+      "right": "The response model acts as an allow-list, so only id, email and name are serialised and password_hash never leaves the server.",
+      "wrong": "The response model limits what gets serialised, so internal fields like password_hash are never sent. It doesn't delete or encrypt anything in the database."
+    },
+    "95aebb8807": {
+      "question": "A service must prevent an authenticated user from accessing `/customers/900` when the cust...",
+      "right": "Only the backend can be trusted. It must check that the resource belongs to the caller's tenant on every request.",
+      "wrong": "Enforce it in backend authorisation logic, comparing the user's tenant with the resource's owner. Frontend checks and hidden IDs are easy to bypass."
+    },
+    "f225f582ff": {
+      "question": "A JavaScript frontend executes `fetch()` and expects HTTP 500 to enter the promise `catch`...",
+      "right": "fetch only rejects on network failures. A 500 is a normal response, so you have to check response.ok yourself.",
+      "wrong": "fetch resolves for any HTTP status, including 500. It only rejects on network errors, so check response.ok or response.status and throw yourself."
+    },
+    "d391a12f4c": {
+      "question": "A Python service catches a low-level database exception and raises a domain-specific `Paym...",
+      "right": "raise ... from exc chains the original exception, so the traceback shows both the domain error and its cause.",
+      "wrong": "Use raise PaymentPersistenceError(...) from exc. That chains the original exception as __cause__, so it still shows in the traceback."
+    },
+    "58f0867a23": {
+      "question": "Which Azure Storage service is most suitable for storing images, videos, and documents?",
+      "right": "Blob Storage is built for unstructured files like images, videos and documents.",
+      "wrong": "Use Azure Blob Storage for files like images and videos. Queue Storage holds messages, Table Storage holds key-value entities, and DNS resolves names."
+    },
+    "4692a74bcd": {
+      "question": "Azure SQL Database is an example of which cloud service model?",
+      "right": "Azure manages the server, OS and database engine; you just use the database. That's PaaS.",
+      "wrong": "Azure SQL Database is PaaS: Microsoft runs the servers, patching and backups, and you manage only your data and schema. Running SQL Server on a VM would be IaaS."
+    },
+    "7ac122aa97": {
+      "question": "An application deployed to Azure App Service cannot connect to the database because the co...",
+      "right": "App Service settings let each environment supply its own connection string without changing the code.",
+      "wrong": "Put the connection string in App Service configuration as an environment variable. Hard-coding it in source breaks other environments and leaks secrets into the repo."
+    },
+    "232851142b": {
+      "question": "During deployment to Azure App Service, environment variables are primarily used to:",
+      "right": "Environment variables keep configuration like keys and connection strings out of the code, so each environment can differ.",
+      "wrong": "They store configuration such as API keys and connection strings, separate from the code. They don't hold images or affect CPU speed."
+    },
+    "8650a76c4c": {
+      "question": "In Microsoft Azure, which hierarchy correctly represents how resources are organized?",
+      "right": "A subscription contains resource groups, and each resource group contains resources.",
+      "wrong": "The order is Subscription, then Resource Group, then Resource. Subscriptions hold resource groups, and resource groups hold the actual resources."
+    },
+    "8d39dbc5b9": {
+      "question": "What is the primary purpose of an Azure Subscription?",
+      "right": "A subscription is the boundary for billing, access control and quotas.",
+      "wrong": "A subscription is a billing, access control and management boundary. It can hold every kind of resource, not just VMs or storage."
+    },
+    "34a3d84459": {
+      "question": "An Azure Region is best described as:",
+      "right": "A region is a geographic area with one or more datacenters, such as East US or Central India.",
+      "wrong": "A region is a geographic area containing one or more Azure datacenters. It isn't a single VM, storage account or billing unit."
+    },
+    "6bfefc6d70": {
+      "question": "Which statement about Azure Resource Groups is correct?",
+      "right": "Every Azure resource lives in exactly one resource group, though you can move it to another.",
+      "wrong": "Every resource belongs to exactly one resource group. A group can't span subscriptions, can be deleted, and never creates resources on its own."
+    },
+    "e2a8f7efe3": {
+      "question": "GitHub Actions are primarily used to:",
+      "right": "GitHub Actions runs workflows on events such as a push, typically to build, test and deploy code (CI/CD).",
+      "wrong": "GitHub Actions automates build, test and deployment workflows. It doesn't create subscriptions, store logs or configure networks."
+    },
+    "4f91625a7a": {
+      "question": "Which of the following is an example of Software as a Service (SaaS)?",
+      "right": "Microsoft 365 is finished software you just sign in and use, which is what SaaS means.",
+      "wrong": "Microsoft 365 is SaaS: complete software delivered over the internet. VMs are IaaS, and App Service and AKS are platform services you deploy your own code to."
+    },
+    "e4ba470b11": {
+      "question": "An Azure Storage Account can contain:",
+      "right": "One storage account can hold four services: blobs, file shares, queues and tables.",
+      "wrong": "A storage account can contain blob containers, file shares, queues and tables. VMs, SQL databases and App Services are separate resources."
+    },
+    "25fa0129cc": {
+      "question": "A developer wants to deploy a Python FastAPI application without configuring an operating ...",
+      "right": "App Service runs your code on a managed platform, so there's no OS to install or patch.",
+      "wrong": "Use Azure App Service. A VM would make you manage the operating system yourself, and Blob Storage and Backup don't run applications."
+    },
+    "96a8770d9a": {
+      "question": "Which cloud service model does Azure Virtual Machine belong to?",
+      "right": "A VM gives you raw compute: you manage the OS and everything on it. That's IaaS.",
+      "wrong": "Azure VMs are IaaS. Azure supplies the virtual hardware, and you manage the OS, patches and software."
+    },
+    "6a8d07db90": {
+      "question": "A company wants Microsoft to manage the operating system while developers only deploy appl...",
+      "right": "App Service is PaaS: Microsoft runs and patches the OS, and you only deploy code.",
+      "wrong": "Use Azure App Service. With a VM you manage the OS yourself, and VNets and storage accounts don't run code."
+    },
+    "a8983436e5": {
+      "question": "Which Azure service allows developers to deploy web applications without managing the unde...",
+      "right": "App Service hosts web apps on a managed platform, so the OS is not your concern.",
+      "wrong": "It's Azure App Service. VMs make you manage the OS, and AKS still leaves you managing clusters and containers."
+    },
+    "7af8f0db91": {
+      "question": "Why are Resource Groups used in Azure?",
+      "right": "Resource groups bundle related resources so you can manage access, cost and deletion together.",
+      "wrong": "Resource groups logically group related resources so you can manage, secure and delete them together. They sit inside subscriptions, not in place of them."
+    },
+    "91eb43bb8b": {
+      "question": "Which Azure service is primarily used to create and manage virtual machines?",
+      "right": "Azure Virtual Machines is the IaaS service for creating and running VMs.",
+      "wrong": "Use Azure Virtual Machines. App Service hosts web apps, SQL Database is a managed database, and Blob Storage holds files."
+    },
+    "31db92fe4f": {
+      "question": "Which deployment model allows an organization to use both on-premises infrastructure and p...",
+      "right": "Hybrid cloud connects on-premises infrastructure with public cloud so they work as one environment.",
+      "wrong": "That's hybrid cloud: on-premises and public cloud used together. Private cloud is just your own infrastructure, and public cloud is just the provider's."
+    },
+    "3af72a77ff": {
+      "question": "Which Azure feature allows applications to securely store sensitive values like API keys a...",
+      "right": "Key Vault stores secrets, keys and certificates with access control and audit logs.",
+      "wrong": "Use Azure Key Vault for secrets. Monitor watches metrics and logs, Backup protects data, and plain Storage isn't designed for secrets."
+    },
+    "8fa2133aa8": {
+      "question": "A team has developed a FastAPI application, stores code in GitHub, deploys to Azure App Se...",
+      "right": "Code goes from GitHub to App Service automatically through Actions, with secrets kept out of the code. That's CI/CD done right.",
+      "wrong": "This is automated CI/CD following cloud deployment best practices. Nothing here is manual, IaaS-based or on-premises."
+    },
+    "fe2af73c44": {
+      "question": "What is the primary purpose of Azure Availability Zones?",
+      "right": "Zones are physically separate datacenters in one region, so spreading across them survives a single site failure.",
+      "wrong": "Availability Zones raise availability by placing resources in separate physical locations within a region. They don't change cost, memory or subscription layout."
+    },
+    "2c1b29e4a9": {
+      "question": "A production web application must continue running even if one datacenter within an Azure ...",
+      "right": "Running instances in more than one zone keeps the app up if one datacenter in the region fails.",
+      "wrong": "Use Availability Zones. Each zone is a separate datacenter, so instances in other zones keep running. Resource groups and Monitor don't add redundancy."
+    },
+    "f6d47d8980": {
+      "question": "A startup needs a server that gives full control over the operating system. Which Azure se...",
+      "right": "A VM gives full control of the OS: install anything, change settings, apply your own patches.",
+      "wrong": "Choose an Azure Virtual Machine. App Service, SQL Database and Functions are managed services that hide the OS from you."
+    },
+    "2545202098": {
+      "question": "Which Azure Storage service is commonly used to create shared network file storage?",
+      "right": "Azure Files provides SMB/NFS file shares that many machines can mount at once.",
+      "wrong": "Use Azure Files for shared network drives. Blob Storage is object storage over HTTP, not a mountable file share."
+    },
+    "160a9840fd": {
+      "question": "Before GitHub Actions can deploy to Azure App Service, which step is commonly required?",
+      "right": "The workflow needs credentials (a publish profile or service principal) stored as GitHub Secrets to deploy.",
+      "wrong": "GitHub Actions needs deployment credentials, such as a publish profile, saved as GitHub Secrets. Blob accounts or bigger VMs aren't part of it."
+    },
+    "4d3892f329": {
+      "question": "A team wants to deploy application code without managing the operating system, patching, o...",
+      "right": "PaaS handles the OS, patching and runtime, so you only deploy code.",
+      "wrong": "That's PaaS. With IaaS you still manage the OS and patching, and bare metal or colocation means managing even more."
+    },
+    "c4859a38cf": {
+      "question": "A company wants separate billing, quotas, and administrative boundaries for business units...",
+      "right": "Subscriptions give each business unit its own billing, quotas and admin boundary.",
+      "wrong": "Use subscriptions. They're the boundary for billing, quotas and administration. Availability zones are about resilience, not ownership."
+    },
+    "ece8fd4edb": {
+      "question": "A workload needs an identity that can access a specific Azure resource without storing a l...",
+      "right": "A managed identity gets credentials from Azure automatically, so there's no secret in your config to rotate or leak.",
+      "wrong": "Use a managed identity. Azure handles the credential for you, while a shared admin account or stored secret is exactly what you want to avoid."
+    },
+    "7610456811": {
+      "question": "A bank keeps regulated databases in its datacenter but uses Azure for scalable application...",
+      "right": "Regulated data stays on-premises and Azure handles burst capacity, which makes it a hybrid cloud.",
+      "wrong": "It's hybrid cloud: an on-premises datacenter and Azure working together. Neither public-only nor private-only fits."
+    },
+    "ed4e433a87": {
+      "question": "A deployment must create a virtual network, subnet, VM, and storage account consistently a...",
+      "right": "Infrastructure as Code (ARM, Bicep, Terraform) with parameters builds identical environments every time.",
+      "wrong": "Use declarative infrastructure as code with parameters, such as Bicep or Terraform. Manual portal work is exactly what causes configuration drift."
+    },
+    "514ecb0f6c": {
+      "question": "A pipeline should automatically deploy after code is merged but require explicit approval ...",
+      "right": "Build and tests run automatically, and a manual approval gate guards production.",
+      "wrong": "Build and test automatically, then add an approval gate before production. Approving after the deploy or deploying before tests defeats the point."
+    },
+    "7a005fd284": {
+      "question": "A developer can view production resources but must not modify or delete them. Which access...",
+      "right": "A read-only role (Reader) at the right scope lets them view resources but not change them.",
+      "wrong": "Assign a read-only RBAC role such as Reader at the right scope. Owner allows changes, and sharing admin credentials breaks accountability."
+    },
+    "bb204531dc": {
+      "question": "A company wants separate permissions and lifecycle management for development and producti...",
+      "right": "Separate resource groups with RBAC scoped to each give dev and prod their own permissions and lifecycle.",
+      "wrong": "Use separate resource groups with RBAC scoped to each one. Giving everyone subscription Owner removes any separation between dev and prod."
+    },
+    "5c6e922293": {
+      "question": "Consider the following deployment: Azure Region │ ├── Availability Zone 1 → Application In...",
+      "right": "If one zone fails, the instances in the other two zones keep serving traffic.",
+      "wrong": "The app keeps running on the instances in the other zones. Azure doesn't move resources to another region automatically."
+    },
+    "7e0e65757d": {
+      "question": "A team wants resources to be grouped by environment and cost center for governance and cos...",
+      "right": "Tags are key-value labels like env=prod or costcenter=42 that you can filter and report costs by.",
+      "wrong": "Use resource tags, such as env and costcenter labels, for governance and cost reports. DNS records and zones have nothing to do with grouping."
+    },
+    "36c3d54a0c": {
+      "question": "A resource group is deleted accidentally. What lifecycle behavior is important for resourc...",
+      "right": "Deleting a resource group deletes every resource inside it, which is why resource locks exist.",
+      "wrong": "The resources in the group are deleted along with it. Use resource locks to prevent accidental deletion. The region and tenant aren't affected."
+    },
+    "240bcacd45": {
+      "question": "A distributed application needs a simple asynchronous queue so producers can place message...",
+      "right": "Queue Storage holds messages so producers and workers can run independently and at different speeds.",
+      "wrong": "Use Azure Queue Storage for simple message queues. Blob Storage and Files store files, and DNS resolves names."
+    },
+    "9992343b68": {
+      "question": "An organization needs a NoSQL key-value data store for simple entities without relational ...",
+      "right": "Table Storage is a NoSQL key-value store for simple entities, with no joins.",
+      "wrong": "Use Azure Table Storage. SQL Database is relational, Files is file shares, and a Load Balancer distributes traffic."
+    },
+    "11688d82fd": {
+      "question": "A developer needs to read production resources for troubleshooting but must not create, mo...",
+      "right": "A read-only role such as Reader, assigned at the needed scope, allows troubleshooting without any write access.",
+      "wrong": "Assign a read-only role like Reader at the needed scope. Contributor and Owner can modify and delete resources."
+    },
+    "b2b15506d5": {
+      "question": "A CI/CD pipeline must prevent production deployment when automated tests fail. Where shoul...",
+      "right": "Tests run before the production stage, so a failure stops the pipeline before anything ships.",
+      "wrong": "Run tests before the production deployment stage. Testing after deploying means broken code is already live."
+    },
+    "be36ce0e97": {
+      "question": "A company must keep customer data within a legally specified geographic boundary. Which Az...",
+      "right": "Data residency rules decide which regions you're allowed to store and process data in.",
+      "wrong": "Region selection is directly affected. Data residency laws limit where data can be stored, which means choosing regions inside that boundary."
+    },
+    "4f0446ca49": {
+      "question": "A storage workload consists of millions of images accessed as objects over HTTPS. Which Az...",
+      "right": "Blob Storage is object storage reached over HTTPS, made for millions of images.",
+      "wrong": "Use Blob Storage for objects served over HTTPS. Azure Files is mounted as a file share, and Queue Storage holds messages."
+    },
+    "c2a6e61ee4": {
+      "question": "A cloud application needs redundancy against a regional disaster, not merely a single-zone...",
+      "right": "Zones protect against one datacenter failing. Surviving a whole-region outage needs multi-region deployment or disaster recovery.",
+      "wrong": "Look at a multi-region or disaster-recovery setup. Bigger disks or more VMs in the same zone can't survive a whole region going down."
+    },
+    "a5b716e9a7": {
+      "question": "A developer needs to manage resources in one production resource group but must not modify...",
+      "right": "Scoping the role to that one resource group gives exactly the access needed and nothing else (least privilege).",
+      "wrong": "Assign the role at the production resource group's scope. Subscription Owner or Global Administrator would also give access to the other group."
+    },
+    "1a1716dac8": {
+      "question": "A deployment template creates resources with dependencies. One resource must exist before ...",
+      "right": "Templates declare dependencies (dependsOn or references), so Azure creates resources in the right order.",
+      "wrong": "Use declared dependencies or references in the template, such as dependsOn in ARM. DNS TTL and storage tiers have nothing to do with deployment order."
+    },
+    "e2e66f78bd": {
+      "question": "A regulated organization requires a cloud environment dedicated to its own organizational ...",
+      "right": "A private cloud is dedicated to one organisation, which suits strict regulatory control.",
+      "wrong": "That's a private cloud: infrastructure dedicated to one organisation. Public cloud is shared, and hybrid mixes on-premises with public."
+    },
+    "b6d679c3be": {
+      "question": "An application must tolerate failure of a single Azure datacenter facility while remaining...",
+      "right": "Redundant instances in several zones survive the loss of one datacenter without leaving the region.",
+      "wrong": "Deploy redundant instances across availability zones. A bigger VM or everything in one zone still fails with that datacenter."
+    },
+    "296ad7540d": {
+      "question": "A business application requires relational transactions, SQL queries, constraints, and man...",
+      "right": "Azure SQL Database gives you relational tables, transactions and constraints as a managed service.",
+      "wrong": "Use Azure SQL Database for relational data and transactions. Queue and Blob Storage don't support SQL queries or constraints, and CDN caches content."
+    },
+    "3c840b8e42": {
+      "question": "A company needs to audit who created, deleted, or modified Azure resources. Which Azure ca...",
+      "right": "The Activity Log records control-plane operations: who created, changed or deleted which resource, and when.",
+      "wrong": "Use the Azure Activity Log. It records who created, modified or deleted resources. The other options don't track control-plane changes."
+    },
+    "bdb78380a4": {
+      "question": "A company wants Azure to provide physical infrastructure while multiple customers use logi...",
+      "right": "In public cloud the provider owns the hardware and many customers share it, isolated logically.",
+      "wrong": "That's public cloud: shared provider-owned infrastructure with logical isolation between customers. Private cloud and single-tenant setups serve one organisation."
+    },
+    "ef8c6d5fa1": {
+      "question": "An application needs to retrieve secrets from Azure without embedding a client secret in i...",
+      "right": "The app authenticates with its managed identity and reads secrets from Key Vault, so no client secret lives in the code.",
+      "wrong": "Use a managed identity with Key Vault. Azure supplies the identity's credentials, so there's nothing to embed. Public blob access would expose secrets instead."
+    },
+    "ff658c6acf": {
+      "question": "An application deployed in one Azure region has high latency for users on another continen...",
+      "right": "Distance adds latency, so the first thing to check is where compute and data sit relative to users. Extra regions or a CDN help.",
+      "wrong": "Check where compute and data are placed relative to users. Users on another continent pay for the round-trip distance; tags and names don't affect speed."
+    },
+    "c4c3211832": {
+      "question": "A team wants infrastructure changes to be reviewable, versioned, and reproducible before d...",
+      "right": "Infrastructure as Code in Git gets pull-request review, history and repeatable automated deploys.",
+      "wrong": "Keep declarative infrastructure definitions in version control and deploy them through a pipeline. Manual portal changes can't be reviewed or reproduced."
+    },
+    "2d145930ae": {
+      "question": "A storage account contains confidential documents. The security requirement is to prevent ...",
+      "right": "Turning off anonymous access and requiring authenticated, authorised requests keeps confidential blobs private.",
+      "wrong": "Disable or restrict public access and require authentication (Entra ID or SAS). Enabling public container access is the exact opposite of what's needed."
+    },
+    "b04362571e": {
+      "question": "A company migrates an existing application to Azure but requires OS-level control because ...",
+      "right": "Only IaaS (a VM) gives you control of the OS and kernel, which a custom kernel module needs.",
+      "wrong": "It has to be IaaS. A custom kernel module needs OS-level control, which PaaS and SaaS deliberately hide from you."
+    },
+    "c5be2f9181": {
+      "question": "A smaller Linear Regression error generally indicates that:",
+      "right": "Regression error (such as MSE or MAE) measures how far predictions are from the true values, so smaller means closer.",
+      "wrong": "Smaller error means the predicted values are closer to the actual targets. Counting correctly classified examples is a classification metric, not regression."
+    },
+    "2fbca518de": {
+      "question": "A company uses KNN to predict whether a customer will purchase a product. One feature is \"...",
+      "right": "KNN uses distances, so a feature measured in hundreds of thousands drowns out one that ranges from 1 to 50. Scale the features first.",
+      "wrong": "Income's huge scale dominates the distance calculation. KNN handles numbers fine; standardise or normalise the features so each one counts."
+    },
+    "5140c41492": {
+      "question": "A KNN classifier gives excellent accuracy on the training dataset but performs poorly on u...",
+      "right": "With K=1 each prediction copies the single closest training point, noise included, which is classic overfitting.",
+      "wrong": "K=1 overfits: it memorises every training point, noise included. Training accuracy is perfect, but it doesn't generalise. Underfitting comes from a very large K."
+    },
+    "f7bbbf1e40": {
+      "question": "A team compares a Linear Regression model, KNN, and K-Means for predicting the future sale...",
+      "right": "K-Means only groups data. It has no target to predict, so it can't be compared with regression on sales amounts.",
+      "wrong": "K-Means is unsupervised and doesn't predict a target value, so it doesn't belong in a sales-prediction comparison. Linear Regression (and KNN regression) can predict numbers."
+    },
+    "68aea8e6f7": {
+      "question": "A sentence contains the words \"The animal didn't cross the road because it was injured.\" T...",
+      "right": "Attention lets the representation of \"it\" draw more heavily from \"animal\", which is how the model resolves the reference.",
+      "wrong": "Attention gives more weight to the relevant context words, here \"animal\", when building the representation of \"it\". Equal weights would lose that link."
+    },
+    "e84417cc5a": {
+      "question": "A developer increases the number of attention heads in a Transformer and notices that the ...",
+      "right": "Each head has its own learned projections, so one might track syntax while another tracks references.",
+      "wrong": "Different heads learn different relationships, such as grammar in one and references in another. They aren't separate models and don't replace feed-forward layers."
+    },
+    "29f47ef430": {
+      "question": "What generally happens when the value of K in KNN is increased substantially?",
+      "right": "A larger K averages over more neighbours, so single noisy points matter less (too large and it underfits).",
+      "wrong": "A larger K looks at a bigger neighbourhood, so predictions become smoother and less sensitive to individual points. KNN still uses distances."
+    },
+    "93e0fa920b": {
+      "question": "What is the primary purpose of the attention mechanism in a Transformer?",
+      "right": "Attention scores how much each token should draw on every other token when building its contextual meaning.",
+      "wrong": "Attention decides how strongly each token relates to the others when building its representation. It doesn't remove tokens or replace embeddings."
+    },
+    "d0f1789ed2": {
+      "question": "A Transformer model has learned strong relationships between words but produces poor resul...",
+      "right": "Self-attention has no built-in sense of order, so positional encodings are added to the token embeddings.",
+      "wrong": "Add positional information, i.e. positional encodings. On its own, self-attention treats the input as an unordered set of tokens."
+    },
+    "f59a0f7cb8": {
+      "question": "A Transformer receives a long document and must determine which earlier sentence is releva...",
+      "right": "Every token can attend directly to any earlier token in the context, however far back it is.",
+      "wrong": "Self-attention links the current token directly to relevant tokens anywhere in the context. It doesn't give equal importance or delete tokens."
+    },
+    "57d0c606aa": {
+      "question": "A Transformer processes the sentence \"I went to the bank to deposit money.\" Why might the ...",
+      "right": "The vector for bank is built with attention to its neighbours (deposit, money vs river), so it changes with context.",
+      "wrong": "Attention mixes in surrounding context, so bank near \"deposit money\" gets a different representation than bank near \"river\". The token itself is the same."
+    },
+    "4a09e42f0e": {
+      "question": "In K-Means clustering, what does the centroid represent?",
+      "right": "A centroid is the mean of all points in its cluster, the cluster's centre.",
+      "wrong": "The centroid is the mean position of the points assigned to the cluster. It's usually not an actual data point, and it isn't a class label."
+    },
+    "172d973176": {
+      "question": "A data scientist chooses K=3 for K-Means and observes that several unrelated groups of cus...",
+      "right": "K is a guess until tested. The elbow method or silhouette scores help pick a better one.",
+      "wrong": "Try different values of K and compare them, for example with the elbow method or silhouette score. K-Means has no learning rate, and dropping features blindly isn't a fix."
+    },
+    "9ea8eefb8b": {
+      "question": "Which distance measure is commonly used to determine similarity between a data point and a...",
+      "right": "Standard K-Means assigns each point to the nearest centroid by Euclidean distance.",
+      "wrong": "Standard K-Means uses Euclidean distance. Cosine, Hamming and Jaccard are used in other settings, such as text or binary data."
+    },
+    "cfc75a44b3": {
+      "question": "KNN makes a prediction primarily by:",
+      "right": "KNN has no real training step. At prediction time it finds the closest examples and votes or averages their labels.",
+      "wrong": "KNN looks at the nearest training examples and uses their labels (a vote) or values (an average). It doesn't learn an equation or build centroids."
+    },
+    "012bea44a9": {
+      "question": "A KNN model achieves poor performance even after increasing K. Inspection shows that one f...",
+      "right": "No K can fix a distorted distance. Scale the features first, then tune K.",
+      "wrong": "The feature scale is distorting distances, so fix the preprocessing (scaling) before tuning K. Changing K doesn't change how distances are calculated."
+    },
+    "0feedfc437": {
+      "question": "A dataset contains house sizes and corresponding prices. After training Linear Regression,...",
+      "right": "A consistent miss at one end of the range means a straight line doesn't fit the true curve well.",
+      "wrong": "A systematic error for large houses suggests the relationship isn't linear across the whole range. Try polynomial features, a log transform or a non-linear model."
+    },
+    "6f74b897eb": {
+      "question": "A team feeds the sentence \"The bank approved the loan\" into an embedding model. The result...",
+      "right": "A sentence embedding captures meaning, so it lands near related text and far from unrelated text.",
+      "wrong": "An embedding should capture semantic meaning, which lets you tell this sentence apart from unrelated text. It isn't a character count or a single label."
+    },
+    "f504228def": {
+      "question": "A K-Means model is trained on customer data containing annual income and spending score. I...",
+      "right": "Standardising both features puts them on a comparable scale, so spending score can shape the clusters too.",
+      "wrong": "Scale the features, for example with StandardScaler. Income's big range dominates Euclidean distance; more iterations or dropping a feature won't fix that."
+    },
+    "442b503fbe": {
+      "question": "In Linear Regression, the model attempts to learn:",
+      "right": "Linear Regression fits weights linking the features to a continuous number.",
+      "wrong": "Linear Regression learns a relationship between features and a continuous target. Clusters belong to K-Means, and nearest examples belong to KNN."
+    },
+    "04462e314f": {
+      "question": "In a Transformer, embeddings are mainly used to:",
+      "right": "Embeddings turn token IDs into dense vectors where similar meanings sit close together.",
+      "wrong": "Embeddings represent tokens as numerical vectors that carry meaning. Attention then works on those vectors; it isn't replaced by them."
+    },
+    "958b22bf70": {
+      "question": "Which statement best describes the main advantage of Transformers over traditional sequent...",
+      "right": "Attention looks at all token pairs at once, so training runs in parallel instead of step by step as in an RNN.",
+      "wrong": "The big advantage is parallelism: attention relates all tokens at once instead of one step at a time. Transformers still need numbers and data, and they're often larger."
+    },
+    "3cd6cf7ba4": {
+      "question": "A regression model predicts house prices using only house area. The residual plot shows a ...",
+      "right": "Residuals should scatter randomly around zero. A curved pattern means the straight line is missing a non-linear trend.",
+      "wrong": "A curved residual pattern shows the linear model is missing a non-linear relationship. A good fit leaves random scatter around zero."
+    },
+    "c3ae26b538": {
+      "question": "Why are Q, K, and V vectors used in self-attention?",
+      "right": "The query is what a token looks for, keys are what others offer to match, and values are the information that gets mixed in.",
+      "wrong": "Q is what a token is looking for, K is what each token offers for matching, and V is the content that gets combined. They have nothing to do with dataset splits."
+    },
+    "d763ac2acb": {
+      "question": "A K-Means system is run twice on the same dataset with the same K, but produces different ...",
+      "right": "K-Means only finds a local optimum, so different starting centroids can end in different clusters. Fix the random seed or use k-means++.",
+      "wrong": "Random starting centroids can lead to different local solutions. K stays fixed, and the distance metric doesn't change. Set a seed or use k-means++ with several runs."
+    },
+    "e4b596910d": {
+      "question": "import numpy as np a = np.array([[1], [2], [3]]) b = np.array([10, 20]) print(a + b) What ...",
+      "right": "Shape (3,1) plus shape (2,) broadcasts to (3,2): each row value is added to both 10 and 20.",
+      "wrong": "It's [[11, 21], [12, 22], [13, 23]]. Broadcasting stretches the (3,1) column and the (2,) row into a (3,2) grid, so there's no error."
+    },
+    "ce4716014c": {
+      "question": "A large CSV contains 20 million rows and cannot comfortably fit into memory. Which Pandas ...",
+      "right": "read_csv(chunksize=...) streams the file, so you aggregate each chunk and combine the partial results.",
+      "wrong": "Read the file in chunks (read_csv with chunksize) and combine partial aggregates, such as sums and counts for a mean. Loading all 20 million rows at once is the problem."
+    },
+    "470a3e197d": {
+      "question": "A Pandas DataFrame joins transactions to customer metadata. Customer ID is duplicated in t...",
+      "right": "Check that the key is really unique first (e.g. merge with validate=\"many_to_one\"), otherwise duplicates multiply rows silently.",
+      "wrong": "Validate the key's uniqueness and fix the duplicate customers before joining. Duplicate keys in the lookup table are why the transaction rows multiplied."
+    },
+    "60f4dbfcc1": {
+      "question": "Two vectors are `[1, 2, 3]` and `[2, 4, 6]`. Under cosine similarity, what relationship sh...",
+      "right": "[2,4,6] is exactly twice [1,2,3], same direction, so the cosine similarity is 1.",
+      "wrong": "Their cosine similarity is 1. Cosine only measures direction, and [2,4,6] points the same way as [1,2,3]; the difference in length is ignored."
+    },
+    "100a6042fc": {
+      "question": "A 10,000-token document must be supplied to a model with a 4,000-token context window. The...",
+      "right": "4,000 total minus 500 for the prompt leaves about 3,500 tokens for retrieved context.",
+      "wrong": "About 3,500 tokens: the 4,000-token window minus the 500-token prompt. In practice also reserve room for the model's answer."
+    },
+    "1e89a79523": {
+      "question": "A retrieval corpus contains documents in two versions. Old chunks and current chunks have ...",
+      "right": "Version metadata on each chunk lets you filter to the current version even when the text is identical.",
+      "wrong": "Store document version metadata with each chunk and filter on it. Identical text means only metadata can tell old chunks from current ones."
+    },
+    "2b6c68b541": {
+      "question": "A RAG application retrieves relevant chunks from several documents but provides no source ...",
+      "right": "Keep source metadata with each chunk through retrieval so the answer can cite exactly where it came from.",
+      "wrong": "Carry source and document metadata through retrieval and show citations in the answer. Bigger embeddings or random ordering don't make answers traceable."
+    },
+    "46201cbed3": {
+      "question": "A GenAI pipeline logs `API_KEY=...` whenever an embedding request fails. What is the corre...",
+      "right": "Remove the secret from logs and rotate the key, since anyone who saw the logs could have copied it.",
+      "wrong": "Redact secrets from logs and rotate the exposed key. Base64 isn't encryption, and longer retention keeps the leak around longer."
+    },
+    "616da23cb2": {
+      "question": "A keyword retriever scores a chunk by raw count of query-term occurrences. A chunk repeats...",
+      "right": "Capping or normalising term frequency (as BM25 does) stops repeated text from gaming the score.",
+      "wrong": "Use normalised or capped term frequency, as BM25 does, and judge relevance beyond repetition. Raw counts reward spam that repeats words."
+    },
+    "c923824d68": {
+      "question": "A unit test for a text chunking function unexpectedly calls a real embedding API and becom...",
+      "right": "Mocking or injecting the embedding client keeps the unit test fast and deterministic, and focused only on chunking.",
+      "wrong": "Mock or inject the embedding dependency. A unit test should check chunking alone, not hit a real API that is slow and changes its output."
+    },
+    "0914f1a136": {
+      "question": "A DataFrame contains `amount` values such as `\"1200.50\"`, `\"N/A\"`, and `\"unknown\"`. The pi...",
+      "right": "pd.to_numeric(errors=\"coerce\") turns N/A and unknown into NaN, which median() skips, but decide explicitly how to handle them.",
+      "wrong": "Coerce to numbers (pd.to_numeric with errors=\"coerce\") and handle the invalid values deliberately. The median of strings has no numeric meaning."
+    },
+    "fda1354045": {
+      "question": "A data-quality rule says the batch must fail if more than 20% of documents cannot be parse...",
+      "right": "Counting failures and failing only when the ratio passes 20% matches the rule exactly.",
+      "wrong": "Track failures, compute the failure ratio, and fail the batch only when it exceeds 20%. Stopping at the first failure is stricter than the rule."
+    },
+    "761775596d": {
+      "question": "Two normalized embedding vectors are `[0.6, 0.8]` and `[0.8, 0.6]`. What is their cosine s...",
+      "right": "For normalised vectors cosine similarity is the dot product: 0.6×0.8 + 0.8×0.6 = 0.96.",
+      "wrong": "It's 0.96. Both vectors have length 1, so cosine equals the dot product: 0.48 + 0.48. 0.48 is only half of that sum."
+    },
+    "b3ef15d80c": {
+      "question": "A function accepts configuration and directly accesses `config['chunk_size']`. Missing con...",
+      "right": "Checking config at startup fails fast with a clear message, instead of a confusing KeyError deep in the pipeline.",
+      "wrong": "Validate required config at the entry point and raise a clear configuration error. Suppressing KeyErrors or using random defaults hides the real problem."
+    },
+    "8d4ddaa719": {
+      "question": "A document contains 2,500 tokens. The chunk size is 600 tokens and the overlap is 100 toke...",
+      "right": "Chunks start at 0, 500, 1000, 1500 and 2000. The fifth one reaches the end at 2500.",
+      "wrong": "Five chunks. Starts at 0, 500, 1000, 1500 and 2000; four chunks only reach token 2100, so a fifth is needed to cover up to 2500."
+    },
+    "844167998c": {
+      "question": "A retrieval system returns highly relevant chunks, but the generated answer frequently ign...",
+      "right": "Good retrieval plus bad answers points at the generation step, so evaluate them separately (faithfulness, grounding).",
+      "wrong": "Retrieval is fine, so the problem is in generation or how the context is used, which needs its own evaluation. Nothing suggests a corrupt index or zero vectors."
+    },
+    "abc2fb2774": {
+      "question": "left = pd.DataFrame({ \"id\": [1, 2], \"name\": [\"A\", \"B\"] }) right = pd.DataFrame({ \"id\": [1,...",
+      "right": "An inner merge pairs each left row with every matching right row: id 1 matches two rows and id 2 matches one, giving 3.",
+      "wrong": "It prints 3. id 1 appears twice on the right, so it produces two rows; id 2 produces one. Merges multiply rows on duplicate keys."
+    },
+    "e5497cf127": {
+      "question": "A Python module executes the entire document-ingestion pipeline as soon as another module ...",
+      "right": "Wrapping the pipeline in a function behind the __main__ guard means importing the module never starts ingestion.",
+      "wrong": "Put the pipeline in functions and call them only under if __name__ == '__main__':. Module-level code runs on every import."
+    },
+    "9f21b9ef8d": {
+      "question": "A custom exception represents invalid user configuration, while a database timeout represe...",
+      "right": "Separate types let callers catch each one differently: show a config error to the user, retry and alert on the timeout.",
+      "wrong": "Different types let callers handle each case differently, such as retrying a timeout but reporting bad config to the user. They don't change speed or logging."
+    },
+    "f5f06b6a51": {
+      "question": "A pipeline derives daily metrics from timestamps arriving in UTC, IST, and EST. Grouping d...",
+      "right": "Convert every timestamp to one reference timezone first; only then is 'the date' consistent.",
+      "wrong": "Normalise all timestamps to one reference timezone (often UTC) before deriving the date. Mixed zones put the same moment on different days."
+    },
+    "68056ae56d": {
+      "question": "A chunk is 800 tokens, while the model's remaining context budget after system instruction...",
+      "right": "The whole prompt must fit the window, so trim, re-chunk or pick smaller pieces to stay within the 650 tokens left.",
+      "wrong": "Retrieve less, truncate or re-chunk so the prompt fits the 650 tokens left. The context limit is fixed; anything over it gets cut off or rejected."
+    },
+    "67b1dd1c2d": {
+      "question": "A NumPy array `x` has shape `(100,1)` and `y` has shape `(1,50)`. What is the shape of `x ...",
+      "right": "(100,1) and (1,50) both stretch along their size-1 axes, giving (100,50).",
+      "wrong": "The result is (100, 50). Each size-1 dimension stretches to match the other array, so the column and the row form a full grid."
+    },
+    "04ca5f724b": {
+      "question": "A dataset has a feature with 45% missing values. Replacing all missing values with zero ch...",
+      "right": "Why values are missing, what the feature means, and how the model will use it all decide the right imputation.",
+      "wrong": "Look at why the data is missing, what the feature means and how imputation affects the model. Zero-filling 45% of a column badly skews its distribution."
+    },
+    "ed0a91247b": {
+      "question": "A simulated embedding function averages token vectors. A document contains no recognized t...",
+      "right": "An empty token list would mean dividing by zero, so handle it explicitly: skip, flag or log the document.",
+      "wrong": "Handle the empty case explicitly. Averaging zero vectors divides by zero, and a silent random vector corrupts search results."
+    },
+    "24d82a060b": {
+      "question": "A RAG system stores embeddings but not source text or document metadata. Retrieval returns...",
+      "right": "Retrieval needs to return text the model can read, plus metadata for citations and filtering.",
+      "wrong": "Store the chunk text and stable source metadata with each vector. A vector ID alone gives the model nothing it can read."
+    },
+    "066f694c68": {
+      "question": "A NumPy array has shape `(1000, 20)` and contains 1,000 observations with 20 features. The...",
+      "right": "axis=0 collapses the rows (observations), leaving one mean per column: 20 values.",
+      "wrong": "Use axis=0, which aggregates down the rows and gives 20 feature means. axis=1 would give 1,000 per-row means, and there is no axis 2 in a 2-D array."
+    },
+    "39711d7866": {
+      "question": "A Python data pipeline processes each document independently. One malformed document shoul...",
+      "right": "A try/except around each document logs the bad one and lets the loop carry on.",
+      "wrong": "Put the try/except around each document's processing, log the failure and continue. Wrapping the whole batch stops everything at the first bad file."
+    },
+    "6da2752a25": {
+      "question": "A data-cleaning function mutates a DataFrame supplied by its caller. Another component une...",
+      "right": "DataFrames are mutable and passed by reference, so in-place changes are visible to everyone holding the same object.",
+      "wrong": "The function mutates a shared, mutable object. Python passes a reference, not a copy, so return a modified copy or document that it mutates."
+    },
+    "8ef39973a4": {
+      "question": "A RAG ingestion pipeline processes 20,000 documents. Re-running ingestion currently recomp...",
+      "right": "Stable IDs plus content hashes show which documents changed, so only those are re-embedded.",
+      "wrong": "Track stable document IDs and content hashes, and re-embed only what changed. Random IDs or wiping the index force everything to be redone."
+    },
+    "a0414bedd5": {
+      "question": "A Pandas filter needs rows where `score >= 0.8` AND `status == 'approved'`. Which implemen...",
+      "right": "Pandas needs element-wise & with each condition in parentheses: (df.score >= 0.8) & (df.status == 'approved').",
+      "wrong": "Use & between parenthesised boolean Series. Python's and tries to get one True/False from a whole Series and raises a ValueError."
+    },
+    "80f6792338": {
+      "question": "A tokenized sentence is represented as a matrix where each row is a token vector. The appl...",
+      "right": "Rows are tokens, so axis=0 averages down the rows and gives one vector with the embedding's width.",
+      "wrong": "Use np.mean(array, axis=0). It averages across the token rows and keeps every vector dimension; axis=1 would give one number per token instead."
+    },
+    "93600f323e": {
+      "question": "A keyword retriever ranks documents by counting matching query terms. What problem can occ...",
+      "right": "Raw counts reward length and repetition, so long or spammy documents rank too high.",
+      "wrong": "Long or repetitive documents get inflated scores, because more words means more matches. Normalising by length (as BM25 does) fixes this."
+    },
+    "47be92996a": {
+      "question": "A customer reference DataFrame contains duplicate customer IDs before it is joined to a tr...",
+      "right": "If the key isn't unique, the join duplicates transaction rows, so check uniqueness before anything else.",
+      "wrong": "Check whether the customer key is unique. Duplicate keys in the reference table multiply the joined rows; formatting and column order don't matter."
+    },
+    "98e9505850": {
+      "question": "A NumPy array has shape (5, 3), where rows represent documents and columns represent featu...",
+      "right": "axis=0 collapses the rows, so you get one result per feature column, computed across all documents.",
+      "wrong": "axis=0 reduces down the document rows, giving one value per feature. Reducing across the feature columns of each document would be axis=1."
+    },
+    "2e0be314f9": {
+      "question": "An AI application needs a named error specifically for an unsupported document format. Whi...",
+      "right": "A custom exception names a specific failure (UnsupportedFormatError) so callers can catch and handle exactly that case.",
+      "wrong": "A custom exception is a named error type for one specific condition. It doesn't replace logging, and it has nothing to do with speed or storing data."
+    },
+    "3105b04c27": {
+      "question": "A retrieved RAG chunk is too large to fit within the model’s remaining context budget. Wha...",
+      "right": "Shrink or re-chunk the context so the whole prompt fits. Anything past the limit is cut or rejected.",
+      "wrong": "Reduce or re-chunk the retrieved text before generating. Sending it anyway overflows the context, and deleting the user's query defeats the purpose."
+    },
+    "11d7a1c5e1": {
+      "question": "A text-cleaning function should remove leading and trailing spaces. Which assertion direct...",
+      "right": "The assertion checks the exact expected output: both outer spaces gone, leaving 'text'.",
+      "wrong": "Assert clean(' text ') == 'text'. That checks the exact result: leading and trailing spaces removed and the word kept."
+    },
+    "84714dac6e": {
+      "question": "A RAG index stores embedding vectors and numeric IDs. Retrieval returns the IDs, but the a...",
+      "right": "Vector IDs alone are meaningless to the LLM. You need the chunk text (and source info) to build the prompt.",
+      "wrong": "The chunk text and its source metadata are missing. Retrieval gives IDs, but the model needs actual text to read and sources to cite."
+    },
+    "cbd17f6edf": {
+      "question": "A BaseAgent class defines run(), while several specialized agents provide their own implem...",
+      "right": "Calling agent.run() works on any agent, and each subclass runs its own version. That's polymorphism.",
+      "wrong": "It's polymorphism: one run() interface with a different implementation in each agent. Inheritance doesn't force identical logic; overriding is what lets them differ."
+    },
+    "622e5fde26": {
+      "question": "An AI application reads configuration settings before starting document processing. Why is...",
+      "right": "Keeping config separate from processing gives each part one job, which makes both easier to change and test.",
+      "wrong": "It improves separation of concerns. It doesn't validate every input or prevent exceptions; it just keeps two responsibilities apart."
+    },
+    "cc99ca159d": {
+      "question": "A developer is investigating why an AI pipeline produces an unexpected embedding during de...",
+      "right": "DEBUG is the most detailed level and is meant for diagnosing problems during development.",
+      "wrong": "Use DEBUG for detailed diagnostic output. ERROR and CRITICAL are for failures and record less detail, and OFF records nothing."
+    },
+    "f190a30b07": {
+      "question": "A keyword-based retriever should treat the terms AI, Ai, and ai as equivalent during match...",
+      "right": "Lowercasing makes AI, Ai and ai the same token, so letter case no longer affects matching.",
+      "wrong": "The goal is to remove differences caused by letter case. Lowercasing doesn't create embeddings and it deliberately throws away the original capitalisation."
+    },
+    "177f60bba5": {
+      "question": "A unit test for a chunking function calls a live external API every time it runs. Why is t...",
+      "right": "Network calls are slow and their responses can change, so the test becomes slow and flaky.",
+      "wrong": "It makes the test slower and non-deterministic, since results depend on the network and the API. The chunking can still be tested; mock the API instead."
+    },
+    "98aca9bfc5": {
+      "question": "During testing, an API token accidentally appears in an application log. What should the l...",
+      "right": "Redact the token before writing the log, e.g. replace it with ***. Logs are often widely readable.",
+      "wrong": "Redact the sensitive value before logging. Base64 is trivially reversible, and repeating the token or logging more just spreads the leak."
+    },
+    "4c45c3db1f": {
+      "question": "A large CSV file is too large to load comfortably into memory as one DataFrame. Which Pand...",
+      "right": "pd.read_csv(..., chunksize=N) gives you manageable pieces you can process one at a time.",
+      "wrong": "Read the CSV in chunks with chunksize. Loading it repeatedly or converting rows to JSON only adds memory and work."
+    },
+    "97b74d7e33": {
+      "question": "A RAG system compares two normalized embedding vectors that point in exactly the same dire...",
+      "right": "Vectors pointing the same way have an angle of 0, and cos(0) = 1.",
+      "wrong": "It should be 1. Cosine similarity measures the angle; same direction means angle 0 and cos 0 = 1. -1 is opposite and 0 is unrelated (orthogonal)."
+    },
+    "3e8174b507": {
+      "question": "A reusable AI pipeline contains several repeated processing steps. Which practice most dir...",
+      "right": "Small single-purpose functions are easy to read, reuse and test, and remove duplicated steps.",
+      "wrong": "Use small functions with clear responsibilities. One giant function, global config and copy-pasted logic all make the pipeline harder to change."
+    },
+    "5debc11d8c": {
+      "question": "A retrieval system removes common stopwords from every document and query. Why might this ...",
+      "right": "Words like 'not', 'without' or 'to be or not to be' can change meaning entirely, so dropping them can hurt.",
+      "wrong": "Some stopwords carry meaning, like 'not' in 'not refundable'. Removing them blindly can flip what a query is asking."
+    },
+    "3c7e446d45": {
+      "question": "A Pandas column contains the values '10', '25', and 'unknown'. Before calculating a numeri...",
+      "right": "pd.to_numeric(errors='coerce') turns 'unknown' into NaN, and mean() skips NaN by default.",
+      "wrong": "Use pd.to_numeric with errors='coerce'. Non-numbers become NaN and are skipped by mean(); sorting or concatenating strings gives no average."
+    },
+    "7808d71eb2": {
+      "question": "A developer writes a text-cleaning function that should remove extra spaces. What is the m...",
+      "right": "A unit test checks one behaviour of one function in isolation, with a known input and expected output.",
+      "wrong": "A unit test verifies one specific behaviour of the function in isolation. It doesn't train models, replace logging or measure production traffic."
+    },
+    "8f57751be6": {
+      "question": "A developer needs the average value of every element in a NumPy array before passing the r...",
+      "right": "np.mean() with no axis averages every element in the array.",
+      "wrong": "Use np.mean() without an axis to average all elements. reshape changes the shape, unique finds distinct values, and stack joins arrays."
+    },
+    "27be2482ad": {
+      "question": "A 2,000-token document is split into 500-token chunks with 100-token overlap. What does th...",
+      "right": "Overlap repeats the edge of one chunk at the start of the next, so ideas split at a boundary stay together.",
+      "wrong": "Overlap preserves shared context between neighbouring chunks. It actually adds chunks, and it has no effect on metadata or embedding size."
+    },
+    "b207d77f4d": {
+      "question": "A DataFrame should keep rows where score is at least 0.8 and status equals 'approved'. Whi...",
+      "right": "Each condition is in parentheses and combined with &, which is how pandas does element-wise AND.",
+      "wrong": "Use (df['score'] >= 0.8) & (df['status'] == 'approved'). and/or fail on whole Series, and without parentheses & binds before the comparisons."
+    },
+    "395364f873": {
+      "question": "An embedding job fails for one document, and the developer needs to identify that document...",
+      "right": "A safe ID (like a document ID or hash) pinpoints the failure without leaking the content.",
+      "wrong": "Log a safe identifier such as the document ID. Logging the content leaks confidential data, and logging the API secret is worse."
+    },
+    "df0854da1d": {
+      "question": "A simple keyword retriever treats punctuation as separate token variations. A preprocessin...",
+      "right": "Stripping punctuation makes 'error,' and 'error' the same token, so trivial variations stop blocking matches.",
+      "wrong": "It reduces superficial token variations, so 'error.' matches 'error'. It doesn't create semantic understanding and it shrinks the vocabulary rather than growing it."
+    },
+    "9ccefb8c4e": {
+      "question": "A RAG system returns excellent documents for each individual query, but the final context ...",
+      "right": "Removing near-duplicates (or using MMR) frees up context space for different, useful evidence.",
+      "wrong": "Deduplicate or diversify the candidates before building the context. More sources, more overlap or a higher temperature add more repetition, not less."
+    },
+    "c89ffb05eb": {
+      "question": "Which situation is most suitable for query rewriting?",
+      "right": "Rewriting helps when the user's wording is vague or doesn't match the document vocabulary.",
+      "wrong": "Query rewriting suits vague, incomplete or mismatched queries. If retrieval is already perfect, rewriting adds nothing; it also doesn't touch output length or embedding size."
+    },
+    "674914e27e": {
+      "question": "What is the main purpose of Retrieval-Augmented Generation?",
+      "right": "RAG retrieves relevant information and gives it to the model as context, so answers are grounded in real sources.",
+      "wrong": "RAG supplies retrieved information as context so the model's answer is grounded. It doesn't fine-tune the model or replace it with a search engine."
+    },
+    "8ce0b64d81": {
+      "question": "A documentation assistant receives the query \"Why isn't it working after I changed the con...",
+      "right": "Resolve 'it' to the API gateway and rewrite the query, so retrieval searches for what the user actually means.",
+      "wrong": "Resolve the reference using the conversation and rewrite the query around the API gateway. Searching for the literal word 'it' finds nothing useful."
+    },
+    "56405564ab": {
+      "question": "Which statement best describes a vector database?",
+      "right": "A vector database indexes embeddings for fast nearest-neighbour (similarity) search.",
+      "wrong": "A vector database is built for searching numerical vectors by similarity. It doesn't generate answers, and transactional SQL is a relational database's job."
+    },
+    "45560f94c2": {
+      "question": "A production search pipeline combines BM25 and dense retrieval. BM25 performs well for pro...",
+      "right": "RRF merges rankings but doesn't remove duplicates. Deduplicate or use diversity-aware selection (such as MMR) after fusion.",
+      "wrong": "Add deduplication or diversity-aware selection after fusion. Tweaking the RRF constant doesn't remove duplicates, and dropping BM25 loses the exact-ID matches."
+    },
+    "b6ec1b5cdd": {
+      "question": "A company's HR chatbot receives the query: \"How many days can I take for parental leave?\" ...",
+      "right": "Rewriting the query into the policy's own terms closes the vocabulary gap that makes search miss the section.",
+      "wrong": "Test query rewriting first, into the policy's terminology. The problem is a wording mismatch; temperature and embedding size don't change that."
+    },
+    "ac977ac98e": {
+      "question": "A team adds HYDE to a RAG system and observes better recall but more irrelevant results. W...",
+      "right": "The hypothetical answer may wander into concepts the user didn't ask about, pulling in off-topic documents.",
+      "wrong": "HyDE's generated document can introduce ideas the user didn't mean, so recall rises but precision drops. It doesn't modify the source documents."
+    },
+    "435ae2d9cc": {
+      "question": "A RAG architecture currently follows: Query → Dense Retrieval → Top-20 → LLM. Evaluation s...",
+      "right": "Separate the steps: retrieve broadly, re-rank, pick the strongest evidence and check grounding, instead of passing all 20.",
+      "wrong": "Use candidate retrieval followed by re-ranking, evidence-aware selection and grounding checks. A bigger top-k or bigger chunks add more noise for the model."
+    },
+    "e208d8b418": {
+      "question": "What is the basic idea behind HYDE?",
+      "right": "HyDE asks the LLM to write a hypothetical answer, then searches with that answer's embedding.",
+      "wrong": "HyDE generates a hypothetical document for the query and uses its embedding for retrieval. It isn't averaging embeddings or a keyword-only query."
+    },
+    "63409c1917": {
+      "question": "An enterprise RAG system uses BM25, dense retrieval, query rewriting, RRF, and a cross-enc...",
+      "right": "Recall is fine; the passages that reach the model lack enough evidence. Fix context selection and add grounding checks.",
+      "wrong": "Investigate final context selection and grounding validation after re-ranking. More retrievers won't help when the chosen passages don't support the claims."
+    },
+    "d0b59e1245": {
+      "question": "A technical RAG system retrieves the correct paragraph but also returns several unrelated ...",
+      "right": "A semantic re-ranker scores each candidate against the query and pushes the truly relevant paragraph to the top.",
+      "wrong": "Apply a semantic re-ranker to the candidates. More BM25 results or bigger chunks add more keyword noise rather than fixing the order."
+    },
+    "f871c97fa2": {
+      "question": "A user asks, \"What changed in the authentication process between version 2 and version 3?\"...",
+      "right": "Splitting the question into v2 and v3 subqueries across the right sources, then fusing and re-ranking, gives balanced evidence.",
+      "wrong": "Break it into comparison subqueries, search the relevant sources, fuse and re-rank. A bigger top-k on the original query still returns mostly v3 documents."
+    },
+    "e4307354b1": {
+      "question": "What does Reciprocal Rank Fusion primarily combine?",
+      "right": "RRF merges ranked lists using each document's rank position, not its raw score.",
+      "wrong": "RRF combines ranked result lists from different retrievers, using rank positions. It doesn't merge embeddings or token probabilities."
+    },
+    "408506b9ad": {
+      "question": "A RAG application uses 200-token chunks with no overlap. Answers are technically relevant ...",
+      "right": "Overlap or boundary-aware chunking keeps conditions that cross a section edge in the same chunk.",
+      "wrong": "Add chunk overlap or boundary-aware chunking. Conditions split across chunks get lost; vector size and top-k don't fix where the cut happens."
+    },
+    "7edb1d70ba": {
+      "question": "BM25 primarily determines document relevance using:",
+      "right": "BM25 scores by term frequency, how rare the term is across documents (IDF), and document length.",
+      "wrong": "BM25 uses term frequency, document frequency and document length. It's lexical, so it uses no embeddings, attention or LLM probabilities."
+    },
+    "95c9610328": {
+      "question": "Why are documents divided into chunks before being stored in a vector database?",
+      "right": "Chunks are small, focused units that can be embedded and retrieved on their own.",
+      "wrong": "Chunking creates smaller pieces that can be retrieved independently. It keeps the meaning, produces many embeddings (not one), and has nothing to do with tables."
+    },
+    "f08e898690": {
+      "question": "A support system needs to retrieve documents containing exact error codes such as AUTH-401...",
+      "right": "BM25 nails exact codes like AUTH-4017, dense retrieval finds related ideas, and merging gets you both.",
+      "wrong": "Combine BM25 and dense retrieval and merge the results. Dense alone can miss exact codes, and BM25 alone misses paraphrased troubleshooting text."
+    },
+    "506176ede7": {
+      "question": "A RAG application retrieves 10 documents using dense search and 10 using BM25. Their score...",
+      "right": "RRF uses rank positions only, so incompatible score scales don't matter.",
+      "wrong": "Use Reciprocal Rank Fusion. Averaging raw scores on different scales is meaningless, and keeping just one list throws away half the signal."
+    },
+    "ce4c8f71f9": {
+      "question": "Which approach is generally considered hybrid retrieval?",
+      "right": "Hybrid retrieval combines lexical search (BM25) with dense vector search.",
+      "wrong": "Hybrid retrieval means lexical plus dense retrieval, such as BM25 with embeddings. Two LLMs or combined prompts aren't retrieval at all."
+    },
+    "ef55dd5898": {
+      "question": "What is the main role of a re-ranker in a RAG pipeline?",
+      "right": "A re-ranker uses a stronger, slower model (often a cross-encoder) to reorder the first-stage candidates.",
+      "wrong": "A re-ranker reorders retrieved candidates with a stronger relevance model. It doesn't generate documents or change the embedding model or context window."
+    },
+    "c7ef141d4a": {
+      "question": "What is the main trade-off when increasing chunk size?",
+      "right": "Bigger chunks carry more context but mix several topics, which blurs similarity matching.",
+      "wrong": "Larger chunks give more context per chunk but less precise retrieval, because each embedding covers several ideas. It's a trade-off, not a free gain."
+    },
+    "20e8664909": {
+      "question": "A knowledge assistant receives a complex query containing several concepts that rarely app...",
+      "right": "Splitting the question into focused subqueries finds documents for each concept, then the results are merged.",
+      "wrong": "Generate several focused queries and combine their results. A single top document can't cover concepts that rarely appear together."
+    },
+    "f82fed5ad5": {
+      "question": "A legal RAG system uses large chunks because individual clauses depend heavily on surround...",
+      "right": "Chunk along the document's structure (clauses and sections) and measure retrieval on real legal queries.",
+      "wrong": "Use structure-aware or semantic chunking and test it on representative queries. Fixed 50-token chunks would split dependent clauses apart."
+    },
+    "e0cafa1d26": {
+      "question": "A search system first retrieves 50 candidates using a fast vector index and then applies a...",
+      "right": "The cheap vector search narrows the set quickly, then the costly cross-encoder only scores the 50 candidates.",
+      "wrong": "Fast retrieval gathers broad candidates, and the expensive cross-encoder ranks just that small set. Running the cross-encoder on everything would be far too slow."
+    },
+    "bb943f6180": {
+      "question": "A retail bot recommends discontinued products because the vector store still holds outdate...",
+      "right": "The window controls how much text fits per call, not whether that text is current. Stale data needs a re-index pipeline.",
+      "wrong": "A bigger context window can't make stale content current; the store needs a refresh pipeline. The window and the vector store are separate components."
+    },
+    "418edb3ba8": {
+      "question": "A researcher agent and a writer agent share a mutable LangGraph state, and a reviewer worr...",
+      "right": "Shared state can be overwritten, so use distinct keys or reducers that define how updates merge.",
+      "wrong": "The risk is real. Nodes do write to shared state, so design the schema with separate keys or reducer functions to stop one agent overwriting another."
+    },
+    "18fadafc68": {
+      "question": "A search engineer says BM25 should be replaced everywhere since 'dense embeddings are stri...",
+      "right": "Exact identifiers like part numbers or SKUs need lexical matching, which is where BM25 beats embeddings.",
+      "wrong": "It backfires on exact part numbers or SKUs. Dense embeddings blur exact tokens, while BM25 matches them precisely. Vague queries are where dense search shines."
+    },
+    "810ed11193": {
+      "question": "A colleague argues RAG makes hallucination mathematically impossible because the model 'ju...",
+      "right": "Retrieval only supplies context; the LLM still generates the answer and can misread, omit or contradict it.",
+      "wrong": "RAG reduces hallucination but doesn't eliminate it. The LLM still generates text and can misstate what it retrieved."
+    },
+    "02121ac2ac": {
+      "question": "A team benchmarks BM25 against dense retrieval and calls dense 'universally better' after ...",
+      "right": "A paraphrase-heavy test set favours semantic matching, so it says little about exact-match queries.",
+      "wrong": "The test set was built for semantic matching, so the result may not hold for exact-match queries like IDs or codes. One benchmark doesn't generalise."
+    },
+    "ecd1752855": {
+      "question": "A validation node in a LangGraph workflow fails intermittently, and the team wants exactly...",
+      "right": "A retry counter in state lets the conditional edge loop back exactly once, then route to error handling.",
+      "wrong": "Keep a retry counter in shared state and have the conditional edge check it. LangGraph doesn't cap a loop at one pass for you, and state can hold counters."
+    },
+    "8039678a28": {
+      "question": "An architect is deciding whether to precompute a hybrid index offline or score both retrie...",
+      "right": "Precomputing makes queries faster but costs storage and re-indexing; scoring at query time is the reverse.",
+      "wrong": "It's a trade-off between query-time latency and the storage and maintenance cost of a precomputed index. Neither option is always better."
+    },
+    "b50783c048": {
+      "question": "An engineer is unsure where query rewriting belongs. Placing it after retrieval instead of...",
+      "right": "Rewriting after retrieval is pointless: the original query has already chosen the documents.",
+      "wrong": "The rewrite arrives too late, because retrieval already ran on the original query. Rewriting has to happen before the search to have any effect."
+    },
+    "69ee448c2d": {
+      "question": "A finance firm fuses rankings from contracts, emails, and spreadsheets with incompatible s...",
+      "right": "RRF cheaply merges the differently scaled lists, then the expensive cross-encoder re-ranks only the top fused candidates.",
+      "wrong": "Fuse with RRF first, then run the cross-encoder on the top fused results. Averaging raw scores ignores their scales, and cross-encoding everything is wasteful."
+    },
+    "f38b0d305b": {
+      "question": "Someone claims RRF and a learned cross-encoder re-ranker 'always produce identical ranking...",
+      "right": "RRF only looks at rank positions, while a trained cross-encoder reads the text, so their rankings often differ.",
+      "wrong": "The claim fails whenever the cross-encoder uses learned relevance signals that rank positions can't capture, which is almost always. They're different methods."
+    },
+    "df428e8710": {
+      "question": "Two retrievers return ranked lists on very different score scales (0-1 versus 0-100). A ju...",
+      "right": "RRF only uses each document's rank position, so a 0-1 scale and a 0-100 scale can't skew the merge.",
+      "wrong": "RRF merges by rank position, not raw score, so different scales can't bias it. Averaging raw scores lets the 0-100 retriever dominate."
+    },
+    "9ae939836d": {
+      "question": "A search tool nails exact product codes but misses paraphrased queries, so an engineer pro...",
+      "right": "Manual tagging doesn't scale, and dropping BM25 throws away exact-match strength without fixing paraphrases.",
+      "wrong": "The objection: manual tagging can't scale, and removing BM25 loses exact matching without solving paraphrases. Adding dense retrieval alongside BM25 fixes both."
+    },
+    "463fccd2af": {
+      "question": "A support bot handles single questions well but struggles with 'and what about the enterpr...",
+      "right": "A follow-up only makes sense with earlier turns, so the rewrite must use conversation history, not just the last message.",
+      "wrong": "Rewriting has to fold in conversation history. 'And what about the enterprise tier?' means nothing without the previous turn; chunk size and storage aren't the issue."
+    },
+    "3c0c48b243": {
+      "question": "An ingestion pipeline chunks files into exactly 100 tokens regardless of structure, and re...",
+      "right": "Structure-aware or semantic chunking with overlap keeps headings and full sentences together.",
+      "wrong": "Switch to structure-aware or semantic chunking with overlap. Indexing whole documents or only first sentences throws away precision or content."
+    },
+    "50af1b75cb": {
+      "question": "A company scales its RAG system to 10x more documents using the same chunking and retrieve...",
+      "right": "Settings tuned for a small corpus often need re-tuning at 10x scale, as more chunks start competing for the top spots.",
+      "wrong": "The settings were tuned for the smaller corpus and need re-tuning at scale. More documents means more near-matches competing, so precision drops."
+    },
+    "c98c38d803": {
+      "question": "A team wants to retrieve, check if context is sufficient, and retrieve again with a refine...",
+      "right": "It needs a loop between retrieval and a sufficiency check, with state counting attempts so the loop stops.",
+      "wrong": "Build a conditional loop between retrieval and a sufficiency check, with an attempts counter in state. One fixed call has no way to retry."
+    },
+    "0472675ae4": {
+      "question": "A developer edits the LLM's final generated answer text after generation and calls this 'q...",
+      "right": "Query rewriting changes the query before retrieval. Editing the answer afterwards changes nothing about what was found.",
+      "wrong": "That isn't query rewriting. A rewrite has to change the query before retrieval; editing the final answer doesn't affect which documents were found."
+    },
+    "7f26b43a86": {
+      "question": "A developer claims any LangGraph workflow can be rewritten as a plain linear LangChain seq...",
+      "right": "Linear chains only move forward, so cycles, conditional branches and revisited state need a graph.",
+      "wrong": "The claim fails whenever the workflow needs cycles, conditional branches or state across revisits. A linear chain can't loop back."
+    },
+    "55583f1ce7": {
+      "question": "A team decomposes one LangChain call into separate retrieval, generation, and validation n...",
+      "right": "For a single-path task with no branching, retries or state, a plain chain is simpler and enough.",
+      "wrong": "The reviewer is right when the task is single-path with no branching, retries or persistent state. Then the graph only adds overhead."
+    },
+    "81bb8877f6": {
+      "question": "In LangChain, a 'Retriever' and a 'Chain' are sometimes confused by newcomers. Which disti...",
+      "right": "A retriever only fetches relevant documents; a chain wires retrieval, prompting and generation together.",
+      "wrong": "A Retriever fetches documents, and a Chain composes steps like retrieval and generation. Retrievers don't generate answers or train embeddings."
+    },
+    "4b06d9f4a8": {
+      "question": "A team says LangChain and a vector database serve the exact same purpose in an LLM stack, ...",
+      "right": "LangChain orchestrates prompts, tools and steps, while the vector database stores and searches embeddings. They complement each other.",
+      "wrong": "They do different jobs. LangChain orchestrates prompts and tools, and a vector database stores embeddings for similarity search."
+    },
+    "449b156d48": {
+      "question": "A team building an agent that retries a failing tool call up to three times before escalat...",
+      "right": "Bounded retry with escalation needs a loop, a counter in state and a branch, which LangGraph provides.",
+      "wrong": "The gap is stateful, cyclic control flow: retry up to three times, then escalate. Plain LangChain can call tools but has no loop or retry counter."
+    },
+    "7ba4458f7c": {
+      "question": "A legal system needs exact clause matches and paraphrase tolerance. A vendor proposes dens...",
+      "right": "Embeddings can blur exact clause wording that BM25 matches precisely, so hybrid fusion covers both needs.",
+      "wrong": "Dense embeddings can under-represent exact terms, and that's where BM25 shines. For both exact clauses and paraphrases, use hybrid retrieval."
+    },
+    "38eb4965a2": {
+      "question": "A chatbot answers benefits questions correctly alone but forgets the health plan mentioned...",
+      "right": "Forgetting something from two turns ago is a memory problem, and more documents can't fix it.",
+      "wrong": "The real gap is memory across turns, not document coverage. The bot needs conversation state that carries the health plan forward."
+    },
+    "3258dabe55": {
+      "question": "A legal assistant must loop between drafting and compliance-check nodes until approval, bu...",
+      "right": "A LangGraph loop with an iteration counter in state and a conditional edge to human escalation at 5 covers both rules.",
+      "wrong": "Use a LangGraph loop with a state counter that routes to a human once it hits 5. A prompt saying 'try up to 5 times' isn't enforceable."
+    },
+    "0e812dbbc4": {
+      "question": "An agent remembers a user's stated dietary restriction across many separate sessions spann...",
+      "right": "Facts that survive across sessions for weeks are long-term memory.",
+      "wrong": "That's long-term memory: it persists across sessions. Short-term memory lasts only for the current conversation."
+    },
+    "65200af9e7": {
+      "question": "In the Model Context Protocol, what is the core relationship between a client and a server...",
+      "right": "An MCP client connects to one or more servers, and each server exposes tools, resources or prompts.",
+      "wrong": "The client connects to one or more MCP servers, and each server exposes tools, resources or prompts. Servers don't push unsolicited tool calls to clients."
+    },
+    "3244194014": {
+      "question": "A production agent occasionally enters a loop calling the same expensive tool repeatedly, ...",
+      "right": "A hard cap on tool calls stops the loop, and alerts on unusual call volume catch it early.",
+      "wrong": "Add a hard limit on tool calls plus monitoring and alerts. A cheaper model still loops, and turning off logging just hides the cost."
+    },
+    "55b4fd9fc1": {
+      "question": "In a LangGraph StateGraph, what determines which node executes next after the current node...",
+      "right": "The edges leaving a node, including conditional edges evaluated against state, decide what runs next.",
+      "wrong": "The outgoing edges decide, and conditional edges check the current state. Order of definition in code doesn't decide it, and nothing is random."
+    },
+    "e3bb6afdd4": {
+      "question": "A company wants an agent to read from an internal ticketing system without hardcoding that...",
+      "right": "Wrap the ticketing system once as an MCP server, and any MCP-compatible agent can reuse it.",
+      "wrong": "An MCP server wraps the integration once so any compatible client can reuse it. The ticketing backend doesn't change, and nothing is duplicated per agent."
+    },
+    "ea18d2e64e": {
+      "question": "A tool call fails with a transient network timeout. The agent immediately gives up and rep...",
+      "right": "Transient errors like timeouts deserve a retry with backoff; only permanent errors should fail straight away.",
+      "wrong": "The agent lacks retry logic that tells transient failures from permanent ones. A timeout is usually worth retrying with backoff before giving up."
+    },
+    "cf7a953c54": {
+      "question": "An agent reads a web page as part of a task, and the page contains hidden text instructing...",
+      "right": "Hidden instructions in content the agent reads are prompt injection. Treat that content as data, never as commands.",
+      "wrong": "It's a prompt injection attack. Text from an untrusted web page must never override the agent's instructions, especially to leak credentials."
+    },
+    "aee3941ac4": {
+      "question": "A model is given three tools with overlapping capabilities and returns a tool call with co...",
+      "right": "Valid arguments only show the format was right. Picking the right tool for the intent is a separate skill.",
+      "wrong": "It shows that valid arguments don't guarantee the right tool was chosen. Selection and argument formatting fail independently, so evaluate both."
+    },
+    "5b09045cae": {
+      "question": "An agent tasked with 'plan and book a 3-city trip' immediately calls a flight-booking tool...",
+      "right": "The agent should first break the goal down (which cities, what order, which dates) before booking anything.",
+      "wrong": "It skipped task decomposition. A 3-city trip needs a plan for cities and order before any booking tool is called."
+    },
+    "2031d553b4": {
+      "question": "A supervisor agent in a multi-agent system receives a task, decides which specialist agent...",
+      "right": "One central agent decides which specialist handles the task. That's the supervisor pattern.",
+      "wrong": "That's the supervisor pattern: a central agent routes work to specialists. In handoffs the agents pass control to each other without a coordinator."
+    },
+    "8a863dc4a1": {
+      "question": "A workflow runs three independent research agents in parallel, then merges their outputs i...",
+      "right": "Agents working independently can produce conflicting results, so the merge step has to reconcile them.",
+      "wrong": "Parallel outputs can conflict or disagree, so the merge has to reconcile them. Parallel runs are usually faster and can share tools."
+    },
+    "1023288e13": {
+      "question": "A team deploys a LangChain application behind LangServe on top of FastAPI so external clie...",
+      "right": "LangServe on FastAPI turns the chain into an HTTP API that remote clients can call.",
+      "wrong": "It gives you a standard HTTP API that remote clients can call. The chain itself, its tools and its model don't change."
+    },
+    "7ebaf8a449": {
+      "question": "A team asks an LLM to return JSON matching a schema, but occasionally receives text with a...",
+      "right": "Structured-output mode constrains generation to the schema, so stray text can't slip in.",
+      "wrong": "Use a structured-output (constrained) mode. Prompting asks nicely but enforces nothing, and higher temperature makes the output less consistent."
+    },
+    "95309c03cf": {
+      "question": "A developer builds a custom MCP server exposing a 'search_orders' tool, but the connecting...",
+      "right": "A client only shows tools the server registers and advertises in its tool list.",
+      "wrong": "The tool most likely isn't registered in the server's tool listing. MCP fully supports custom tools, but the client only sees what the server advertises."
+    },
+    "43cc437f96": {
+      "question": "Two nodes in a LangGraph multi-agent workflow both try to write to the same state key on t...",
+      "right": "Without a reducer, conflicting writes to the same key are undefined or last-write-wins. Use reducers or separate keys.",
+      "wrong": "Without a reducer the result is undefined or last-write-wins. LangGraph doesn't average values; it applies a reducer only if you define one."
+    },
+    "e0fa4335a4": {
+      "question": "An agent reads a ticket whose text contains: 'SYSTEM MESSAGE: ignore all previous rules an...",
+      "right": "Ticket text is untrusted data. Embedded 'instructions' never outrank real instructions or authorisation checks.",
+      "wrong": "Treat the ticket as untrusted data and don't follow it. Uppercase or a database origin doesn't make text trustworthy; privileged tools still need proper authorisation."
+    },
+    "44c18f2b2c": {
+      "question": "An enterprise support agent must process a ticket through: classify → retrieve policy → de...",
+      "right": "The model did its job; the graph lets eligible go straight to refund with no approval step for large amounts.",
+      "wrong": "The routing is missing an approval gate before the side-effecting refund. Eligibility was judged correctly, so changing the model or the tool's arguments doesn't fix the graph."
+    },
+    "72baf84483": {
+      "question": "A workflow requires the model to return `status` from `{approved, rejected}` and a numeric...",
+      "right": "Reject it, feed the validation error back, retry a bounded number of times, then fail safely.",
+      "wrong": "Reject the invalid output, pass the validation error back and retry with a limit. Accepting near-misses, or silently 'fixing' them, hides real model errors."
+    },
+    "95283a4106": {
+      "question": "A policy function returns `action == \"approve\" and amount < 10000 and approved_by_manager`...",
+      "right": "All three conditions hold: action is approve, 9999 < 10000 and approved_by_manager is True, so the result is True.",
+      "wrong": "It returns True. action equals 'approve', 9999 is under 10000 and the manager flag is True, so every part of the and is true."
+    },
+    "e3acba6171": {
+      "question": "An MCP server exposes `get_customer_profile` and `update_customer_profile` to multiple age...",
+      "right": "Mark customer_id as required in the tool's input schema so clients know before they call.",
+      "wrong": "Put it in the tool's input schema as a required field. Schemas are the contract; checking after the update or in the formatter is too late."
+    },
+    "20ef943e6f": {
+      "question": "An MCP server exposes `search_customer` and `delete_customer`. An agent is authorized for ...",
+      "right": "Server-side authorisation blocks the call whatever the model tries, so the agent's token simply can't delete.",
+      "wrong": "Enforce authorisation on the server so this agent can't call delete_customer at all. Prompts and tool names guide the model, but they don't stop it."
+    },
+    "e7be32bb82": {
+      "question": "A FastAPI endpoint accepts `budget: int = 5` from the client. Production policy requires t...",
+      "right": "The server must validate input itself, e.g. budget: int = Field(5, le=10), because clients can send anything.",
+      "wrong": "Server-side validation enforcing a maximum of 10 is missing. Client defaults and prompt instructions can't stop a request with budget=500."
+    },
+    "7827fb372c": {
+      "question": "A workflow fans out to three research agents. Each returns `{sources, conclusion}`. The fi...",
+      "right": "A reconciliation step compares the sources and resolves contradictions before the final summary.",
+      "wrong": "Add a reconciliation step that compares evidence and resolves conflicts. More agents or longer conclusions just pile up more unchecked claims."
+    },
+    "b0988775db": {
+      "question": "A structured-output contract defines `priority` as an integer from 1 to 5 and `requires_ap...",
+      "right": "\"false\" is a string, not a boolean, so the payload parses as JSON but fails the schema.",
+      "wrong": "It's valid JSON but breaks the schema: requires_approval is the string \"false\", not the boolean false. Parsing alone doesn't check types."
+    },
+    "10cd6a2ac4": {
+      "question": "A structured-output schema contains `decision` as an enum `{approve,reject}` and `confiden...",
+      "right": "Parsing only checks syntax. Schema validation should reject 1.2, since confidence must be between 0 and 1.",
+      "wrong": "Parsing worked, but schema validation should fail because confidence is 1.2, outside 0 to 1. Silent clipping would hide a real model error."
+    },
+    "96ab7788b4": {
+      "question": "A tool-selection benchmark reports: correct tool = 79%, correct arguments conditional on t...",
+      "right": "Tool selection is the weak spot (79%); arguments were already 97%. Improve tool descriptions to move the number.",
+      "wrong": "The bottleneck is still tool selection. Arguments were already 97% correct, so improving argument examples didn't target the 79% selection problem."
+    },
+    "dda51b370d": {
+      "question": "An agent has a 20-second wall-clock timeout and a maximum of 6 tool calls. At 18 seconds i...",
+      "right": "The call can start at 18 s because the timeout hasn't expired, but the continuous timeout cancels it at 20 s.",
+      "wrong": "It starts at 18 s and is cancelled at 20 s. The timeout is enforced continuously, so the 4-second call can't finish; the limit is 6 calls, not 5."
+    },
+    "4462526561": {
+      "question": "A routing map contains `{\"Billing\": billing_agent, \"Support\": support_agent}`. The incomin...",
+      "right": "Dictionary keys are case-sensitive, so 'billing' misses 'Billing' and get() returns the default, support_agent.",
+      "wrong": "The lookup misses and falls back to support_agent. Dict keys are case-sensitive and nothing normalises them; normalise the case yourself."
+    },
+    "43c5b7eb61": {
+      "question": "A routing function is `return \"escalate\" if state[\"risk\"] > 0.8 else \"auto_resolve\"`. The ...",
+      "right": "0.8 > 0.8 is False, so it routes to auto_resolve. Boundaries matter: use >= if 0.8 should escalate.",
+      "wrong": "It selects auto_resolve. The check is > 0.8, and 0.8 isn't greater than itself. Use >= if 0.8 should escalate."
+    },
+    "8fd2e35d04": {
+      "question": "A graph has parallel nodes `retrieve_policy` and `retrieve_customer`. Both update a state ...",
+      "right": "With a list-concatenation reducer, both parallel updates are merged into context.",
+      "wrong": "The reducer merges both updates by concatenating the lists. That's exactly what reducers are for; nothing is overwritten."
+    },
+    "188ae908aa": {
+      "question": "A guardrail must enforce a hard maximum of 8 successful tool calls per run. The implementa...",
+      "right": "Calls 1 to 8 run while calls is 0 to 7. After the 8th, calls is 8 and the 9th is blocked.",
+      "wrong": "The 9th call is blocked. The check runs before each call: with calls at 0 to 7, calls 1 to 8 proceed. Then calls is 8, so 8 < 8 is false."
+    },
+    "95daa7ea31": {
+      "question": "A tool returns `TEMPORARY_UNAVAILABLE` and the recovery policy classifies it as retryable....",
+      "right": "Bounded exponential backoff with jitter gives the service time to recover and avoids synchronised retries.",
+      "wrong": "Use bounded exponential backoff with jitter, as the docs say. Immediate retries hammer a struggling service, and infinite retries never stop."
+    },
+    "2f3ecf7479": {
+      "question": "A LangGraph workflow performs: `load_request -> analyze -> approve -> execute`. `execute` ...",
+      "right": "Resume from the last checkpoint and check idempotency before execute, so the side effect happens exactly once.",
+      "wrong": "Resume from the latest checkpoint and add an idempotency check before execute. Rerunning everything could double the side effect, and skipping it loses the action."
+    },
+    "4630ee167c": {
+      "question": "A supervisor delegates a request to Agent A. Agent A returns a partial result, the supervi...",
+      "right": "B needs A's output as its input, so they have to run one after the other.",
+      "wrong": "Agent B depends on Agent A's output, so they can't run independently. Parallel execution only fits tasks that don't need each other's results."
+    },
+    "13ce63e7d8": {
+      "question": "An agent stores both a user's explicit preference ('show currency in INR') and a temporary...",
+      "right": "Durable preferences and short-lived facts need different retention, e.g. an expiry time on the exchange rate.",
+      "wrong": "Keep durable preferences separate from short-lived results, with different retention rules. Storing everything forever is how a month-old rate came back."
+    },
+    "6678daa058": {
+      "question": "A validation loop routes `draft -> validate -> draft` when `valid=False`. The state contai...",
+      "right": "If draft never increments attempts, attempts < 3 stays true forever, so only an outside limit stops the loop.",
+      "wrong": "The stop condition never changes, so the loop can run until some other limit kicks in. State keys don't increment themselves; the node must update attempts."
+    },
+    "4613bfb1de": {
+      "question": "A workflow returns a structured object with `status` and `reason`. The schema validator re...",
+      "right": "Send the validation error back and ask for output that matches the schema before doing anything.",
+      "wrong": "First return the validation error and request a schema-conforming output. Guessing that approvedd means approved, or acting first, is unsafe."
+    },
+    "e8687e633a": {
+      "question": "A payment tool is side-effecting. A request times out after 8 seconds. The client cannot d...",
+      "right": "An idempotency key lets the server spot the retry as the same payment and not charge twice.",
+      "wrong": "Use an idempotency key so the payment service ignores duplicate requests. A longer timeout or more retries makes duplicates more likely, not less."
+    },
+    "477609ee46": {
+      "question": "An agent has tools `lookup_invoice`, `cancel_invoice`, and `refund_invoice`. The evaluatio...",
+      "right": "Arguments are fine; tool choice is the problem. Clearer descriptions that separate cancel from refund target exactly that.",
+      "wrong": "Rewrite the tool descriptions and examples to clearly separate cancel from refund, then measure selection again. Retries and token limits don't affect which tool is picked."
+    },
+    "4f098682f2": {
+      "question": "An order-processing graph has nodes `validate_order -> check_inventory -> decide -> fulfil...",
+      "right": "decide already flags the approval need; routing must check that flag (and wait for approval) before fulfill can run.",
+      "wrong": "Add the approval check to the routing condition before fulfill. Asking the LLM again inside fulfill isn't a hard gate, and moving or retrying steps doesn't enforce approval."
+    },
+    "79ff99e785": {
+      "question": "Why can traditional MapReduce be inefficient for iterative algorithms such as machine lear...",
+      "right": "MapReduce writes intermediate results to disk between stages, and iterative algorithms repeat that many times.",
+      "wrong": "Each iteration writes intermediate results to disk and reads them back. MapReduce is parallel and multi-node; the disk I/O is what makes iterative jobs slow (Spark keeps data in memory)."
+    },
+    "767ee53e67": {
+      "question": "Table: Employee Salary A 100 B 100 C 90 D 80 Query: SELECT Employee, Salary, RANK() OVER(O...",
+      "right": "Three people rank above D. RANK skips the tied position (1, 1, 3, 4), while DENSE_RANK doesn't (1, 1, 2, 3).",
+      "wrong": "D gets RANK 4 and DENSE_RANK 3. The two 100s tie at 1; RANK then skips to 3 for C and 4 for D, while DENSE_RANK continues 2 for C and 3 for D."
+    },
+    "8cf215e141": {
+      "question": "Consider df = spark.read.csv(\"orders.csv\") df = df.filter(\"amount > 1000\") df.show() df = ...",
+      "right": "show() is the first action, so Spark runs the read and filter then. select() stays lazy until another action.",
+      "wrong": "Nothing runs until show(), the first action. read.csv, filter and select are lazy transformations, and the select after show() hasn't run at all."
+    },
+    "9a3d6baf07": {
+      "question": "Which operation generally requires data to be shuffled across partitions?",
+      "right": "groupByKey must bring all values for a key to one partition, which means a shuffle.",
+      "wrong": "groupByKey needs a shuffle to gather each key's values in one place. map, filter and select work on each partition separately."
+    },
+    "ce629a0f14": {
+      "question": "What will this return? SELECT COALESCE(NULL, NULL, 100, 200) AS result;",
+      "right": "COALESCE returns the first non-NULL argument, which is 100.",
+      "wrong": "It returns 100. COALESCE gives the first non-NULL value from left to right, so it stops before ever reaching 200."
+    },
+    "5cbbb5aa3a": {
+      "question": "What is the danger of blindly doing this? df.fillna(0)",
+      "right": "fillna(0) puts 0 into every column, including text and category columns where 0 is meaningless and misleading.",
+      "wrong": "The danger is filling text or category columns with 0, which is meaningless and corrupts the data. It doesn't error, drop rows or change dtypes to int."
+    },
+    "6cba70d8bb": {
+      "question": "Which is correct? df.withColumn( \"email\", lower(trim(col(\"email\"))) )",
+      "right": "trim removes the surrounding spaces and lower converts to lowercase, so both happen.",
+      "wrong": "It does both: trim() strips surrounding spaces and lower() lowercases the result. The syntax is valid PySpark."
+    },
+    "5f329981f0": {
+      "question": "Which operation causes a shuffle?",
+      "right": "groupByKey has to move every value for a key to the same partition, which is a shuffle.",
+      "wrong": "groupByKey causes a shuffle to gather each key's values together. map, filter and select run within each partition and need no data movement."
+    },
+    "6b714a96db": {
+      "question": "Consider: rdd = sc.parallelize([ \"Spark is fast\", \"RDD is distributed\" ]) What is the resu...",
+      "right": "flatMap splits each line into words and flattens them into one list.",
+      "wrong": "flatMap flattens the results into one list of words. map would give the nested list of lists instead."
+    },
+    "cbe33cc90c": {
+      "question": "A 500 MB file is stored in HDFS with a block size of 128 MB. Ignoring replication, how man...",
+      "right": "500 / 128 is about 3.9, so you need 3 full blocks plus one 116 MB block: 4 in total.",
+      "wrong": "It needs 4 blocks: three full 128 MB blocks (384 MB) plus one block for the remaining 116 MB. The last block can be partly filled."
+    },
+    "cc45ec697c": {
+      "question": "What does this calculate? AVG(salary) OVER()",
+      "right": "An empty OVER() makes the whole result set one window, so every row shows the overall average.",
+      "wrong": "OVER() with nothing inside treats the whole result set as one window, so each row gets the overall average. Per-department would need PARTITION BY."
+    },
+    "b78e64c6dc": {
+      "question": "Why are millions of small files problematic in HDFS?",
+      "right": "The NameNode keeps metadata for every file and block in memory, so millions of small files exhaust it.",
+      "wrong": "The problem is NameNode memory: it holds metadata for every file and block. DataNodes can store small files fine; there are just too many entries to track."
+    },
+    "8eb9caaf62": {
+      "question": "What does this regex match? ^\\d+$",
+      "right": "^ and $ anchor the start and end, and \\d+ means one or more digits, so the whole string must be digits.",
+      "wrong": "It matches strings made only of digits. ^ and $ anchor both ends, so letters anywhere fail. 'Starts with a digit' would be just ^\\d."
+    },
+    "46f60b3562": {
+      "question": "Which executes first? SELECT dept_id, COUNT(*) FROM employee WHERE salary > 5000 GROUP BY ...",
+      "right": "After FROM, WHERE filters rows first; then GROUP BY, HAVING and finally SELECT.",
+      "wrong": "WHERE runs first of these: rows are filtered before grouping. The logical order is FROM, WHERE, GROUP BY, HAVING, SELECT."
+    },
+    "5f28846992": {
+      "question": "What does this do? df.dropna(axis=1)",
+      "right": "axis=1 means columns, so any column containing a missing value is dropped.",
+      "wrong": "dropna(axis=1) drops columns that contain NaN. The default axis=0 drops rows instead."
+    },
+    "be3d9c3ed5": {
+      "question": "Table: 100 Million Rows Column: email contains NULLs. What is true?",
+      "right": "COUNT(column) skips NULLs; COUNT(*) counts every row.",
+      "wrong": "COUNT(email) ignores NULLs, while COUNT(*) counts all rows whatever they contain. So the two usually differ when NULLs exist."
+    },
+    "1d73404c46": {
+      "question": "What is the result? SELECT * FROM employee WHERE salary = NULL;",
+      "right": "Comparing anything with NULL gives UNKNOWN, never true, so no rows match. Use WHERE salary IS NULL instead.",
+      "wrong": "It returns no rows. salary = NULL is never true (it's UNKNOWN), and it isn't a syntax error. To find NULLs, write WHERE salary IS NULL."
+    },
+    "e3fca3ce61": {
+      "question": "Which formula represents the Interquartile Range?",
+      "right": "IQR = Q3 - Q1, the spread of the middle 50% of the data.",
+      "wrong": "The IQR is Q3 - Q1, the range of the middle half of the data. Q2 - Q1 covers only the lower half of that."
+    },
+    "020646f37a": {
+      "question": "What does this do? df.drop_duplicates()",
+      "right": "drop_duplicates() removes rows that are exact copies of an earlier row.",
+      "wrong": "It removes duplicate rows. Duplicate columns, NaN and sorting are handled by other methods."
+    },
+    "2d45abdd98": {
+      "question": "A team loads data into a DataFrame and immediately creates a temporary view: df.createOrRe...",
+      "right": "SQL and the DataFrame API both compile to the same plans optimised by Catalyst.",
+      "wrong": "Both go through the Catalyst optimizer and end up with the same execution plan. SQL isn't slower, and DataFrames don't bypass Catalyst."
+    },
+    "6e8bab378c": {
+      "question": "Consider salaries: 100000 90000 90000 80000 What are the results of RANK() OVER(ORDER BY s...",
+      "right": "The two 90000s tie at rank 2, and RANK skips 3, so 80000 gets 4.",
+      "wrong": "RANK gives 1, 2, 2, 4. Ties share a rank and the next rank is skipped. 1, 2, 2, 3 would be DENSE_RANK."
+    },
+    "ad9b6ed41e": {
+      "question": "You need customers who: placed at least 5 orders total revenue > ₹50,000 average order val...",
+      "right": "Conditions on aggregates (COUNT, SUM, AVG) go in HAVING, after GROUP BY.",
+      "wrong": "Aggregate conditions belong in HAVING after GROUP BY. WHERE runs before grouping, so it can't use COUNT, SUM or AVG."
+    },
+    "e66968d441": {
+      "question": "Which window function is most appropriate for comparing current month's revenue with the p...",
+      "right": "LAG() reads a value from the previous row, such as last month's revenue.",
+      "wrong": "Use LAG() to look back one row to the previous month. LEAD() looks forward to the next row."
+    },
+    "995434bbef": {
+      "question": "You need the top 3 employees from each department. Which is the correct approach?",
+      "right": "ROW_NUMBER with PARTITION BY department restarts numbering in each department; then filter rn <= 3.",
+      "wrong": "Use ROW_NUMBER() OVER(PARTITION BY department ORDER BY salary DESC) and keep rows numbered 1 to 3. Without PARTITION BY you only get the top 3 overall."
+    },
+    "34e4b3ef79": {
+      "question": "Which query correctly finds the second-highest distinct salary?",
+      "right": "The subquery finds the top salary, and MAX of everything below it is the second-highest distinct value.",
+      "wrong": "Use MAX(salary) WHERE salary < (SELECT MAX(salary) ...). Aggregates aren't allowed directly in WHERE, and LIMIT 1 OFFSET 1 returns a tied top salary if there is one."
+    },
+    "b8a33af7b7": {
+      "question": "Table Values: 10 20 20 30 NULL NULL Output? SELECT COUNT(DISTINCT value) FROM test;",
+      "right": "COUNT(DISTINCT) ignores NULLs, so the distinct values are 10, 20 and 30: 3.",
+      "wrong": "It's 3. DISTINCT leaves 10, 20, 30 and NULL, and COUNT skips the NULL."
+    },
+    "374a8269bb": {
+      "question": "Consider rdd1 = sc.parallelize([1, 2, 3, 4]) rdd2 = rdd1.map(lambda x: x * 2) Which statem...",
+      "right": "RDDs are immutable, so map creates a new RDD and leaves rdd1 untouched.",
+      "wrong": "rdd1 stays [1, 2, 3, 4] and rdd2 is a new RDD. RDDs are immutable; transformations always return new ones."
+    },
+    "6db1c48a0d": {
+      "question": "Which query correctly finds customers whose total order amount exceeds 50,000?",
+      "right": "Filtering on SUM(amount) has to happen in HAVING, after the rows are grouped.",
+      "wrong": "Use GROUP BY customer_id with HAVING SUM(amount) > 50000. WHERE can't use aggregates, and HAVING must come after GROUP BY."
+    },
+    "c5fe009c59": {
+      "question": "A company wants to combine multiple weak learners sequentially to improve errors from prev...",
+      "right": "Boosting trains models one after another, each focusing on the previous model's mistakes.",
+      "wrong": "That's boosting: sequential models that fix earlier errors. Bagging trains models independently in parallel."
+    },
+    "ef5da1568c": {
+      "question": "Which plot is MOST useful for detecting outliers?",
+      "right": "A box plot marks points beyond 1.5 × IQR from the box as outliers.",
+      "wrong": "A box plot is made for spotting outliers: points past the whiskers (1.5 × IQR) stand out. Line charts and heatmaps show trends and correlations."
+    },
+    "43d4761ca0": {
+      "question": "A recommendation engine using KNN becomes extremely slow after data grows from 10K to 10M ...",
+      "right": "KNN is a lazy learner: every prediction compares against all stored points, so cost grows with the data.",
+      "wrong": "KNN keeps all training data and compares against it at every prediction, so 10M users makes each query slow. It's lazy, not eager."
+    },
+    "9ac09baf0e": {
+      "question": "Which split criterion is commonly used for regression trees?",
+      "right": "Regression trees pick splits that reduce mean squared error (variance) the most.",
+      "wrong": "Regression trees split on mean squared error. Entropy and information gain are for classification trees."
+    },
+    "b000cddbf2": {
+      "question": "What is the key characteristic of L1 regularization?",
+      "right": "L1 (Lasso) pushes some coefficients exactly to zero, which effectively removes those features.",
+      "wrong": "L1 regularization drives some coefficients exactly to zero, which selects features. L2 shrinks coefficients but rarely makes them exactly zero."
+    },
+    "26c3739b88": {
+      "question": "The first quartile of a dataset is 22, and the third quartile is 58. What is the interquar...",
+      "right": "IQR = Q3 - Q1 = 58 - 22 = 36.",
+      "wrong": "It's 36: Q3 minus Q1, so 58 - 22. Adding them (80) isn't a spread."
+    },
+    "387b144cbf": {
+      "question": "What is the main advantage of TF-IDF over CountVectorizer?",
+      "right": "TF-IDF down-weights words that appear in many documents and boosts words that are distinctive.",
+      "wrong": "TF-IDF weights words by how distinctive they are across documents. CountVectorizer just counts. TF-IDF doesn't remove stopwords or stem on its own."
+    },
+    "50c3bb0ee1": {
+      "question": "A machine learning model performs poorly because irrelevant features dominate useful infor...",
+      "right": "Feature selection removes irrelevant features so the useful signal isn't drowned out.",
+      "wrong": "Apply feature selection to drop irrelevant features. Oversampling fixes class imbalance, and one-hot encoding converts categories, so neither removes noise features."
+    },
+    "64a32bf5e1": {
+      "question": "A model achieves: Training Accuracy = 99% Validation Accuracy = 61% Which combination BEST...",
+      "right": "99% train vs 61% validation is high variance (overfitting). Regularization or bagging reduces it.",
+      "wrong": "It's high variance, i.e. overfitting, fixed with regularization or bagging. High bias would show low training accuracy too."
+    },
+    "3b2451b29a": {
+      "question": "A house price dataset contains missing values in the area_sqft column. The data distributi...",
+      "right": "The median isn't pulled by extreme values, so it's the safer fill for skewed numeric data.",
+      "wrong": "Use the median. In skewed data the mean is pulled towards the tail, and the mode suits categories rather than continuous values."
+    },
+    "305de3b819": {
+      "question": "A recommendation system needs to identify similar users based on distance metrics. Which a...",
+      "right": "KNN finds the closest users by a distance metric, which is exactly what 'similar users' means here.",
+      "wrong": "Use KNN, which finds the nearest users by distance. PCA reduces dimensions, Naive Bayes is a probabilistic classifier, and AdaBoost is an ensemble."
+    },
+    "02cb66f62e": {
+      "question": "Which scenario indicates overfitting?",
+      "right": "Great on training data, poor on test data: the model memorised instead of generalising.",
+      "wrong": "Overfitting is high train accuracy with low test accuracy. Low on both is underfitting."
+    },
+    "2568a3313c": {
+      "question": "Which algorithm is not suitable if the data is biased ?",
+      "right": "Naive Bayes builds its predictions from class frequencies (priors) in the training data, so biased data skews it directly.",
+      "wrong": "The expected answer is Naive Bayes: it multiplies in class priors learned from the training data, so a biased sample skews every prediction. The wording is loose; biased data hurts most models."
+    },
+    "372ed7dfd0": {
+      "question": "A dataset has 1,000 rows. df[\"age\"].count() returns 950. What can you infer?",
+      "right": "count() skips NaN, so 1,000 - 950 = 50 rows have no age.",
+      "wrong": "50 ages are missing. Series.count() counts only non-null values; it says nothing about duplicates, outliers or unique values (that's nunique())."
+    },
+    "575f0ca317": {
+      "question": "A dataset has many missing categorical values. Which imputation strategy is MOST appropria...",
+      "right": "Mode (the most frequent category) is the standard fill for categorical data.",
+      "wrong": "Use the mode. Mean and median need numbers, so they don't work for categories."
+    },
+    "d203a6bd73": {
+      "question": "In supervised learning, which of the following best describes the role of the loss functio...",
+      "right": "The loss function measures how far predictions are from the true values; the optimizer then minimises it.",
+      "wrong": "The loss measures the gap between predictions and actual values. The optimizer updates the weights using its gradient."
+    },
+    "8df3d7bf40": {
+      "question": "In linear regression, what does a very high R² but poor performance on unseen data suggest...",
+      "right": "A great fit on training data but poor results on new data means the model is overfitting.",
+      "wrong": "That's overfitting: high R² on training data but poor generalisation. Underfitting would give a low R² as well."
+    },
+    "ac1ed4abf7": {
+      "question": "A retail company wants to group customers based on purchasing behavior without labeled dat...",
+      "right": "No labels and a goal of grouping means clustering, and K-Means is the standard choice.",
+      "wrong": "Use K-Means clustering. Decision trees, KNN and logistic regression all need labeled data."
+    },
+    "01b85e5db3": {
+      "question": "A dataset contains text categories such as “High”, “Medium”, and “Low” with meaningful ord...",
+      "right": "High, Medium and Low have a natural order, which makes them ordinal.",
+      "wrong": "They're ordinal: categories with a meaningful order. Nominal categories, such as colours, have no order."
+    },
+    "7a7b6c3a59": {
+      "question": "A data scientist removes outliers from a dataset and notices improved model stability. Wha...",
+      "right": "Outliers are often noise, and removing them makes the model more stable.",
+      "wrong": "Removing outliers mainly reduces noise. The number of features (dimensionality) is unchanged."
+    },
+    "ae66833cfe": {
+      "question": "Which algorithm uses hyperplanes for classification?",
+      "right": "SVM finds the hyperplane that separates classes with the largest margin.",
+      "wrong": "SVM uses hyperplanes. Decision trees split on feature thresholds, KNN votes by neighbours, and Naive Bayes uses probabilities."
+    },
+    "ab42c63d68": {
+      "question": "Which ensemble technique trains models independently and in parallel?",
+      "right": "Bagging trains each model independently on a bootstrap sample, so they can run in parallel.",
+      "wrong": "That's bagging, as in Random Forest. Boosting trains models one after another, and gradient descent is an optimiser, not an ensemble."
+    },
+    "1c90ac8f1a": {
+      "question": "Why is feature scaling important before applying K-Means?",
+      "right": "K-Means relies on distances, so unscaled large-range features dominate the clustering.",
+      "wrong": "Scale because K-Means uses distances and large-range features would dominate. Scaling doesn't choose K or remove outliers."
+    },
+    "aa2b23fe61": {
+      "question": "A company has limited training data and wants reliable evaluation. Which validation method...",
+      "right": "K-fold uses every row for both training and validation, which gives a steadier estimate with little data.",
+      "wrong": "Use K-fold cross-validation. With limited data, one train-test split gives a noisy estimate; K-fold averages over several splits."
+    },
+    "df37923a86": {
+      "question": "A data scientist notices that the training accuracy is 99% while test accuracy is 62%. Wha...",
+      "right": "A 37-point gap between train and test accuracy is classic overfitting.",
+      "wrong": "It's overfitting: 99% on training but 62% on test. Underfitting would be poor on training data too."
+    },
+    "827b068930": {
+      "question": "Cluster: 5 worker nodes each node = 8 cores Spark Submit: --num-executors 5 --executor-cor...",
+      "right": "5 executors × 1 core uses just 5 of the 40 available cores, so most of the cluster sits idle.",
+      "wrong": "The issue is poor parallelism: only 5 of the 40 cores are used. Give each executor more cores, or run more executors."
+    },
+    "b174ccf837": {
+      "question": "What is the main purpose of an activation function in a neural network?",
+      "right": "Without activation functions, stacked layers collapse into one linear function. Non-linearity lets networks learn complex patterns.",
+      "wrong": "Activation functions add non-linearity. Without them a deep network behaves like a single linear model."
+    },
+    "dd1f63f19d": {
+      "question": "Two models provide similar performance: Model A → Random Forest Model B → Deep Neural Netw...",
+      "right": "On tabular data with little compute, Random Forest is cheap, strong and needs no GPU.",
+      "wrong": "Start with the Random Forest (Model A). It does well on tabular data and runs on CPUs, while a deep network needs more compute for similar results."
+    },
+    "0af52c9973": {
+      "question": "What is the primary purpose of caching a DataFrame?",
+      "right": "cache() keeps the computed DataFrame in memory so later actions reuse it instead of recomputing it.",
+      "wrong": "Caching avoids recomputing a DataFrame you use more than once. It doesn't change columns, executors or duplicates."
+    },
+    "d4f2c78b78": {
+      "question": "What does a Kafka offset represent?",
+      "right": "An offset is a record's sequential position within a partition; consumers use it to track progress.",
+      "wrong": "An offset is a record's position within a partition. Consumers commit offsets to remember how far they've read."
+    },
+    "67f36b4f4f": {
+      "question": "A company is building a sentiment analysis system for customer reviews. The model needs to...",
+      "right": "A BiLSTM runs one pass forwards and one backwards, so each word sees both earlier and later context.",
+      "wrong": "A BiLSTM uses two passes, forward and backward, to capture past and future context. It still uses embeddings, and a plain LSTM only sees past tokens."
+    },
+    "629dace627": {
+      "question": "Correct the order of execution during a SQL Execution?",
+      "right": "SQL logically runs FROM (pick the table), then WHERE (filter rows), then SELECT (choose columns).",
+      "wrong": "The logical order is FROM, then WHERE, then SELECT. SELECT is written first but evaluated after the rows are chosen."
+    },
+    "6f29c3761e": {
+      "question": "A DataFrame has 1,000 partitions. You want to increase them to 2,000. Which operation shou...",
+      "right": "repartition() can increase or decrease partitions (with a full shuffle); coalesce() can only reduce them.",
+      "wrong": "Use repartition(2000). coalesce only reduces partitions, so coalesce(2000) on 1,000 partitions does nothing."
+    },
+    "1d0b06f1cb": {
+      "question": "The key advantage of an RNN over a basic feed-forward ANN for sequence data is:",
+      "right": "An RNN carries a hidden state from step to step, which acts as memory of earlier inputs.",
+      "wrong": "An RNN keeps a hidden state with information from previous steps. It still has parameters and needs training, and it handles variable-length input."
+    },
+    "06d659af7f": {
+      "question": "You have: Orders table → 500 GB Customer table → 5 MB What is the Best optimization you wo...",
+      "right": "A 5 MB table fits on every executor, so broadcasting it avoids shuffling the 500 GB orders table.",
+      "wrong": "Broadcast the customer table. Sending a 5 MB copy to every executor avoids shuffling 500 GB; repartitioning would shuffle both tables."
+    },
+    "a2ab08d466": {
+      "question": "An order-service publishes order events to Kafka. A separate inventory-service needs to re...",
+      "right": "Inventory-service reads events, so it's a consumer of the topic.",
+      "wrong": "It's a Consumer. The order-service is the producer, and the topic and partition are where events are stored, not the reader."
+    },
+    "a5a7d1a0bf": {
+      "question": "Spark job generated 40,000 parquet files. What is the best optimization before writing the...",
+      "right": "coalesce() merges partitions without a full shuffle, so the job writes far fewer files.",
+      "wrong": "Use coalesce() to reduce the number of partitions, and so the number of files, before writing. repartition(50000) would create even more files."
+    },
+    "76094f54a1": {
+      "question": "Which method can reduce the number of partitions without performing a full shuffle?",
+      "right": "coalesce() merges existing partitions on the same executors, so no full shuffle is needed.",
+      "wrong": "Use coalesce(), which merges partitions without a full shuffle. repartition() always shuffles, even when reducing."
+    },
+    "0296c29a72": {
+      "question": "A data engineering team is processing a large customer dataset using PySpark. A developer ...",
+      "right": "collect() pulls every row back to the driver as a Python list, so use it only on small results. show() just prints a preview.",
+      "wrong": "collect() returns all the data to the driver. show() only prints the first rows (20 by default) and returns None, not a list."
+    },
+    "874c5ff169": {
+      "question": "Spark inferred salary column as string and sometimes double. What is the Best solution you...",
+      "right": "An explicit schema fixes the type up front, so salary is always the same type and Spark skips inference.",
+      "wrong": "Define the schema explicitly. Inference can guess differently per file or sample; casting later patches the symptom after bad types have already crept in."
+    },
+    "eb2caadd19": {
+      "question": "An ANN neuron has: Inputs = [2, 3] Weights = [0.5, 0.2] Bias = 0.1 What is the pre-activat...",
+      "right": "Pre-activation is the weighted sum plus bias: 2×0.5 + 3×0.2 + 0.1 = 1.0 + 0.6 + 0.1 = 1.7.",
+      "wrong": "It's 1.7: multiply each input by its weight, add them, then add the bias. 2×0.5 + 3×0.2 + 0.1 = 1.0 + 0.6 + 0.1."
+    },
+    "affdb90831": {
+      "question": "A DataFrame requires 30 minutes to generate and is used 5 times. Caching it: memory usage ...",
+      "right": "Caching is a trade-off: 30 minutes saved on each of 5 reuses versus the memory the cache takes up.",
+      "wrong": "Weigh the recomputation cost against the memory used. A 30-minute job reused 5 times usually justifies caching, but never 'always' or 'never'."
+    },
+    "f2bd9db502": {
+      "question": "Two tables: A = 1 TB B = 500 GB Both are joined on customer_id. One customer represents 40...",
+      "right": "All rows for one key go to the same partition, so a key holding 40% of the data stays one giant partition however many you add.",
+      "wrong": "One hot key still lands in a single partition however many partitions there are. Fix skew with salting or a skew-aware join instead."
+    },
+    "a03aba2b48": {
+      "question": "A Spark job has 1,000 tasks. The Spark UI shows: 990 tasks → completed in 20 seconds 10 ta...",
+      "right": "A few tasks running far longer because a few keys hold millions of rows is data skew.",
+      "wrong": "It's data skew: a few customer IDs make 10 tasks huge while the rest finish fast. Predicate pushdown and column pruning are optimisations, not causes of slowness."
+    },
+    "4e565ab7fa": {
+      "question": "Which situation is most suitable for caching?",
+      "right": "Cache when an expensive result is reused several times; that's when it pays for its memory.",
+      "wrong": "Caching suits an expensive DataFrame that's reused several times. Caching something used once only costs memory and time."
+    },
+    "42140be745": {
+      "question": "Which technique can be used to handle severe data skew?",
+      "right": "Salting adds a random prefix to hot keys, spreading their rows over many partitions.",
+      "wrong": "Use salting to spread hot keys across partitions. More driver memory or collecting data doesn't help the overloaded tasks on the executors."
+    },
+    "a25b9c00f2": {
+      "question": "Which is BAD practice you would consider during spark processing?",
+      "right": "Caching data you only use once spends memory and time for no benefit.",
+      "wrong": "Caching a DataFrame used only once is the bad practice. Caching reused DataFrames and small lookup tables is good practice."
+    },
+    "15b4f07c9b": {
+      "question": "Cluster: 50 cores available Spark submit: --num-executors 2 --executor-cores 2 Problem?",
+      "right": "2 executors × 2 cores = 4 of 50 cores used, so the cluster is badly underused.",
+      "wrong": "The cluster is underutilised: 2 × 2 = 4 cores out of 50. Raise the executors or cores to use the capacity."
+    },
+    "32b5a305a8": {
+      "question": "Consider: df1 = expensive_transformation(df) df1.count() df1.groupBy(\"country\").sum(\"sales...",
+      "right": "df1 is reused by three actions, so caching it avoids running the expensive transformation three times.",
+      "wrong": "Cache df1, which three actions reuse; otherwise the expensive transformation reruns each time. Caching the raw data doesn't save that work."
+    },
+    "ee3ad91998": {
+      "question": "A telecom company has 20,000 customer records with features such as age, monthly bill, con...",
+      "right": "For structured, tabular data, tree ensembles like Random Forest or XGBoost are the standard strong baseline.",
+      "wrong": "Start with traditional ML such as Random Forest or XGBoost. CNNs suit images, LSTMs sequences and GANs generation, none of which fits tabular data."
+    },
+    "98c1670839": {
+      "question": "A VNet has 10.0.1.0/24 (web) and 10.0.2.0/24 (database) subnets. Why separate them?",
+      "right": "Separate subnets let you apply different NSG rules, e.g. only the web subnet may reach the database.",
+      "wrong": "Subnets are separated for security isolation, with different NSG rules per tier. It isn't about speed or cost, and Azure doesn't require it."
+    },
+    "707a9dcd2e": {
+      "question": "A developer has this image: python:3.12 They run it three times. How many containers can b...",
+      "right": "An image is a template; each docker run creates a new, independent container from it.",
+      "wrong": "You can create as many containers as you like from one image. Each docker run starts a separate container from the same template."
+    },
+    "75b56f6fc5": {
+      "question": "A customer says \"My phone rang but the call dropped as soon as I picked up.\" Which call ph...",
+      "right": "The call set up and rang fine, but failed the moment it was picked up, which is the answer phase.",
+      "wrong": "The answer phase failed. Setup and ringing worked (the phone rang); the drop happened exactly when the call was answered."
+    },
+    "5869cd53ef": {
+      "question": "A Platinum SLA customer experiences 15 min of downtime in a month (SLA allows 4.3 min). Wh...",
+      "right": "15 minutes is well over the 4.3 allowed, so the SLA is breached and penalties or service credits apply.",
+      "wrong": "It's an SLA breach: 15 minutes against 4.3 allowed, which triggers a penalty or credit note. The customer isn't at fault."
+    },
+    "09bd6c4cc5": {
+      "question": "In VoLTE, which pair correctly matches signaling and media paths?",
+      "right": "In VoLTE, SIP sets up and controls the call and RTP carries the actual voice.",
+      "wrong": "Signaling is SIP and media is RTP. SS7 and TDM belong to legacy circuit-switched networks."
+    },
+    "b9ca63d87f": {
+      "question": "A customer upgrades from 4G to 5G and sees latency drop from 50 ms to 5 ms. What is the PR...",
+      "right": "The 5G NR air interface and the cloud-native core (SBA) are what cut latency so sharply.",
+      "wrong": "The drop comes from 5G's NR air interface and cloud-native SBA core. SIM size and antenna height don't affect latency."
+    },
+    "2065a399f7": {
+      "question": "A CDR shows a 322-second call. Tariff is ₹1.00/min with rounding up to next minute. What i...",
+      "right": "322 seconds is 5.37 minutes, rounded up to 6, and 6 × ₹1 = ₹6.",
+      "wrong": "It's ₹6.00. 322 s is about 5.37 minutes, and the tariff rounds up to the next whole minute (6). ₹5.36 ignores the rounding rule."
+    },
+    "eb0d1a7224": {
+      "question": "A user's second request shows X-Cache: EXPIRED instead of HIT. What is the MOST likely cau...",
+      "right": "The cached copy outlived its 10-second TTL, so the edge marked it EXPIRED and revalidated with the origin.",
+      "wrong": "EXPIRED means the cached copy's TTL (10 s) ran out between requests. The cache works fine; it just needed to refresh."
+    },
+    "7218dd1a8b": {
+      "question": "A GenAI NOC summary says \"~30 customers affected\" but a PON can serve up to 128 ONTs. What...",
+      "right": "A PON can serve up to 128 ONTs, so '~30 customers' likely understates how many were hit.",
+      "wrong": "The AI under-estimated the impact. One PON can serve up to 128 ONTs, so far more than 30 customers could be affected."
+    },
+    "06e2ac6564": {
+      "question": "An engineer needs a VM accessible from the internet but without exposing it directly. What...",
+      "right": "The VM stays in a private subnet and only the load balancer faces the internet.",
+      "wrong": "Put the VM in a private subnet behind a load balancer. A public IP, open port 22 or no NSGs exposes it directly."
+    },
+    "bb926c8aca": {
+      "question": "A containerized application listens on port 8080 inside the container: Application → 8080 ...",
+      "right": "-p host:container publishes the container's port on the host, so localhost:8080 reaches the app.",
+      "wrong": "Use docker run -p 8080:8080 myapp. Without -p the container port isn't published; docker port only shows existing mappings."
+    },
+    "a5e220dba3": {
+      "question": "A postpaid bill shows a \"pro-rata charge\" because the plan was activated on the 15th. What...",
+      "right": "Pro-rata means charged in proportion: activated on the 15th, so only about half the month is billed.",
+      "wrong": "Pro-rata means you're charged for only part of the month, from activation on the 15th. It isn't extra usage or a discount."
+    },
+    "83d45d7a81": {
+      "question": "A customer complains VoIP calls fail but internet browsing works fine. Which layer do you ...",
+      "right": "Browsing works, so access and transport are fine. VoIP failing points to the service layer (e.g. the IMS/SIP platform).",
+      "wrong": "Investigate the service network first. Browsing works, so the access and transport paths are fine; the voice service itself is the likely fault."
+    },
+    "6a1670e6a0": {
+      "question": "A technician runs ping -c 4 google.com and gets replies with time=250 ms. Which QoS metric...",
+      "right": "Ping round-trip time measures latency.",
+      "wrong": "That's latency, the round-trip delay. Jitter is variation in delay, and packet loss would show as missing replies."
+    },
+    "32ee000c7e": {
+      "question": "A developer asks why TCP is used for web and UDP for VoIP. What is the correct reasoning?",
+      "right": "TCP guarantees delivery and order for web pages; UDP skips retransmission so voice stays real-time.",
+      "wrong": "TCP guarantees delivery and order, while UDP favours speed, which suits real-time voice. Both use ports, and neither is tied to 5G."
+    },
+    "1509dc3f23": {
+      "question": "An application requires different database URLs for development, testing, and production. ...",
+      "right": "Environment variables let one image run in dev, test and prod with different settings.",
+      "wrong": "Use environment variables (docker run -e or Compose env files). Baking config into the image means a rebuild for every environment."
+    },
+    "0f9d83c67d": {
+      "question": "A telecom employee is asked to classify \"customer complaint handling.\" Which is correct?",
+      "right": "Complaint handling deals with customers, so it's BSS (Business Support Systems).",
+      "wrong": "It's BSS, the customer-facing side: CRM, billing and complaints. OSS covers network operations."
+    },
+    "92fab1f703": {
+      "question": "A company currently uses fraud_model_v1 in production. A data scientist trains fraud_model...",
+      "right": "Check what went wrong and roll back to the stable v1 if needed. Keeping old versions makes that possible.",
+      "wrong": "Investigate the performance and consider rolling back to v1. Deleting v1 or the training data removes your safety net."
+    },
+    "6ece7a952d": {
+      "question": "A CDN edge cache returns X-Cache: MISS. What does the edge do next?",
+      "right": "On a MISS the edge fetches the content from the origin, serves it and caches it for later requests.",
+      "wrong": "The edge fetches from the origin and caches the result. A MISS is normal and isn't an error."
+    },
+    "d2589ddde6": {
+      "question": "A GenAI tool drafts a customer care response but misses the customer's specific complaint....",
+      "right": "A person should review and fix the draft before it reaches the customer.",
+      "wrong": "Have a human review and edit the draft before sending. Sending it as-is ignores the complaint, and deleting it wastes the useful parts."
+    },
+    "7bd8582e5a": {
+      "question": "A user reports \"no internet, but calls work\" on 4G. Where is the MOST likely issue?",
+      "right": "Calls work but data doesn't, so the radio link is fine; the core's user-plane data path is the likely fault.",
+      "wrong": "The core network's user-plane data path is the most likely issue. Calls prove the access network and phone work; the data path specifically is failing."
+    },
+    "f0da7d86f1": {
+      "question": "A customer orders FTTH broadband. Which inventory layer holds \"OLT port, VLAN, and IP addr...",
+      "right": "OLT ports, VLANs and IP addresses are physical and logical network resources, so they live in resource inventory.",
+      "wrong": "They're in Resource Inventory. Customer inventory holds customer details, and service inventory holds the services sold."
+    },
+    "e848b4a666": {
+      "question": "A cloud-native OSS service needs updating without affecting others. What is the BEST appro...",
+      "right": "Microservices can be deployed independently through CI/CD without touching the rest of the system.",
+      "wrong": "Deploy the microservice independently through CI/CD. Updating a whole monolith or shutting down affects every other service."
+    },
+    "b4a34ef48a": {
+      "question": "A prepaid customer makes calls with ₹0 balance. Which system is likely malfunctioning?",
+      "right": "The Online Charging System checks prepaid balance in real time; calls at ₹0 mean it isn't blocking them.",
+      "wrong": "The OCS is malfunctioning. It checks prepaid balance in real time and should block calls at ₹0. Billing is the postpaid, after-the-fact system."
+    },
+    "2885e01b9b": {
+      "question": "A data center uses 200 kW total power and 150 kW for IT equipment. What is the PUE?",
+      "right": "PUE = total facility power / IT power = 200 / 150 = 1.33.",
+      "wrong": "PUE is total power divided by IT power: 200 / 150 = 1.33. 0.75 is the ratio upside down; PUE can never be below 1."
+    },
+    "08f0fb725c": {
+      "question": "The priority is reducing customer-facing effort. Between a chatbot and an NOC alarm summar...",
+      "right": "A customer care chatbot directly cuts the effort customers spend. The NOC summarizer helps internal staff.",
+      "wrong": "Pick the customer care chatbot, since the goal is less effort for customers. The NOC alarm summarizer helps engineers, not customers."
+    },
+    "7b1903b3e5": {
+      "question": "A NOC receives 500 alarms in 2 minutes. What should the engineer do FIRST?",
+      "right": "Correlating alarms finds the one root cause behind the flood, instead of chasing 500 symptoms.",
+      "wrong": "Correlate the alarms first to find the root cause. Restarting everything or closing tickets without a diagnosis can make things worse."
+    },
+    "ca041ef4cc": {
+      "question": "A NOC engineer sees alarms from \"gNB-DEL-01\" and \"AMF-MUM-01.\" Which generation is this?",
+      "right": "gNB (the 5G base station) and AMF (the 5G core access function) are both 5G network elements.",
+      "wrong": "It's 5G: gNB is the 5G base station and AMF is part of the 5G core. In 4G these would be eNodeB and MME."
+    },
+    "da68fc32e7": {
+      "question": "A company receives new labeled customer data every month. The team wants the model to auto...",
+      "right": "An automated retraining pipeline retrains on new data when enough arrives, with no manual steps.",
+      "wrong": "Build an automated retraining pipeline triggered by new data. Deleting the model or editing predictions by hand doesn't scale."
+    },
+    "d93ac4289a": {
+      "question": "In a Docker mini-DC lab, docker run -d --name origin nginx is executed. What does origin r...",
+      "right": "The nginx container named origin plays the origin server, the source of truth that edge caches fetch from.",
+      "wrong": "origin is the origin server, the source of truth for the content. Edge caches fetch from it; it isn't the firewall, client or DNS."
+    }
+  }
+}
