@@ -53,7 +53,7 @@ export function highlight(text, query) {
 /** Inline text: `backtick` spans become <code>. */
 export function inline(text, query) {
   return text.split(/(`[^`\n]+`)/).filter(Boolean).flatMap((seg) =>
-    /^`[^`]+`$/.test(seg) ? [h("code", null, highlight(seg.slice(1, -1), query))] : highlight(seg, query));
+    /^`[^`]+`$/.test(seg) ? [h("code", { translate: "no" }, highlight(seg.slice(1, -1), query))] : highlight(seg, query));
 }
 
 /** Question text: ``` fenced lines become <pre>, blank-line separated paragraphs become <p>. */
@@ -61,7 +61,7 @@ export function rich(text, query) {
   const frag = document.createDocumentFragment();
   text.split(/(?:^|\n)```(?:\n|$)/).forEach((part, i) => {
     if (i % 2) {
-      frag.append(h("pre", null, h("code", null, highlight(part, query))));
+      frag.append(h("pre", { translate: "no" }, h("code", null, highlight(part, query))));
     } else {
       for (const para of part.split(/\n{2,}/)) {
         if (para.trim()) frag.append(h("p", null, inline(para.trim(), query)));
@@ -74,13 +74,20 @@ export function rich(text, query) {
 /** Option text; multi-line options are code (SQL, snippets) so they keep their layout in mono. */
 export function optionText(text, query) {
   return text.includes("\n")
-    ? h("span", { class: "opt-text is-code" }, highlight(text, query))
+    ? h("span", { class: "opt-text is-code", translate: "no" }, highlight(text, query))
     : h("span", { class: "opt-text" }, inline(text, query));
 }
 
 /** "Why" block under a question. Explanations can hold small tables or code, so they use rich(). */
 export function explainBlock(text, query) {
   return h("div", { class: "explain rich" }, h("span", { class: "explain-label" }, "Why"), rich(text, query));
+}
+
+/** Read a message to screen readers. The live region sits outside #app, so re-renders don't replace it. */
+export function announce(text) {
+  const el = document.getElementById("announcer");
+  el.textContent = "";
+  requestAnimationFrame(() => { el.textContent = text; }); // a fresh change, so a repeated message is read again
 }
 
 /** "smooth" unless the user asked for reduced motion. */

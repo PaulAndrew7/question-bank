@@ -35,9 +35,9 @@ export function renderStudy(app, data, args) {
   h("span", null, g.kicker && h("span", { class: "g-kicker" }, g.kicker), h("span", { class: "g-name" }, g.name)),
   h("span", { class: "count" }, g.count));
 
-  const side = h("aside", { class: "side", "aria-label": mode === "topic" ? "Topics" : "Quizzes" },
+  const side = h("aside", { class: "side" },
     seg,
-    h("nav", { class: "groups" },
+    h("nav", { class: "groups", "aria-label": mode === "topic" ? "Topics" : "Quizzes" },
       link({ id: "all", name: "All questions", count: data.questions.length }),
       h("div", { class: "sep", role: "presentation" }),
       groups.map(link)));
@@ -48,7 +48,7 @@ export function renderStudy(app, data, args) {
   const scopeNote = h("div");
 
   const input = h("input", {
-    id: "study-search", type: "search", autocomplete: "off", spellcheck: "false", enterkeyhint: "search",
+    id: "study-search", name: "q", type: "search", autocomplete: "off", spellcheck: "false", enterkeyhint: "search",
     placeholder: "Question or answer text…", value: query,
   });
   input.addEventListener("input", () => {

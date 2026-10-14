@@ -69,7 +69,7 @@ load()
     app.replaceChildren(
       h("div", { class: "page" },
         h("div", { class: "empty" },
-          h("h2", null, "The question data could not be loaded"),
+          h("h1", null, "The question data could not be loaded"),
           h("p", null, local
             ? "Browsers block data files when index.html is opened straight from disk. Serve the folder instead, for example with: python -m http.server -d docs"
             : "Check your connection and reload the page."),

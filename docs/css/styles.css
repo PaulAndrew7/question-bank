@@ -93,6 +93,7 @@ body {
   min-height: 100dvh;
 }
 h1, h2, h3, p { margin: 0; }
+h1, h2 { text-wrap: balance; }
 button, input { font: inherit; color: inherit; }
 button { cursor: pointer; }
 a, button, input, label { touch-action: manipulation; }
@@ -191,6 +192,10 @@ svg.icon { width: 1.15em; height: 1.15em; flex: none; display: block; }
 .switch input:checked + .track { background: var(--accent); }
 .switch input:checked + .track::after { transform: translateX(14px); }
 .switch input:focus-visible + .track { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (hover: hover) {
+  .switch:hover .track { background: color-mix(in srgb, var(--text-3) 70%, transparent); }
+  .switch:hover input:checked + .track { background: var(--accent-hover); }
+}
 
 .count { font-family: var(--mono); font-size: 12px; color: var(--text-3); font-variant-numeric: tabular-nums; }
 
@@ -289,7 +294,7 @@ svg.icon { width: 1.15em; height: 1.15em; flex: none; display: block; }
 .q-src { margin-top: 12px; font-size: 12.5px; color: var(--text-3); }
 
 .empty { padding: 56px 0; display: grid; gap: 12px; justify-items: start; }
-.empty h2 { font-size: 18px; font-weight: 600; }
+.empty :is(h1, h2) { font-size: 18px; font-weight: 600; }
 .empty p { color: var(--text-2); max-width: 52ch; }
 
 .to-top {
@@ -301,6 +306,7 @@ svg.icon { width: 1.15em; height: 1.15em; flex: none; display: block; }
   transition: opacity .2s var(--ease), transform .2s var(--ease), visibility 0s linear .2s;
 }
 .to-top.show { opacity: 1; visibility: visible; transform: none; transition: opacity .2s var(--ease), transform .2s var(--ease); }
+@media (hover: hover) { .to-top:hover { background: var(--fill); color: var(--text); } }
 @media (min-width: 861px) { .to-top { display: none; } }
 
 /* ---------- Mock test: setup ---------- */
@@ -348,6 +354,7 @@ svg.icon { width: 1.15em; height: 1.15em; flex: none; display: block; }
   background: var(--surface); font-size: 14.5px; cursor: pointer; user-select: none;
 }
 .choice input { position: absolute; opacity: 0; pointer-events: none; }
+@media (hover: hover) { .choice:hover:not(:has(input:disabled)) { border-color: var(--text-3); } }
 .choice:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); color: var(--text); font-weight: 540; }
 .choice:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
 .choice:has(input:disabled) { opacity: .45; cursor: not-allowed; }
@@ -359,6 +366,9 @@ svg.icon { width: 1.15em; height: 1.15em; flex: none; display: block; }
 .start-row { margin-top: 40px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid var(--line); }
 .start-row .btn { height: 44px; padding: 0 20px; font-size: 15px; }
 .start-row .note { font-size: 14px; color: var(--text-3); }
+/* Out of flow while empty, so its gap doesn't keep the full-width phone button short of the edge.
+   Not display:none, which would drop the live region from the accessibility tree. */
+.start-row .note:empty { position: absolute; }
 
 .history { margin-top: 48px; }
 .history h2 { font-size: 16px; font-weight: 600; margin-bottom: 10px; }
@@ -376,7 +386,7 @@ svg.icon { width: 1.15em; height: 1.15em; flex: none; display: block; }
 .run-head { display: flex; align-items: center; gap: 8px 16px; flex-wrap: wrap; }
 .run-meta { display: flex; align-items: baseline; gap: 4px 16px; flex-wrap: wrap; min-width: 0; }
 .run-tools { margin-left: auto; display: flex; align-items: center; gap: 16px; }
-.run-pos { font-family: var(--mono); font-size: 13.5px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.run-pos { font-family: var(--mono); font-size: 13.5px; font-weight: inherit; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .run-topic { font-size: 13.5px; color: var(--text-3); }
 .timer { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 13.5px; font-variant-numeric: tabular-nums; color: var(--text-2); }
 .timer.low { color: var(--wrong); }
@@ -389,6 +399,7 @@ svg.icon { width: 1.15em; height: 1.15em; flex: none; display: block; }
   height: 34px; border-radius: 6px; border: 1px solid var(--line-strong); background: var(--surface);
   font-family: var(--mono); font-size: 12.5px; color: var(--text-3); font-variant-numeric: tabular-nums;
 }
+@media (hover: hover) { .ov:hover { border-color: var(--text-3); color: var(--text); } }
 .ov.answered { background: var(--fill-strong); color: var(--text); border-color: var(--fill-strong); }
 .ov.right { background: var(--accent-soft); border-color: var(--accent-line); color: var(--accent); }
 .ov.wrong { background: var(--wrong-soft); border-color: var(--wrong-line); color: var(--wrong); }
@@ -568,7 +579,7 @@ svg.icon { width: 1.15em; height: 1.15em; flex: none; display: block; }
   .btn { height: 44px; }
   .btn.small { height: 40px; padding: 0 14px; }
   .btn.ghost.small { padding: 0 10px; }
-  .seg button { padding: 9px 12px; }
+  .seg button { padding: 9px 12px; min-height: 44px; }
   .group { min-height: 44px; }
   .chip { padding-top: 12px; padding-bottom: 12px; }
   .choice { height: 44px; }
@@ -580,7 +591,7 @@ svg.icon { width: 1.15em; height: 1.15em; flex: none; display: block; }
 }
 /* Touch screens get press feedback in place of hover. */
 @media (hover: none) {
-  .btn:active:not(:disabled), .icon-btn:active, .group:active, .seg button:active { background: var(--fill); }
+  .btn:active:not(:disabled), .icon-btn:active, .group:active, .seg button:active, .to-top:active { background: var(--fill); }
   .btn.primary:active:not(:disabled) { background: var(--accent-hover); border-color: var(--accent-hover); }
-  .chip:active, .choice:active, .run-opt:active:not(:disabled) { border-color: var(--text-3); }
+  .chip:active, .choice:active, .ov:active, .run-opt:active:not(:disabled) { border-color: var(--text-3); }
 }

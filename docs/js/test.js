@@ -1,4 +1,4 @@
-import { h, icon, rich, optionText, explainBlock, letter, pad, shuffle, setTitle, scrollBehavior } from "./dom.js";
+import { h, icon, rich, optionText, explainBlock, letter, pad, shuffle, setTitle, scrollBehavior, announce } from "./dom.js";
 import { store } from "./store.js";
 
 const LENGTHS = [10, 20, 30, "all"];
@@ -105,6 +105,21 @@ function startTest(test) {
   location.hash = "#/test/run";
 }
 
+/** Starting a new test while one is unfinished would overwrite it, so ask next to the button first. */
+function askReplace(rerender) {
+  ui.confirm = "replace";
+  rerender();
+  app.querySelector(".confirm .btn.primary")?.focus();
+}
+
+function replaceConfirm(unfinished, start, cancel) {
+  const answered = Object.keys(unfinished.answers).length;
+  return h("div", { class: "confirm", role: "alertdialog", "aria-label": "Replace unfinished test", "aria-describedby": "replace-msg" },
+    h("p", { id: "replace-msg" }, `This discards your unfinished test (${answered} of ${unfinished.items.length} answered).`),
+    h("button", { class: "btn primary small", type: "button", onclick: start }, "Start new test"),
+    h("button", { class: "btn ghost small", type: "button", onclick: () => { ui.confirm = null; cancel(); } }, "Cancel"));
+}
+
 /* ---------- setup ---------- */
 
 function renderSetup() {
@@ -136,12 +151,13 @@ function renderSetup() {
     note.textContent = pool.length ? "" : `Pick at least one ${setup.by === "topic" ? "topic" : "quiz"} to start.`;
   }
 
-  startBtn.addEventListener("click", () => {
+  const begin = () => {
     const pool = poolFor(setup);
     const n = setup.length === "all" ? pool.length : Math.min(setup.length, pool.length);
     if (!n) return;
     startTest(makeTest(shuffle(pool).slice(0, n), { label: scopeLabel(setup), feedback: setup.feedback, timed: setup.timed }));
-  });
+  };
+  startBtn.addEventListener("click", () => (resume ? askReplace(renderSetup) : begin()));
 
   /* cover */
   const groups = setup.by === "topic"
@@ -231,6 +247,7 @@ function renderSetup() {
       h("label", { class: "switch" }, timed, h("span", { class: "track" }), "One minute per question, submitted automatically when time runs out")),
 
     h("div", { class: "start-row" }, startBtn, note),
+    ui.confirm === "replace" && replaceConfirm(resume, begin, () => { renderSetup(); app.querySelector(".start-row .btn")?.focus(); }),
 
     history.length > 0 && h("section", { class: "history", "aria-labelledby": "hist-h" },
       h("h2", { id: "hist-h" }, "Recent results"),
@@ -261,12 +278,14 @@ function renderRunner() {
   const save = () => store.set("test", test);
   const goTo = (pos) => { test.pos = pos; ui.confirm = null; save(); renderRunner(); window.scrollTo(0, 0); };
 
+  const verdict = (orig) => (orig === q.answer ? "Correct." : `Not quite. The answer is ${letter(item.order.indexOf(q.answer))}.`);
   const pick = (orig) => {
     if (locked) return;
     const hadFocus = document.activeElement?.classList.contains("run-opt");
     test.answers[q.id] = orig;
     save();
     renderRunner();
+    if (instant) announce(verdict(orig));
     if (hadFocus) (app.querySelector('.run-opt[aria-checked="true"]:not(:disabled)') || app.querySelector("[data-next]"))?.focus();
     // On a small screen the verdict can land below the fold; bring it up.
     app.querySelector(".feedback")?.scrollIntoView({ block: "nearest", behavior: scrollBehavior() });
@@ -277,7 +296,7 @@ function renderRunner() {
   const timer = h("span", { class: "timer", role: "timer", "aria-label": "Time left" });
   const head = h("div", { class: "run-head" },
     h("div", { class: "run-meta" },
-      h("span", { class: "run-pos" }, `Question ${test.pos + 1} of ${total}`),
+      h("h1", { class: "run-pos" }, `Question ${test.pos + 1} of ${total}`),
       h("span", { class: "run-topic" }, data.topicName[q.topic])),
     h("div", { class: "run-tools" },
       test.deadline && timer,
@@ -291,11 +310,10 @@ function renderRunner() {
   const overview = ui.overview && h("div", { class: "overview" },
     h("div", { class: "overview-grid" }, test.items.map((it, i) => {
       const a = test.answers[it.id];
-      let cls = "ov";
-      if (a != null) cls += instant ? (a === data.byId.get(it.id).answer ? " right" : " wrong") : " answered";
+      const state = a == null ? "" : instant ? (a === data.byId.get(it.id).answer ? "right" : "wrong") : "answered";
       return h("button", {
-        class: cls, type: "button", "aria-current": String(i === test.pos),
-        "aria-label": `Question ${i + 1}${a != null ? ", answered" : ""}`,
+        class: state ? `ov ${state}` : "ov", type: "button", "aria-current": String(i === test.pos),
+        "aria-label": `Question ${i + 1}${state ? `, ${state}` : ""}`,
         onclick: () => goTo(i),
       }, i + 1);
     })),
@@ -303,8 +321,8 @@ function renderRunner() {
 
   /* confirm bar */
   const unanswered = total - answered;
-  const confirm = ui.confirm && h("div", { class: "confirm", role: "alertdialog", "aria-label": "Confirm submit" },
-    h("p", null, ui.confirm === "end"
+  const confirm = ui.confirm && h("div", { class: "confirm", role: "alertdialog", "aria-label": "Confirm submit", "aria-describedby": "confirm-msg" },
+    h("p", { id: "confirm-msg" }, ui.confirm === "end"
       ? (unanswered ? `End now? ${unanswered} unanswered ${unanswered === 1 ? "question counts" : "questions count"} as skipped.` : "End the test and see your score?")
       : `${unanswered} ${unanswered === 1 ? "question is" : "questions are"} still unanswered. Submit anyway?`),
     h("button", { class: "btn primary small", type: "button", onclick: () => finish(test) }, "Submit"),
@@ -324,10 +342,9 @@ function renderRunner() {
       }, h("span", { class: "key" }, letter(k)), h("span", { class: "rich" }, optionText(q.options[orig])), mark);
     }));
 
-  const feedback = locked && h("div", { class: "feedback", "aria-live": "polite" },
-    chosen === q.answer
-      ? h("p", { class: "verdict right" }, "Correct.")
-      : h("p", { class: "verdict wrong" }, `Not quite. The answer is ${letter(item.order.indexOf(q.answer))}.`),
+  // Re-rendered on every pick, so it can't be a live region itself; pick() announces the verdict.
+  const feedback = locked && h("div", { class: "feedback" },
+    h("p", { class: chosen === q.answer ? "verdict right" : "verdict wrong" }, verdict(chosen)),
     whyBlock(q, chosen === q.answer));
 
   const next = () => {
@@ -344,7 +361,7 @@ function renderRunner() {
     h("div", { class: "run-foot" },
       h("button", { class: "btn", type: "button", disabled: test.pos === 0, onclick: () => goTo(test.pos - 1) }, icon("arrow-left"), "Previous"),
       h("span", { class: "grow" }),
-      h("span", { class: "keys-hint" }, h("kbd", null, "1"), "-", h("kbd", null, `${q.options.length}`), " to answer, ", h("kbd", null, "Enter"), " for next"),
+      h("span", { class: "keys-hint" }, h("kbd", null, "1"), "–", h("kbd", null, `${q.options.length}`), " to answer, ", h("kbd", null, "Enter"), " for next"),
       h("button", { class: "btn primary", type: "button", onclick: next, "data-next": "" },
         last ? "Submit" : "Next", !last && icon("arrow-right")))));
 
@@ -426,17 +443,22 @@ function renderResults() {
   const filters = [["all", "All", total], ["wrong", "Wrong", wrong], ["skipped", "Skipped", skipped]];
   const shown = rows.filter((x) => ui.filter === "all" || x.status === ui.filter);
 
+  const retry = () => startTest(makeTest(shuffle(missed), { label: `Retry: ${r.label}`, feedback: r.feedback, timed: r.timed }));
+  // Reachable mid-test with the back button, so a retry must not silently replace that test.
+  const unfinished = activeTest();
+
   app.replaceChildren(h("div", { class: "page" },
-    h("section", { class: "score-block", "aria-label": "Score" },
+    h("section", { class: "score-block", "aria-labelledby": "result-h" },
+      h("h1", { id: "result-h", class: "sr-only" }, "Test result"),
       h("p", { class: "score" }, h("span", { class: "big" }, score), h("span", { class: "of" }, `/ ${total}`)),
       h("p", { class: "score-sub" }, `${Math.round((score / total) * 100)}% correct. ${wrong} wrong, ${skipped} skipped.`),
-      h("p", { class: "score-scope" }, `${r.label}, ${minutes} min`),
+      h("p", { class: "score-scope" }, `${r.label}, ${minutes} min`),
       h("div", { class: "score-actions" },
         missed.length > 0 && h("button", {
-          class: "btn primary", type: "button",
-          onclick: () => startTest(makeTest(shuffle(missed), { label: `Retry: ${r.label}`, feedback: r.feedback, timed: r.timed })),
+          class: "btn primary", type: "button", onclick: () => (unfinished ? askReplace(renderResults) : retry()),
         }, icon("arrow-counter-clockwise"), `Retry ${missed.length} missed`),
-        h("a", { class: missed.length ? "btn" : "btn primary", href: "#/test" }, "New test"))),
+        h("a", { class: missed.length ? "btn" : "btn primary", href: "#/test" }, "New test")),
+      ui.confirm === "replace" && replaceConfirm(unfinished, retry, () => { renderResults(); app.querySelector(".score-actions .btn")?.focus(); })),
 
     topicRows.length > 1 && h("section", { class: "breakdown", "aria-labelledby": "bd-h" },
       h("h2", { id: "bd-h" }, "By topic"),

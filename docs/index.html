@@ -14,6 +14,8 @@
   <!-- Satoshi is served by Fontshare: its license allows web use but not redistributing the font files in a public repo. -->
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@1&amp;display=swap">
   <link rel="preload" href="data/questions.json" as="fetch" crossorigin>
+  <!-- Mono sets counts and numbering on first render; without this it is only requested once the data has loaded. -->
+  <link rel="preload" href="fonts/JetBrainsMono-Variable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
   <script>
     // Apply a saved theme before first paint to avoid a flash.
@@ -34,7 +36,8 @@
     </div>
   </header>
   <main id="app" tabindex="-1">
-    <div class="loading" aria-busy="true" aria-label="Loading questions">
+    <div class="loading" role="status">
+      <span class="sr-only">Loading questions…</span>
       <div class="sk sk-title"></div>
       <div class="sk sk-line"></div>
       <div class="sk sk-line short"></div>
@@ -43,5 +46,6 @@
       <div class="sk sk-block"></div>
     </div>
   </main>
+  <div id="announcer" class="sr-only" aria-live="polite"></div>
 </body>
 </html>
